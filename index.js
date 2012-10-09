@@ -1,5 +1,12 @@
 var S={
-	/* */
+	/* IS */
+	
+	isStr:function(varName){ return typeof varName === 'string'; },
+	isObj:function(varName){ return typeof varName === 'object'; },
+	isFunc:function(varName){ return typeof varName === 'function'; },
+	
+	
+	/* Objects */
 	
 	extObj:function(target,object){
 		if(object)
@@ -7,6 +14,31 @@ var S={
 				target[i]=object[i];
 		return target;
 	},
+	extObjs:function(target){
+        var objects=this.aSlice1(arguments),l=objects.length,i,obj,j;
+        for(i=0;i<l;i++){
+            obj=objects[i];
+            for(j in obj)
+                target[j]=obj[j];
+        }
+        return target;
+    },
+	oUnion:function(target,object){
+		if(object)
+			for(var i in object)
+				if(target[i]===undefined) target[i]=object[i];
+		return target;
+	},
+	oForeach:function(o,callback){
+		var keys=Object.keys(o),length=keys.length;
+		for(var i=0;i<length;i++){
+			var k=keys[i];
+			callback(k,o[k]);
+		}
+	},
+	
+	/* Inheritance & Classes */
+	
 	extProto:function(targetclass,methods){
 		if(methods)
 			for(var i in methods)
@@ -49,12 +81,6 @@ var S={
 		child.extend = S.extThis;
 		return child;
 	},
-	
-	
-	
-	isStr:function(varName){ return typeof varName === 'string'; },
-	isObj:function(varName){ return typeof varName === 'object'; },
-	isFunc:function(varName){ return typeof varName === 'function'; },
 	
 	/* STRING */
 	
