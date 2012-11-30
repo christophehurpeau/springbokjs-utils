@@ -1,10 +1,11 @@
-var S={
+var S=global.S={
 	/* IS */
 	
 	isStr:function(varName){ return typeof varName === 'string'; },
 	isObj:function(varName){ return typeof varName === 'object'; },
 	isFunc:function(varName){ return typeof varName === 'function'; },
-	
+	isNb:function(varName){ return typeof varName === 'number'; },
+	isArray:Array.isArray,
 	
 	/* Objects */
 	
@@ -15,26 +16,29 @@ var S={
 		return target;
 	},
 	extObjs:function(target){
-        var objects=this.aSlice1(arguments),l=objects.length,i,obj,j;
-        for(i=0;i<l;i++){
-            obj=objects[i];
-            for(j in obj)
-                target[j]=obj[j];
-        }
-        return target;
-    },
+		var objects=this.aSlice1(arguments),l=objects.length,i,obj,j;
+		for(i=0;i<l;i++){
+			obj=objects[i];
+			for(j in obj)
+				target[j]=obj[j];
+		}
+		return target;
+	},
 	oUnion:function(target,object){
 		if(object)
 			for(var i in object)
 				if(target[i]===undefined) target[i]=object[i];
 		return target;
 	},
-	oForeach:function(o,callback){
+	oForEach:function(o,callback){
 		var keys=Object.keys(o),length=keys.length;
 		for(var i=0;i<length;i++){
 			var k=keys[i];
 			callback(k,o[k]);
 		}
+	},
+	cloneObj:function(o){
+		return S.extObj({},o);
 	},
 	
 	/* Inheritance & Classes */
@@ -93,14 +97,14 @@ var S={
 	},
 	sHas:function(s, s2){ return s.indexOf(s2) !== -1; },
 	sIsEmpty:function(s){ return /^\s*$/.test(s); },
-	sTrim:function(s, pattern) {
-		return S.sRtrim(S.sLtrim(s, pattern), pattern);
+	sTrim:function(s, pattern){
+		return s.replace(new RegExp('^'+pattern+'|'+pattern+'$','g'),'');
 	},
-	sLtrim:function(s, pattern) {
+	sLtrim:function(s, pattern){
 		if(pattern === undefined) pattern = '\\s+';
 		return s.replace(new RegExp('^' + pattern, 'g'), '');
 	},
-	sRtrim:function(s, pattern) {
+	sRtrim:function(s, pattern){
 		if(pattern === undefined) pattern = '\\s+';
 		return s.replace(new RegExp(pattern + '$', 'g'), '');
 	},
@@ -127,7 +131,36 @@ var S={
 			if(i in a && a[i] === searchElement) return i;
 		return -1;*/
 	},
-	aHas:function(a,searchElement,i){ return S.aIdxOf(a,searchElement,i) !== -1; }
+	aHas:function(a,searchElement,i){ return S.aIdxOf(a,searchElement,i) !== -1; },
+	aLast:function(a){return a[a.length-1]},//TODO 
+	
+	aSortF:{
+		'':function(a,b){
+			if(a < b) return -1;
+			if(a > b) return 1;
+			return 0;
+		}
+	},
+	
+	aSortBy:function(a,propName,desc,sortFunc){
+		if(!S.isFunc(sortFunc)) sortFunc=S.aSortF[sortFunc===undefined?'':sortFunc];
+		return a.sort(function(a,b){
+			if(desc){ var c=a; a=b; b=c; } 
+			return sortFunc(a[propName],b[propName]);
+		});
+	},
+	
+	/* HTML */
+	escape:function(html){
+		return String(html)
+			.replace(/&(?!\w+;)/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;');
+	},
+	escapeUrl:function(html){
+		return html.replace('&','&amp;');
+	}
 };
 //S.Class=S.extClass(Object);
 module.exports=S;
