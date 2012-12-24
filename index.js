@@ -37,7 +37,7 @@ var S=global.S={
 			callback(k,o[k]);
 		}
 	},
-	cloneObj:function(o){
+	oClone:function(o){
 		return S.extObj({},o);
 	},
 	
@@ -56,8 +56,9 @@ var S=global.S={
 		// The constructor function for the new subclass is either defined by you
 		// (the "constructor" property in your `extend` definition), or defaulted
 		// by us to simply call the parent's constructor.
-		var child = protoProps && protoProps.hasOwnProperty('ctor') ? protoProps.ctor : 
-															function(){ parent.apply(this,arguments); };
+		var child = protoProps && protoProps.hasOwnProperty('ctor') ?
+				protoProps.ctor
+				: function(){ parent.apply(this,arguments); };
 		
 		// Set the prototype chain to inherit from `parent`, without calling `parent`'s constructor function.
 		// + Set a convenience property in case the parent's prototype is needed later.
@@ -71,7 +72,7 @@ var S=global.S={
 		S.extObj(child,classProps);
 		
 		// Correctly set child's `prototype.constructor`.
-		child.prototype.ctor = child;
+		child.prototype.self = child;
 		
 		// Set a convenience property in case the parent's prototype is needed later.
 		//child.super_ = parent.prototype;
@@ -97,6 +98,11 @@ var S=global.S={
 	},
 	sHas:function(s, s2){ return s.indexOf(s2) !== -1; },
 	sIsEmpty:function(s){ return /^\s*$/.test(s); },
+	sSplitLeft:function(s,delimiter){
+		var pos=s.indexOf(delimiter);
+		if(pos===-1) return false;
+		return [s.substr(0,pos),s.substr(pos+delimiter.length)];
+	},
 	sTrim:function(s, pattern){
 		return s.replace(new RegExp('^'+pattern+'|'+pattern+'$','g'),'');
 	},
@@ -119,6 +125,46 @@ var S=global.S={
 		return s.replace(/%s/g, function(m) { return args[number++] || ''; });
 	},
 	
+	sTranslit:function(s){
+		[
+			[/æ|ǽ/,'ae'],
+			[/œ/,'oe'], [/Œ/,'OE'],
+			[/Ä|À|Á|Â|Ã|Ä|Å|Ǻ|Ā|Ă|Ą|Ǎ/,'A'], [/ä|à|á|â|ã|å|ǻ|ā|ă|ą|ǎ|ª/,'a'],
+			[/Ç|Ć|Ĉ|Ċ|Č/,'C'], [/ç|ć|ĉ|ċ|č/,'c'],
+			[/Ð|Ď|Đ/,'D'], [/ð|ď|đ/,'d'],
+			[/È|É|Ê|Ë|Ē|Ĕ|Ė|Ę|Ě|€/,'E'], [/è|é|ê|ë|ē|ĕ|ė|ę|ě/,'e'],
+			[/Ĝ|Ğ|Ġ|Ģ/,'G'], [/ĝ|ğ|ġ|ģ/,'g'],
+			[/Ĥ|Ħ/,'H'], [/ĥ|ħ/,'h'],
+			[/Ì|Í|Î|Ï|Ĩ|Ī|Ĭ|Ǐ|Į|İ/,'I'], [/ì|í|î|ï|ĩ|ī|ĭ|ǐ|į|ı/,'i'],
+			[/Ĵ/,'J'], [/ĵ/,'j'],
+			[/Ķ/,'K'], [/ķ/,'k'],
+			[/Ĺ|Ļ|Ľ|Ŀ|Ł/,'L'], [/ĺ|ļ|ľ|ŀ|ł/,'l'],
+			[/Ñ|Ń|Ņ|Ň/,'N'], [/ñ|ń|ņ|ň|ŉ/,'n'],
+			[/Ö|Ò|Ó|Ô|Õ|Ō|Ŏ|Ǒ|Ő|Ơ|Ø|Ǿ/,'O'], [/ö|ò|ó|ô|õ|ō|ŏ|ǒ|ő|ơ|ø|ǿ|º|°/,'o'],
+			[/Ŕ|Ŗ|Ř/,'R'], [/ŕ|ŗ|ř/,'r'],
+			[/Ś|Ŝ|Ş|Š/,'S'], [/ś|ŝ|ş|š|ſ/,'s'],
+			[/Ţ|Ť|Ŧ/,'T'], [/ţ|ť|ŧ/,'t'],
+			[/Ü|Ù|Ú|Û|Ũ|Ū|Ŭ|Ů|Ű|Ų|Ư|Ǔ|Ǖ|Ǘ|Ǚ|Ǜ/,'U'], [/ü|ù|ú|û|ũ|ū|ŭ|ů|ű|ų|ư|ǔ|ǖ|ǘ|ǚ|ǜ/,'u'],
+			[/Ý|Ÿ|Ŷ/,'Y'], [/ý|ÿ|ŷ/,'y'],
+			[/Ŵ/,'W'], [/ŵ/,'w'],
+			[/Ź|Ż|Ž/,'Z'], [/ź|ż|ž/,'z'],
+			[/Æ|Ǽ/,'AE'],
+			[/ß/,'ss'],
+			[/Ĳ/,'IJ'], [/ĳ/,'ij'],
+			
+			[/ƒ/,'f'],
+			[/&/,'et'],
+			
+			[/þ/,'th'],
+			[/Þ/,'TH'],
+		].forEach(function(v){ s=s.replace(v[0],v[1]); });
+		return s;
+	},
+	sNormalize:function(s){
+		return S.sTranslit(s).replace(/[ \-\'\"\_\(\)\[\]\{\}\#\~\&\*\,\.\;\:\!\?\/\\\\|\`\<\>\+]+/,' ')
+					.trim().toLowerCase();
+	},
+	
 	/* ARRAY */
 	
 	ASlice:Array.prototype.slice,
@@ -131,7 +177,12 @@ var S=global.S={
 			if(i in a && a[i] === searchElement) return i;
 		return -1;*/
 	},
-	aHas:function(a,searchElement,i){ return S.aIdxOf(a,searchElement,i) !== -1; },
+	aHas:function(a,searchElement,i){ return a.indexOf(searchElement,i) !== -1; },
+	aHasAmong:function(a,searchElements,i){
+		for(var j=0, l=searchElements.length; j<l ; j++)
+			if(a.indexOf(searchElements[j],i) !== -1) return true;
+		return false;
+	},
 	aLast:function(a){return a[a.length-1]},//TODO 
 	
 	aSortF:{

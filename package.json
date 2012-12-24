@@ -1,16 +1,18 @@
 {
-	"name":"springboktools",
-	"description":"Springbok NodeJS Tools",
-	"version":"0.0.4",
-	"homepage":"www.springbokjs.com",
-	"repository":{
-		"type": "git",
-		"url": "git://github.com/christophehurpeau/springbokjs.git"
-	},
-	"author":"Christophe Hurpeau",
-	
-	"dependencies":{
-	},
-	"devDependencies":{
-	}
+  "name": "springboktools",
+  "description": "Springbok NodeJS Tools",
+  "version": "0.0.3",
+  "homepage": "www.springbokjs.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/christophehurpeau/springbokjs.git"
+  },
+  "author": {
+    "name": "Christophe Hurpeau"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "_id": "springboktools@0.0.3",
+  "readme": "ERROR: No README.md file found!",
+  "_from": "springboktools@>=0.0.3"
 }
