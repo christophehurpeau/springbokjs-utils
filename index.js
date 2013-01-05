@@ -30,15 +30,26 @@ var S=global.S={
 				if(target[i]===undefined) target[i]=object[i];
 		return target;
 	},
+	oClone:function(o){
+		return S.extObj({},o);
+	},
+	
 	oForEach:function(o,callback){
-		var keys=Object.keys(o),length=keys.length;
-		for(var i=0;i<length;i++){
+		for(var keys=Object.keys(o),length=keys.length,i=0;i<length;i++){
 			var k=keys[i];
 			callback(k,o[k]);
 		}
 	},
-	oClone:function(o){
-		return S.extObj({},o);
+	oImplode:function(o,glue,callback){
+		if(S.isFunc(glue)){ callback=glue; glue=''; }
+		if(!callback) callback=function(k,v){ return v };
+		var res=keys=Object.keys(o),length=keys.length,i=0;
+		for(;i<length;i++){
+			var k=keys[i];
+			if(i!==0) res+=glue;
+			res+=callback(k,o[k]);
+		}
+		return res;
 	},
 	
 	/* Inheritance & Classes */
