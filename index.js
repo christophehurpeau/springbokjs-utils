@@ -84,6 +84,8 @@ var S=global.S={
 		
 		// Correctly set child's `prototype.constructor`.
 		child.prototype.self = child;
+		child.prototype.super_ = child.super_;
+		child.prototype.superCtor = parent;
 		
 		// Set a convenience property in case the parent's prototype is needed later.
 		//child.super_ = parent.prototype;
@@ -125,8 +127,16 @@ var S=global.S={
 		if(pattern === undefined) pattern = '\\s+';
 		return s.replace(new RegExp(pattern + '$', 'g'), '');
 	},
-	sRepeat:function(s, m) {
-		return new Array(m + 1).join(s);
+	sRepeat:function(s,count){
+		//return new Array(count + 1).join(s);
+		if(count < 1) return '';
+		/* Growing pattern : http://jsfiddle.net/disfated/GejWV/ */
+		var result = '',pattern=s.valueOf();
+		while(count > 0){
+			if (count & 1) result += pattern;
+			count >>= 1, pattern += pattern;
+		}
+		return result;
 	},
 	sFormat:function(s) {
 		return S.sVFormat(s, S.aSlice1(arguments));
@@ -193,6 +203,11 @@ var S=global.S={
 		for(var j=0, l=searchElements.length; j<l ; j++)
 			if(a.indexOf(searchElements[j],i) !== -1) return true;
 		return false;
+	},
+	aRemove:function(a,elt){
+		for(var i=0, l=a.length; i<l ; i++)
+			if(elt == a[i]) return a.splice(i,1);
+		return a;
 	},
 	aLast:function(a){return a[a.length-1]},//TODO 
 	
