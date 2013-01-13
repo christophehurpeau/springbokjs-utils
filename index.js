@@ -74,6 +74,7 @@ var S=global.S={
 		// Set the prototype chain to inherit from `parent`, without calling `parent`'s constructor function.
 		// + Set a convenience property in case the parent's prototype is needed later.
 		child.prototype=Object.create(child.super_ = parent.prototype);
+		child.superCtor = parent;
 		
 		// Add prototype properties (instance properties) to the subclass,
 		// if supplied.
@@ -82,13 +83,9 @@ var S=global.S={
 		// Add static properties to the constructor function, if supplied.
 		S.extObj(child,classProps);
 		
-		// Correctly set child's `prototype.constructor`.
-		child.prototype.self = child;
-		child.prototype.super_ = child.super_;
-		child.prototype.superCtor = parent;
-		
-		// Set a convenience property in case the parent's prototype is needed later.
-		//child.super_ = parent.prototype;
+		//child.prototype.self = child;
+		//child.prototype.super_ = child.super_;
+		//child.prototype.superCtor = parent;
 		
 		return child;
 	},
