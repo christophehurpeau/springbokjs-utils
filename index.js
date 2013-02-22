@@ -88,7 +88,7 @@ var S=global.S={
 		// Add static properties to the constructor function, if supplied.
 		S.extObj(child,classProps);
 		
-		//child.prototype.self = child;
+		child.prototype.self = child;
 		//child.prototype.super_ = child.super_;
 		//child.prototype.superCtor = parent;
 		
@@ -100,6 +100,11 @@ var S=global.S={
 		var child = S.inherits(parent,protoProps,classProps);
 		child.extend = S.extThis;
 		return child;
+	},
+	extClasses:function(parents,protoProps,classProps){
+		var parent=parents[0];
+		for(var i=1,l=parents.length;i<l;i++) S.oUnion(protoProps,parents[i].prototype);
+		return S.extClass(parent,protoProps,classProps);
 	},
 	
 	/* STRING */
@@ -187,6 +192,15 @@ var S=global.S={
 		return S.sTranslit(s).replace(/[ \-\'\"\_\(\)\[\]\{\}\#\~\&\*\,\.\;\:\!\?\/\\\\|\`\<\>\+]+/,' ')
 					.trim().toLowerCase();
 	},
+	sSlug:function(s,replacement){
+		if(replacement===undefined) replacement='-';
+		return S.sTranslit(s.trim())
+			.replace(/([^\d\.])\.+([^\d\.]|$)/g,'$1 $2')
+			.replace(/[^\w\d\.]/g,' ')
+			.trim()
+			.replace(/\s+/g,replacement)
+			.replace(new RegExp('^'+S.regexpEscape(replacement)+'+|'+S.regexpEscape(replacement)+'+$'),'');
+	},
 	
 	/* ARRAY */
 	
@@ -207,8 +221,8 @@ var S=global.S={
 		return false;
 	},
 	aRemove:function(a,elt){
-		for(var i=0, l=a.length; i<l ; i++)
-			if(elt == a[i]) return a.splice(i,1);
+		var i=a.indexOf(elt);
+		if(i) return a.splice(i,1);
 		return a;
 	},
 	aLast:function(a){return a[a.length-1]},//TODO 
@@ -239,6 +253,10 @@ var S=global.S={
 	},
 	escapeUrl:function(html){
 		return html.replace('&','&amp;');
+	},
+	
+	regexpEscape:function(s){
+		return s.replace( /([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
 	}
 };
 //S.Class=S.extClass(Object);
