@@ -103,7 +103,7 @@ var S=global.S={
 	},
 	extClasses:function(parents,protoProps,classProps){
 		var parent=parents[0];
-		for(var i=1,l=parents.length;i<l;i++) S.oUnion(protoProps,parents[i].prototype);
+		for(var i=1,l=parents.length;i<l;i++) UObj.union(protoProps,parents[i].prototype);
 		return S.extClass(parent,protoProps,classProps);
 	},
 	
