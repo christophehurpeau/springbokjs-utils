@@ -40,4 +40,4 @@ global.UObj={
 		}
 		return res;
 	}
-}
+};

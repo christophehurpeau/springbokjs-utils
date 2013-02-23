@@ -64,7 +64,7 @@ global.UArray={
 				if (!this[i].compare(testArr[i])) return false;
 			}*/
 			if(a1[i] !== a2[i]) return false;
-		
+		}
 		return true;
 	}
 };
