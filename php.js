@@ -29,9 +29,9 @@ module.exports={
 	},
 	
 	exportString:function(str){
-		if(!S.sHas(str,"'")) return "'"+str+"'";
-		if(!S.sHas(str,'"')) return '"'+str.replace('$','\$')+'"';
-		if(S.sHas(str,"\n") || S.sHas(str,"\r") || S.sHas(str,"\t") || S.sHas(str,"\v") || S.sHas("\f"))
+		if(!str.contains("'")) return "'"+str+"'";
+		if(!str.contains('"')) return '"'+str.replace('$','\$')+'"';
+		if(str.contains("\n") || str.contains("\r") || str.contains("\t") || str.contains("\v") || str.contains("\f"))
 			return '"'+str.replace('\\','\\\\').replace("\n",'\n').replace("\r",'\r').replace("\t",'\t').replace("\v",'\v')
 							.replace("\f",'\f').replace('$','\$')+'"';
 		return "'".str.replace('\\\'','\'').replace('\\\\\'','\\\'')+"'";

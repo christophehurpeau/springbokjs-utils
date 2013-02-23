@@ -7,51 +7,6 @@ var S=global.S={
 	isNb:function(varName){ return typeof varName === 'number'; },
 	isArray:Array.isArray,
 	
-	/* Objects */
-	
-	extObj:function(target,object){
-		if(object)
-			for(var i in object)
-				target[i]=object[i];
-		return target;
-	},
-	extObjs:function(target){
-		var objects=this.aSlice1(arguments),l=objects.length,i,obj,j;
-		for(i=0;i<l;i++){
-			obj=objects[i];
-			for(j in obj)
-				target[j]=obj[j];
-		}
-		return target;
-	},
-	oUnion:function(target,object){
-		if(object)
-			for(var i in object)
-				if(target[i]===undefined) target[i]=object[i];
-		return target;
-	},
-	oClone:function(o){
-		return UObj.extend({},o);
-	},
-	
-	oForEach:function(o,callback){
-		for(var keys=Object.keys(o),length=keys.length,i=0;i<length;i++){
-			var k=keys[i];
-			callback(k,o[k]);
-		}
-	},
-	oImplode:function(o,glue,callback){
-		if(S.isFunc(glue)){ callback=glue; glue=''; }
-		if(!callback) callback=function(k,v){ return v };
-		var res=keys=Object.keys(o),length=keys.length,i=0;
-		for(;i<length;i++){
-			var k=keys[i];
-			if(i!==0) res+=glue;
-			res+=callback(k,o[k]);
-		}
-		return res;
-	},
-	
 	/* Inheritance & Classes */
 	
 	extProto:function(targetclass,methods){
@@ -109,8 +64,6 @@ var S=global.S={
 	
 	/* STRING */
 	
-	sLcFirst:function(str){ return str.charAt(0).toLowerCase() + str.substr(1); },
-	sUcFirst:function(str){ return str.charAt(0).toUpperCase() + str.substr(1); },
 	sStartsWith:function(s, prefix) { return s.indexOf(prefix) === 0; },
 	sEndsWith:function(s, suffix){
 		var l = s.length - suffix.length;
@@ -146,7 +99,7 @@ var S=global.S={
 		return result;
 	},
 	sFormat:function(s) {
-		return S.sVFormat(s, S.aSlice1(arguments));
+		return S.sVFormat(s, UArray.slice1(arguments));
 	},
 	sVFormat:function(s, args) {
 		var number=0;
@@ -200,47 +153,6 @@ var S=global.S={
 			.trim()
 			.replace(/\s+/g,replacement)
 			.replace(new RegExp('^'+S.regexpEscape(replacement)+'+|'+S.regexpEscape(replacement)+'+$'),'');
-	},
-	
-	/* ARRAY */
-	
-	ASlice:Array.prototype.slice,
-	aSlice1:function(a){ return S.ASlice.call(a,1); },
-	aIdxOf:function(a,searchElement,i){
-		/*if(a.indexOf) */return a.indexOf(searchElement,i);
-		/*var l=a.length;
-		i=i ? i < 0 ? Math.max( 0, l + i ) : i : 0;
-		for(; i < l; i++ )
-			if(i in a && a[i] === searchElement) return i;
-		return -1;*/
-	},
-	aHas:function(a,searchElement,i){ return a.indexOf(searchElement,i) !== -1; },
-	aHasAmong:function(a,searchElements,i){
-		for(var j=0, l=searchElements.length; j<l ; j++)
-			if(a.indexOf(searchElements[j],i) !== -1) return true;
-		return false;
-	},
-	aRemove:function(a,elt){
-		var i=a.indexOf(elt);
-		if(i) return a.splice(i,1);
-		return a;
-	},
-	aLast:function(a){return a[a.length-1]},//TODO 
-	
-	aSortF:{
-		'':function(a,b){
-			if(a < b) return -1;
-			if(a > b) return 1;
-			return 0;
-		}
-	},
-	
-	aSortBy:function(a,propName,desc,sortFunc){
-		if(!S.isFunc(sortFunc)) sortFunc=S.aSortF[sortFunc===undefined?'':sortFunc];
-		return a.sort(function(a,b){
-			if(desc){ var c=a; a=b; b=c; } 
-			return sortFunc(a[propName],b[propName]);
-		});
 	},
 	
 	/* HTML */
