@@ -31,7 +31,7 @@ var S=global.S={
 		return target;
 	},
 	oClone:function(o){
-		return S.extObj({},o);
+		return UObj.extend({},o);
 	},
 	
 	oForEach:function(o,callback){
@@ -86,7 +86,7 @@ var S=global.S={
 		S.extChild(child,parent,protoProps,classProps);
 		
 		// Add static properties to the constructor function, if supplied.
-		S.extObj(child,classProps);
+		UObj.extend(child,classProps);
 		
 		child.prototype.self = child;
 		//child.prototype.super_ = child.super_;

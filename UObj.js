@@ -21,7 +21,7 @@ global.UObj={
 		return target;
 	},
 	clone:function(o){
-		return S.extObj({},o);
+		return UObj.extend({},o);
 	},
 	
 	forEach:function(o,callback){
