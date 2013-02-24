@@ -12,4 +12,4 @@ UString.stripTags=function(s,allowed){
 };
 
 UString.nl2br=function(){return this.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ '<br />' +'$2');};
-UString.br2nl=function(){return this.replace(/<br\s*\/?>/mg,'\n');}
+UString.br2nl=function(){return this.replace(/<br\s*\/?>/mg,'\n');};

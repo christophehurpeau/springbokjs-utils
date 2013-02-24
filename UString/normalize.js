@@ -36,7 +36,7 @@ UString.translit=function(s){
 
 UString.normalize=function(s){
 	return UString.translit(s).replace(/[ \-\'\"\_\(\)\[\]\{\}\#\~\&\*\,\.\;\:\!\?\/\\\\|\`\<\>\+]+/,' ').trim().toLowerCase();
-}
+};
 UString.slugify=function(s,replacement){
 	if(replacement===undefined) replacement='-';
 	return UString.translit(s.trim())
@@ -45,4 +45,4 @@ UString.slugify=function(s,replacement){
 		.trim()
 		.replace(/\s+/g,replacement)
 		.replace(new RegExp('^'+S.regexpEscape(replacement)+'+|'+S.regexpEscape(replacement)+'+$'),'');
-}
+};
