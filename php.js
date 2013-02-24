@@ -16,7 +16,7 @@ module.exports={
 			for(var k in v)
 				content+=this._exportCode_var(k)+'=>'+this._exportCode(v[k])+',';
 		}
-		if(content) content=S.sRtrim(content,',');
+		if(content) content=UString.trimRight(content,',');
 		content+=start?')':'),';
 		return content;
 	},
