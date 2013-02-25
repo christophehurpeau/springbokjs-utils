@@ -55,6 +55,10 @@ global.UString={
 		if(pos===-1) return false;
 		return [s.substr(0,pos),s.substr(pos+delimiter.length)];
 	},
+	explode:function(s,delimiter,limit){
+		var split=s.split(delimiter);
+		return limit >= split.length ? split : split.slice(0,limit-1).concat([ split.slice(limit-1).join(delimiter) ]);
+	},
 	
 	
 	format:function(s){
