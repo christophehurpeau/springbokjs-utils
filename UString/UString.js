@@ -33,6 +33,7 @@ global.UString={
 	
 	trim:function(str,pattern){ return str.replace(new RegExp('^'+pattern+'|'+pattern+'$','g'),''); },
 	trimLeft:function(str,pattern){ return this.replace(new RegExp('^'+pattern,'g'),'');},
+	trimRight:function(str,pattern){ return this.replace(new RegExp(pattern+'$','g'),'');},
 	
 	isEmpty:function(str){ return /^\s*$/.test(this) },
 	
