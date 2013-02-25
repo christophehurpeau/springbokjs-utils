@@ -32,8 +32,8 @@ global.UString={
 	ucFirst:function(str){ return str.charAt(0).toUpperCase() + str.substr(1); },
 	
 	trim:function(str,pattern){ return str.replace(new RegExp('^'+pattern+'|'+pattern+'$','g'),''); },
-	trimLeft:function(str,pattern){ return this.replace(new RegExp('^'+pattern,'g'),'');},
-	trimRight:function(str,pattern){ return this.replace(new RegExp(pattern+'$','g'),'');},
+	trimLeft:function(str,pattern){ return str.replace(new RegExp('^'+pattern,'g'),'');},
+	trimRight:function(str,pattern){ return str.replace(new RegExp(pattern+'$','g'),'');},
 	
 	isEmpty:function(str){ return /^\s*$/.test(this) },
 	
