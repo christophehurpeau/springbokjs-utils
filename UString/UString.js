@@ -2,7 +2,7 @@
 (function(){ //ES6
 	if(!String.prototype.contains) String.prototype.contains=function(str){return this.indexOf(str)!==-1};
 	if(!String.prototype.startsWith) String.prototype.startsWith=function(str,pos){return this.indexOf(str,pos)===0};
-	if(!String.prototype.endsWith) String.prototype.endsWith=function(str,pos){ var d=this.length-str.length; return d >= 0 && this.indexOf(pattern,d)===d; };
+	if(!String.prototype.endsWith) String.prototype.endsWith=function(str,pos){ var d=this.length-str.length; return d >= 0 && this.indexOf(str,d)===d; };
 	
 	if (!String.prototype.trimLeft || !String.prototype.trimRight){
 		var ws = "[" + "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
@@ -17,13 +17,13 @@
 		//return new Array(count + 1).join(this)
 		if(count < 1) return '';
 		/* Growing pattern : http://jsfiddle.net/disfated/GejWV/ */
-		var result = '',pattern=s.valueOf();
+		var result = '',pattern=this.valueOf();
 		while(count > 0){
 			if (count & 1) result += pattern;
 			count >>= 1, pattern += pattern;
 		}
 		return result;
-	}
+	};
 	
 })();
 
