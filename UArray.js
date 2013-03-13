@@ -18,10 +18,45 @@ global.UArray={
 	
 	/* same as Array.forEach but breaks when return false in callback */
 	forEach:function(a,fn,thisArg){
-		for(var i = 0, len = this.length; i < len; ++i) {
-			if(fn.call(scope, a[i], i, thisArg)===false) break;
+		for(var i = 0, len = a.length; i < len; ++i) {
+			if(fn.call(scope, a[i], i, thisArg)===false) return false;
 		}
 	},
+	forEachAsync:function(a,iterator,onEnd){
+		/* DEV */
+		if(!S.isFunc(iterator)) throw new Error('UArray.forEachAsync: iterator must be a function !');
+		if(!S.isFunc(onEnd)) throw new Error('UArray.forEachAsync: onEnd must be a function !');
+		/* /DEV */
+		var l, i=1,completed=0;
+		if(!a || !(l=a.length)) return onEnd();
+		
+		a.forEach(function(x){
+			iterator(x,function(err){
+				if (err) {
+					onEnd(err);
+					onEnd = function () {};
+				}else{
+					completed++;
+					if(completed === l) onEnd(null);
+				}
+			});
+		});
+	},
+	forEachSeries:function(a,iterator,onEnd,thisArg){
+		/* DEV */
+		if(!S.isFunc(iterator)) throw new Error('UArray.forEachSeries: iterator must be a function !');
+		if(!S.isFunc(onEnd)) throw new Error('UArray.forEachSeries: onEnd must be a function !');
+		/* /DEV */
+		var l, i=1;
+		if(!a || !(l=a.length)) return onEnd();
+		
+		iterator(a[0],function callback(err){
+			if(err) return onEnd(err);
+			if(i===l) return onEnd();
+			iterator.call(thisArg,a[i++],callback);
+		});
+	},
+	
 	
 	sortF:{
 		'':function(a,b){

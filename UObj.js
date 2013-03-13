@@ -25,11 +25,18 @@ global.UObj={
 	},
 	
 	forEach:function(o,callback){
-		for(var keys=Object.keys(o),length=keys.length,i=0;i<length;i++){
-			var k=keys[i];
-			callback(k,o[k]);
-		}
+		Object.keys(o).forEach(function(k){ callback(k,o[k]); });
 	},
+	
+	forEachAsync:function(o,iterator,onEnd){
+		UArray.forEachAsync(Object.keys(o),function(k,onEnd){ iterator(k,o[k],onEnd); },onEnd);
+	},
+	forEachSeries:function(o,iterator,onEnd){
+		UArray.forEachSeries(Object.keys(o),function(k,onEnd){ iterator(k,o[k],onEnd); },onEnd);
+	},
+	
+	
+	
 	implode:function(o,glue,callback){
 		if(S.isFunc(glue)){ callback=glue; glue=''; }
 		if(!callback) callback=function(k,v){ return v };
