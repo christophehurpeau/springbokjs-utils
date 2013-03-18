@@ -35,7 +35,14 @@ global.UObj={
 		UArray.forEachSeries(Object.keys(o),function(k,onEnd){ iterator(k,o[k],onEnd); },onEnd);
 	},
 	
-	
+	map:function(o,callback){
+		var mappedO={};
+		Object.keys(o).forEach(function(k){ mappedO[k]=callback(o[k],k) });
+		return mappedO;
+	},
+	join:function(o,separator){
+		return Object.keys(o).map(function(k){ return o[k] }).join(separator);
+	},
 	
 	implode:function(o,glue,callback){
 		if(S.isFunc(glue)){ callback=glue; glue=''; }

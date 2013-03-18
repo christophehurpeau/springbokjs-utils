@@ -7,6 +7,16 @@ var S=global.S={
 	isNb:function(varName){ return typeof varName === 'number'; },
 	isArray:Array.isArray,
 	
+	/* utils */
+	map:function(arrayOrObject,callback){
+		return S.isArray(arrayOrObject) ? arrayOrObject.map(callback) : UObj.map(arrayOrObject,callback);
+	},
+	join:function(arrayOrObject,separator){
+		return S.isArray(arrayOrObject) ? arrayOrObject.join(separator) : UObj.join(arrayOrObject,separator);
+	},
+	
+	
+	
 	/* Inheritance & Classes */
 	
 	extProto:function(targetclass,methods){
