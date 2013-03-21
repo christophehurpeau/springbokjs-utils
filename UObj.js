@@ -47,7 +47,7 @@ global.UObj={
 	implode:function(o,glue,callback){
 		if(S.isFunc(glue)){ callback=glue; glue=''; }
 		if(!callback) callback=function(k,v){ return v };
-		for(var res=keys=Object.keys(o),length=keys.length,i=0;i<length;i++){
+		for(var res,keys=Object.keys(o),length=keys.length,i=0;i<length;i++){
 			var k=keys[i];
 			if(i!==0) res+=glue;
 			res+=callback(k,o[k]);
