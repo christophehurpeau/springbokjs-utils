@@ -63,15 +63,23 @@ global.UArray={
 			if(a < b) return -1;
 			if(a > b) return 1;
 			return 0;
+		},
+		'number':function(a,b){
+			return a-b;
+		},
+		'string':function(a,b){
+			return a.localeCompare(b);
 		}
 	},
 	
 	sortBy:function(a,propName,desc,sortFunc){
 		if(!S.isFunc(sortFunc)) sortFunc=UArray.sortF[sortFunc===undefined?'':sortFunc];
-		return a.sort(function(a,b){
-			if(desc){ var c=a; a=b; b=c; } 
-			return sortFunc(a[propName],b[propName]);
-		});
+		return a.sort(
+			desc ? function(b,a){
+				return sortFunc(a[propName],b[propName]);
+			} : function(a,b){
+				return sortFunc(a[propName],b[propName]);
+			});
 	},
 	
 	
