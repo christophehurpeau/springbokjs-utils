@@ -2,6 +2,6 @@
 var fs=require('fs');
 
 global.UFiles={
-	getJsonSync:function(file){ return JSON.parse(fs.readFileSync(file)); }
+	readJsonSync:function(file){ return JSON.parse(fs.readFileSync(file,'UTF-8')); }
 };
 /* /NODE */
