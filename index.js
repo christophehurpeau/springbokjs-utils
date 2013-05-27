@@ -89,6 +89,7 @@ var S=global.S={
 	}
 };
 //S.Class=S.extClass(Object);
+
 /* NODE */
 module.exports=S;
 /* /NODE */

@@ -19,7 +19,7 @@ global.UArray={
 	/* same as Array.forEach but breaks when return false in callback */
 	forEach:function(a,fn,thisArg){
 		for(var i = 0, len = a.length; i < len; ++i) {
-			if(fn.call(scope, a[i], i, thisArg)===false) return false;
+			if(fn.call(fn, a[i], i,thisArg||a)===false) return false;
 		}
 	},
 	forEachAsync:function(a,iterator,onEnd){
@@ -74,6 +74,7 @@ global.UArray={
 	
 	sortBy:function(a,propName,desc,sortFunc){
 		if(!S.isFunc(sortFunc)) sortFunc=UArray.sortF[sortFunc===undefined?'':sortFunc];
+		/* DEV */ if(!sortFunc) throw new Error('undefined sortFunc : '+arguments[3]); /* /DEV */
 		return a.sort(
 			desc ? function(b,a){
 				return sortFunc(a[propName],b[propName]);
