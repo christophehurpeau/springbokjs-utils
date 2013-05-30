@@ -90,6 +90,6 @@ var S=global.S={
 };
 //S.Class=S.extClass(Object);
 
-/* NODE */
+/*#if NODE*/
 module.exports=S;
-/* /NODE */
+/*#/if*/

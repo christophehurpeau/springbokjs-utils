@@ -1,0 +1,18 @@
+require('../UArray');
+module.exports={
+	slice1:function(t){
+		t.deepEqual(UArray.slice1([1,2,3]),[2,3]);
+		t.done();
+	},
+	has:function(t){
+		t.strictEqual(UArray.has([1,2,3],4),false);
+		t.strictEqual(UArray.has([1,2,3],2),true);
+		t.done();
+	},
+	hasAmong:function(t){
+		t.strictEqual(UArray.hasAmong([1,2,3],[4]),false);
+		t.strictEqual(UArray.hasAmong([1,2,3],[2,4,6]),true);
+		t.strictEqual(UArray.hasAmong([1,2,3],[4,2]),true);
+		t.done();
+	},
+}
