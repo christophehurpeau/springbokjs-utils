@@ -1,4 +1,4 @@
-/* NODE */
+/*#if NODE*/
 var _exec=require('child_process').exec;
 
 global.UExec={
@@ -9,4 +9,4 @@ global.UExec={
 		return '"'+arg.replace(/(["\s'$`\\])/g,'\\$1')+'"';
 	}
 };
-/* /NODE */
+/*#/if*/

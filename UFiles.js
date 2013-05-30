@@ -1,4 +1,4 @@
-/* NODE */
+/*#if NODE*/
 var fs=require('fs'),YAML=require('js-yaml');
 
 global.UFiles={
@@ -17,4 +17,4 @@ global.UFiles={
 		});
 	}
 };
-/* /NODE */
+/*#/if*/

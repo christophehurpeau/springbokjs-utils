@@ -3,9 +3,9 @@ global.UDebug={
 		try{throw new Error();}catch(err){ console.log(err.stack); }
 	},
 	dump:function(o){
-		/* NODE */
+		/*#if NODE*/
 		return require('util').inspect(o);
-		/* /NODE */
+		/*#/if*/
 		//TODO
 		
 	}

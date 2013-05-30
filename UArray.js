@@ -23,10 +23,10 @@ global.UArray={
 		}
 	},
 	forEachAsync:function(a,iterator,onEnd){
-		/* DEV */
+		/*#if DEV*/
 		if(!S.isFunc(iterator)) throw new Error('UArray.forEachAsync: iterator must be a function !');
 		if(!S.isFunc(onEnd)) throw new Error('UArray.forEachAsync: onEnd must be a function !');
-		/* /DEV */
+		/*#/if*/
 		var l, i=1,completed=0;
 		if(!a || !(l=a.length)) return onEnd();
 		
@@ -43,10 +43,10 @@ global.UArray={
 		});
 	},
 	forEachSeries:function(a,iterator,onEnd,thisArg){
-		/* DEV */
+		/*#if DEV*/
 		if(!S.isFunc(iterator)) throw new Error('UArray.forEachSeries: iterator must be a function !');
 		if(!S.isFunc(onEnd)) throw new Error('UArray.forEachSeries: onEnd must be a function !');
-		/* /DEV */
+		/*#/if*/
 		var l, i=1;
 		if(!a || !(l=a.length)) return onEnd();
 		
@@ -74,7 +74,7 @@ global.UArray={
 	
 	sortBy:function(a,propName,desc,sortFunc){
 		if(!S.isFunc(sortFunc)) sortFunc=UArray.sortF[sortFunc===undefined?'':sortFunc];
-		/* DEV */ if(!sortFunc) throw new Error('undefined sortFunc : '+arguments[3]); /* /DEV */
+		/*#if DEV*/ if(!sortFunc) throw new Error('undefined sortFunc : '+arguments[3]); /*#/if*/
 		return a.sort(
 			desc ? function(b,a){
 				return sortFunc(a[propName],b[propName]);
