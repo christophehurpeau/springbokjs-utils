@@ -1,11 +1,37 @@
-global.UArray={
-	slice:Array.prototype.slice,
-	slice1:function(a){ return UArray.slice.call(a,1); },
+/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_generic_methods */
+if(!Array.forEach)
+	(function () {
+		'use strict';
 	
-	has:function(a,searchElement,i){ return a.indexOf(searchElement,i) !== -1; },
+		var i,
+			// We could also build the array of methods with the following, but the
+			//   getOwnPropertyNames() method is non-shimable:
+			// Object.getOwnPropertyNames(Array).filter(function (methodName) {return typeof Array[methodName] === 'function'});
+			methods = [
+				'join', 'reverse', 'sort', 'push', 'pop', 'shift', 'unshift',
+				'splice', 'concat', 'slice', 'indexOf', 'lastIndexOf',
+				'forEach', 'map', 'reduce', 'reduceRight', 'filter',
+				'some', 'every'
+			],
+			methodCount = methods.length,
+			assignArrayGeneric = function (methodName) {
+				var method = Array.prototype[methodName];
+				Array[methodName] = function (arg1) {
+					return method.apply(arg1, UArray.slice1(arguments));
+				};
+			};
+	
+		for (i = 0; i < methodCount; i++) {
+			assignArrayGeneric(methods[i]);
+		}
+	}());
+global.UArray={
+	slice1:function(a){ return Array.prototype.slice.call(a,1); }, //we cannot use Array.slice here
+	
+	has:function(a,searchElement,i){ return Array.indexOf(a,searchElement,i) !== -1; },
 	hasAmong:function(a,searchElements,i){
 		for(var j=0, l=searchElements.length; j<l ; j++)
-			if(a.indexOf(searchElements[j],i) !== -1) return true;
+			if(Array.indexOf(a,searchElements[j],i) !== -1) return true;
 		return false;
 	},
 	remove:function(a,elt){
@@ -30,7 +56,7 @@ global.UArray={
 		var l, i=1,completed=0;
 		if(!a || !(l=a.length)) return onEnd();
 		
-		a.forEach(function(x){
+		Array.forEach(a,function(x){
 			iterator(x,function(err){
 				if (err) {
 					onEnd(err);
