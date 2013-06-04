@@ -1,7 +1,7 @@
 var S=global.S={
 	/* IS */
 	
-	isStr:function(varName){ return typeof varName === 'string'; },
+	isString:function(varName){ return typeof varName === 'string'; },
 	isObj:function(varName){ return typeof varName === 'object'; },
 	isFunc:function(varName){ return typeof varName === 'function'; },
 	isNb:function(varName){ return typeof varName === 'number'; },

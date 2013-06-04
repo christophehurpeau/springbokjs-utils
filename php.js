@@ -21,7 +21,7 @@ module.exports={
 		return content;
 	},
 	_exportCode_var:function(v){
-		if(S.isStr(v)) return this.exportString(v);
+		if(S.isString(v)) return this.exportString(v);
 		if(v===undefined || v===null) return 'null';
 		if(v===true) return 'true';
 		if(v===false) return 'false';
