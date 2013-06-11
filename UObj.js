@@ -25,7 +25,19 @@ global.UObj={
 	},
 	
 	forEach:function(o,callback){
-		Object.keys(o).forEach(function(k){ callback(k,o[k]); });
+		/*#if DEV*/
+		if(!S.isFunc(callback)) throw new Error('UObj.forEach: callback must be a function !');
+		/*#/if*/
+		if(o.forEach)
+			o.forEach(function(){
+				var res=callback && callback.apply(this,arguments);
+				if(res===false) callback=false;
+			});
+		else
+			Object.keys(o).forEach(function(k){
+				var res=callback && callback.call(o,k,o[k]);
+				if(res===false) callback=false;
+			});
 	},
 	
 	forEachAsync:function(o,iterator,onEnd){

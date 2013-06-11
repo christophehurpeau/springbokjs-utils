@@ -1,4 +1,7 @@
 var S=global.S={
+	log:function(){console&&console.log.apply(console,arguments)},
+	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
+	
 	/* IS */
 	
 	isString:function(varName){ return typeof varName === 'string'; },
@@ -18,23 +21,41 @@ var S=global.S={
 	
 	
 	/* Inheritance & Classes */
+	defineProperties:function(targetObject,props, writable){
+		/*#if DEV*/if(!S.isObj(targetObject)) throw new Error('targetObject is not an Object: ',targetObject);/*#/if*/
+		writable=!!writable;
+		if(props)
+			for(var k in props)
+				if(k==='writable') S.defineProperties(targetObject,props[k],true);
+				else Object.defineProperty(targetObject,k,{ value:props[k], writable:writable });
+		return targetObject;
+	},
 	
-	extProto:function(targetclass,methods){
-		if(methods)
+	
+	extProto:function(targetClass,methods, writable){
+		S.defineProperties(targetClass.prototype,methods, writable);
+		return targetClass;
+	},
+	
+	mixin:function(targetClass){
+		UArray.slice1(arguments).forEach(function(mixin){
+			var methods=mixin._inheritsproto_;
 			for(var i in methods)
-				targetclass.prototype[i]=methods[i];
-		return targetclass;
+				if(!targetClass.prototype.hasOwnProperty(i))
+					Object.defineProperty(targetClass.prototype,i,{ value:methods[i] });
+		});
 	},
 	
 	extChild:function(child,parent,protoProps){
 		// Set the prototype chain to inherit from `parent`, without calling `parent`'s constructor function.
 		// + Set a convenience property in case the parent's prototype is needed later.
 		child.prototype=Object.create(child.super_ = parent.prototype);
-		child.superCtor = parent;
+		Object.defineProperty(child,'superCtor',{ value:parent });
 		
 		// Add prototype properties (instance properties) to the subclass,
 		// if supplied.
-		S.extProto(child,child._inheritsproto_=protoProps);
+		S.extProto(child,protoProps);
+		Object.defineProperty(child,'_inheritsproto_',{ value:protoProps });
 		
 		return child;
 	},
@@ -65,6 +86,9 @@ var S=global.S={
 		var child = S.inherits(parent,protoProps,classProps);
 		child.extend = S.extThis;
 		return child;
+	},
+	newClass:function(protoProps,classProps){
+		return S.extClass(Object,protoProps,classProps);
 	},
 	extClasses:function(parents,protoProps,classProps){
 		var parent=parents[0];
