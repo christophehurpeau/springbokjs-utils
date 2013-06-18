@@ -22,7 +22,10 @@ var S=global.S={
 	
 	/* Inheritance & Classes */
 	defineProperties:function(targetObject,props, writable){
-		/*#if DEV*/if(!S.isObj(targetObject)) throw new Error('targetObject is not an Object: ',targetObject);/*#/if*/
+		/*#if DEV*/if(!S.isObj(targetObject) && !S.isFunc(targetObject)){
+			console.error('targetObject is not an Object: ',targetObject,'props=',props,'writable=',writable);
+			throw new Error('S.defineProperties : targetObject is not an Object !');
+		}/*#/if*/
 		writable=!!writable;
 		if(props)
 			for(var k in props)
@@ -84,7 +87,7 @@ var S=global.S={
 	extThis:function(protoProps,classProps){ return S.extClass(this,protoProps,classProps); },
 	extClass:function(parent,protoProps,classProps){
 		var child = S.inherits(parent,protoProps,classProps);
-		child.extend = S.extThis;
+		child.extend || (child.extend = S.extThis);
 		return child;
 	},
 	newClass:function(protoProps,classProps){

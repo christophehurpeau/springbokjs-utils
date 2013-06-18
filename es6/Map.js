@@ -5,6 +5,9 @@
 if(!global.Map) console.log('You should use node --harmony');
 //NODE current implementation is not really good
 global.Map=null;
+/*#else*/
+/* chrome pre-implementation is lacking of the iterator method. Must be activated in prefs (like node --harmony) so most users won't have any implementation '*/
+if(global.Map && !global.Map.prototype.iterator) global.Map=null;
 /*#/if*/
 
 global.Map = global.Map || (function(){
@@ -46,6 +49,7 @@ global.Map = global.Map || (function(){
 	})
 	return Map;
 })();
+/* firefox implementation is lacking of the forEach method*/
 if(!Map.prototype.forEach)
 	/**
 	 * Given a callback function and optional context, invoke the callback on all
