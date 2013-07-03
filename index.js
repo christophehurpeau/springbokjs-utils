@@ -21,16 +21,17 @@ var S=global.S={
 	
 	
 	/* Inheritance & Classes */
-	defineProperties:function(targetObject,props, writable){
+	defineProperties:function(targetObject,props, writable,configurable){
 		/*#if DEV*/if(!S.isObj(targetObject) && !S.isFunc(targetObject)){
 			console.error('targetObject is not an Object: ',targetObject,'props=',props,'writable=',writable);
 			throw new Error('S.defineProperties : targetObject is not an Object !');
 		}/*#/if*/
-		writable=!!writable;
+		writable=!!writable; configurable=!!configurable;
 		if(props)
 			for(var k in props)
 				if(k==='writable') S.defineProperties(targetObject,props[k],true);
-				else Object.defineProperty(targetObject,k,{ value:props[k], writable:writable });
+				else if(k==='configurable') S.defineProperties(targetObject,props[k],false,true);
+				else Object.defineProperty(targetObject,k,{ value:props[k], writable:writable, configurable:configurable });
 		return targetObject;
 	},
 	

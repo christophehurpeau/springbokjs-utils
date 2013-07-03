@@ -10,7 +10,7 @@ global.UArray={
 	},
 	remove:function(a,elt){
 		var i=a.indexOf(elt);
-		if(i) return a.splice(i,1);
+		if(i!==-1) return a.splice(i,1);
 		return a;
 	},
 	
