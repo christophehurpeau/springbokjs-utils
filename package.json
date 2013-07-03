@@ -1,11 +1,11 @@
 {
   "name": "springboktools",
   "description": "Springbok NodeJS Tools",
-  "version": "0.1.6",
+  "version": "0.1.6.1",
   "homepage": "www.springbokjs.com",
   "repository": {
     "type": "git",
-    "url": "git://github.com/christophehurpeau/springbokjs.git"
+    "url": "https://github.com/christophehurpeau/Springbok-JsUtils.git"
   },
   "author": {
     "name": "Christophe Hurpeau"
