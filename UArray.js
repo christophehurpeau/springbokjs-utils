@@ -86,7 +86,7 @@ global.UArray={
 	
 	
 	findBy:function(a,propName,val){
-		var k=UArray.findKeyBy(propName,val);
+		var k=UArray.findKeyBy(a,propName,val);
 		if(k===false) return k;
 		return a[k];
 	},
