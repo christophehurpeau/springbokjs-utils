@@ -16,12 +16,8 @@ global.UArray={
 	
 	last:function(a){return a[a.length-1]},//TODO 
 	
-	/* same as Array.forEach but breaks when return false in callback */
-	forEach:function(a,fn,thisArg){
-		for(var i = 0, len = a.length; i < len; ++i) {
-			if(fn.call(fn, a[i], i,thisArg||a)===false) return false;
-		}
-	},
+	/* same as Array.forEach but breaks when return true in callback => go see Array.prototype.some */
+	
 	forEachAsync:function(a,iterator,onEnd){
 		/*#if DEV*/
 		if(!S.isFunc(iterator)) throw new Error('UArray.forEachAsync: iterator must be a function !');
@@ -92,10 +88,10 @@ global.UArray={
 	},
 	findKeyBy:function(a,propName,val){
 		var res=false;
-		UArray.forEach(a,function(v,k){
+		a.some(function(v,k){
 			if(v[propName] == val){
 				res=k;
-				return false;
+				return true;
 			}
 		});
 		return res;

@@ -39,9 +39,11 @@ global.Map = global.Map || (function(){
 				delete this.items[k];
 			}
 		} },
+		iterator:{ value:function(){
+			return UObj.iterator(this.items);
+		} },
 		forEach:{ value:function(callback){
-			for(var k in this.items)
-				callback.call(this,k,this.items[k]);
+			UObj.forEach(this.items,callback,this);
 		} },
 		toString:{ value: function() {
 			return '[Object Map]';
@@ -58,10 +60,13 @@ if(!Map.prototype.forEach)
 	 * @param callbackFn {Function}
 	 */
 	Map.prototype.forEach=function(callbackfn){
-		var iter = this.iterator();
+		/*var iter = this.iterator();
 		while(true){
 			var current;
 			try{ current=iter.next(); }catch(err){ return; }
 			callbackfn.call(this,current[0],current[1]);
-		}
+		}*/
+		var it=S.iterator(this);
+		while(it.hasNext())
+			callbackfn.apply(this,it.next());
 	}

@@ -24,18 +24,31 @@ global.UObj={
 		return UObj.extend({},o);
 	},
 	
-	forEach:function(o,callback){
+	iterator:function(o){
+		var keys=Object.keys(o), i=0;
+		return Object.freeze({
+			next:function(){
+				if (i >= keys.length)
+					throw StopIteration;
+				
+				return [ keys[i], o[keys[i++]] ];
+			}
+		});
+	},
+	
+	forEach:function(o,callback,thisArg){
 		/*#if DEV*/
 		if(!S.isFunc(callback)) throw new Error('UObj.forEach: callback must be a function !');
 		/*#/if*/
+		if(!thisArg) thisArg=o;
 		if(o.forEach)
 			o.forEach(function(){
-				var res=callback && callback.apply(this,arguments);
+				var res=callback && callback.apply(thisArg,arguments);
 				if(res===false) callback=false;
 			});
 		else
 			Object.keys(o).forEach(function(k){
-				var res=callback && callback.call(o,k,o[k]);
+				var res=callback && callback.call(thisArg,k,o[k]);
 				if(res===false) callback=false;
 			});
 	},

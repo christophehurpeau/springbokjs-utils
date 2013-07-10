@@ -18,6 +18,23 @@ var S=global.S={
 		return S.isArray(arrayOrObject) ? arrayOrObject.join(separator) : UObj.join(arrayOrObject,separator);
 	},
 	
+	iterator:function(iterable){
+		//TODO performances ?
+		var iterator=iterable.iterator(),
+			nextValue,hasNext=true,
+			next=function(){
+				try{
+					nextValue=iterator.next();
+				}catch(StopIteration){
+					hasNext=false;
+					nextValue=undefined;
+				}
+			};
+		return Object.freeze({
+			hasNext:function(){ return hasNext; },
+			next:function(){ var currentValue=nextValue; next(); return currentValue; }
+		})
+	},
 	
 	
 	/* Inheritance & Classes */
