@@ -30,6 +30,7 @@ var S=global.S={
 					nextValue=undefined;
 				}
 			};
+		next();
 		return Object.freeze({
 			hasNext:function(){ return hasNext; },
 			next:function(){ var currentValue=nextValue; next(); return currentValue; }
@@ -131,7 +132,7 @@ var S=global.S={
 	
 	regexpEscape:function(s){
 		return s.replace( /([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
-	}
+	},
 };
 //S.Class=S.extClass(Object);
 
