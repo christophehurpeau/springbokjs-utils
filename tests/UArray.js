@@ -41,7 +41,7 @@ module.exports={
 		t.strictEqual(UArray.findBy([{a:2},{a:1}],'a',3),false);
 		t.deepEqual(UArray.findBy([{a:2},{a:1}],'a',1),{a:1});
 		t.done();
-	}
+	},
 	findKeyBy:function(t){
 		t.deepEqual(UArray.findKeyBy([{a:2},{a:1}],'a',2),0);
 		t.strictEqual(UArray.findKeyBy([{a:2},{a:1}],'a',3),false);
