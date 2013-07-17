@@ -7,7 +7,7 @@ global.UString={
 	trimLeft:function(str,pattern){ return str.replace(new RegExp('^'+pattern,'g'),'');},
 	trimRight:function(str,pattern){ return str.replace(new RegExp(pattern+'$','g'),'');},
 	
-	isEmpty:function(str){ return /^\s*$/.test(this) },
+	isEmpty:function(str){ return str.trim()==='' },
 	
 	
 	substrFirst:function(str,needle){
