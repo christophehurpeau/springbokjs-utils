@@ -7,7 +7,7 @@ if(!global.Map) console.log('You should use node --harmony');
 global.Map=null;
 /*#else*/
 /* chrome pre-implementation is lacking of the iterator method. Must be activated in prefs (like node --harmony) so most users won't have any implementation '*/
-if(global.Map && !global.Map.prototype.iterator) global.Map=null;
+if(global.Map && (!global.Map.prototype.iterator || !global.Map.prototype.clear)) global.Map=null;
 /*#/if*/
 
 global.Map = global.Map || (function(){
@@ -16,9 +16,9 @@ global.Map = global.Map || (function(){
 	/*#/if*/
 	
 	var Map=function(iterator){
-		this.items={}; this.size=0;
+		this.items = {}; this.size = 0;
 		if(iterator) iterator.forEach(function(kv){
-			this.items[kv[0]]=kv[1];
+			this.items[kv[0]] = kv[1];
 		}.bind(this));
 	};
 	Object.defineProperties(Map.prototype,{
@@ -38,6 +38,10 @@ global.Map = global.Map || (function(){
 				this.size--;
 				delete this.items[k];
 			}
+		} },
+		clear:{ value:function(){
+			this.size = 0;
+			this.items = {};
 		} },
 		iterator:{ value:function(){
 			return UObj.iterator(this.items);

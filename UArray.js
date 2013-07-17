@@ -69,6 +69,7 @@ global.UArray={
 	},
 	
 	sortBy:function(a,propName,desc,sortFunc){
+		if(S.isString(desc) || S.isFunc(sortFunc)){ sortFunc = desc; desc = undefined; }
 		if(!S.isFunc(sortFunc)) sortFunc=UArray.sortF[sortFunc===undefined?'':sortFunc];
 		/*#if DEV*/ if(!sortFunc) throw new Error('undefined sortFunc : '+arguments[3]); /*#/if*/
 		return a.sort(
@@ -95,6 +96,18 @@ global.UArray={
 			}
 		});
 		return res;
+	},
+	
+	removeBy:function(a,propName,val){
+		var k=UArray.findKeyBy(a,propName,val);
+		if(k!==false) a.splice(k,1);
+		return a;
+	},
+	removeAllBy:function(a,propName,val){
+		var k;
+		while( (k = UArray.findKeyBy(a,propName,val)) !== false)
+			a.splice(k,1);
+		return a;
 	},
 	
 	eq:function(a1,a2){
