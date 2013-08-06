@@ -53,6 +53,20 @@ global.UArray={
 		});
 	},
 	
+	iterator:function(a){
+		var i=0;
+		return Object.freeze({
+			hasNext:function(){
+				return i < a.length;
+			},
+			next:function(){
+				if ( ! this.hasNext() )
+					throw StopIteration;
+				
+				return i++;
+			}
+		});
+	},
 	
 	sortF:{
 		'':function(a,b){
@@ -121,3 +135,4 @@ global.UArray={
 		return true;
 	}
 };
+!Array.prototype.iterator && (Array.prototype.iterator=function(){ return UArray.iterator(this); });

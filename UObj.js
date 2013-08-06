@@ -27,8 +27,11 @@ global.UObj={
 	iterator:function(o){
 		var keys=Object.keys(o), i=0;
 		return Object.freeze({
+			hasNext:function(){
+				return i < keys.length;
+			},
 			next:function(){
-				if (i >= keys.length)
+				if ( !this.hasNext() )
 					throw StopIteration;
 				
 				return [ keys[i], o[keys[i++]] ];
