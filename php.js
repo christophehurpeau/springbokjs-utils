@@ -30,10 +30,10 @@ module.exports={
 	
 	exportString:function(str){
 		if(!str.contains("'")) return "'"+str+"'";
-		if(!str.contains('"')) return '"'+str.replace('$','\$')+'"';
+		if(!str.contains('"')) return '"'+str.replace(/\$/g,'\$')+'"';
 		if(str.contains("\n") || str.contains("\r") || str.contains("\t") || str.contains("\v") || str.contains("\f"))
-			return '"'+str.replace('\\','\\\\').replace("\n",'\n').replace("\r",'\r').replace("\t",'\t').replace("\v",'\v')
-							.replace("\f",'\f').replace('$','\$')+'"';
-		return "'".str.replace('\\\'','\'').replace('\\\\\'','\\\'')+"'";
+			return '"'+str.replace(/\\/g,'\\\\').replace(/\n/g,'\n').replace(/\r/g,'\r').replace(/\t/g,'\t').replace(/\v/g,'\v')
+							.replace(/\f/g,'\f').replace(/\$/,'\$')+'"';
+		return "'".str.replace(/\\\'/g,'\'').replace(/\\\\\'/,'\\\'')+"'";
 	}
 };

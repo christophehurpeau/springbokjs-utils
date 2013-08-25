@@ -1,13 +1,14 @@
 var S=global.S={
-	log:function(){console&&console.log.apply(console,arguments)},
+	log:function(){console&&console.log.apply(console,arguments);},
 	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
+	toInt:function(arg){ return parseInt(arg,10); },
 	
 	/* IS */
 	
 	isString:function(varName){ return typeof varName === 'string'; },
 	isObj:function(varName){ return typeof varName === 'object'; },
 	isFunc:function(varName){ return typeof varName === 'function'; },
-	isNb:function(varName){ return typeof varName === 'number'; },
+	isNumber:function(varName){ return typeof varName === 'number'; },
 	isArray:Array.isArray,
 	
 	/* utils */
@@ -34,7 +35,7 @@ var S=global.S={
 		return Object.freeze({
 			hasNext:function(){ return hasNext; },
 			next:function(){ var currentValue=nextValue; next(); return currentValue; }
-		})
+		});
 	},
 	
 	
@@ -127,7 +128,7 @@ var S=global.S={
 			.replace(/"/g, '&quot;');
 	},
 	escapeUrl:function(html){
-		return html.replace('&','&amp;');
+		return html.replace(/&/g,'&amp;');
 	},
 	
 	regexpEscape:function(s){

@@ -14,7 +14,9 @@ global.UArray={
 		return a;
 	},
 	
-	last:function(a){return a[a.length-1]},//TODO 
+	last:function(a){return a[a.length-1]},//TODO
+	
+	random:function(a){ return a[Math.floor(Math.random() * a.length)]; },
 	
 	/* same as Array.forEach but breaks when return true in callback => go see Array.prototype.some */
 	

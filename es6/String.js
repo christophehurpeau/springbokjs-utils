@@ -37,11 +37,12 @@ if(!String.prototype.repeat) String.prototype.repeat=function(count){
             'charCodeAt', 'indexOf', 'lastIndexOf', 'startsWith', 'endsWith',
             'trim', 'trimLeft', 'trimRight', 'toLocaleLowerCase',
             'toLocaleUpperCase', 'localeCompare', 'match', 'search',
-            'replace', 'split', 'substr', 'concat', 'slice', 'fromCharCode'
+            'replace', 'split', 'substr', 'concat', 'slice'/*#if NODE*////*#/if*/, 'fromCharCode'
         ],
         methodCount = methods.length,
         assignStringGeneric = function (methodName) {
             var method = String.prototype[methodName];
+            /*#if DEV*/if(!method) throw new Error('Method does not exists '+methodName);/*#/if*/
             String[methodName] = function (arg1) {
                 return method.apply(arg1, Array.prototype.slice.call(arguments, 1));
             };

@@ -40,5 +40,4 @@ global.UString={
 		var number=0;
 		return s.replace(/%s/g, function(m) { return args[number++] || ''; });
 	}
-	
 };
