@@ -20,17 +20,18 @@ var S=global.S={
 	},
 	
 	iterator:function(iterable){
-		//TODO performances ?
-		var iterator=iterable.iterator(),
-			nextValue,hasNext=true,
-			next=function(){
-				try{
-					nextValue=iterator.next();
-				}catch(StopIteration){
-					hasNext=false;
-					nextValue=undefined;
-				}
-			};
+		var iterator=iterable.iterator();
+		if(S.isFunc(iterator.hasNext)) return iterator;
+		
+		var nextValue, hasNext=true;
+		var next=function(){
+			try{
+				nextValue=iterator.next();
+			}catch(StopIteration){
+				hasNext=false;
+				nextValue=undefined;
+			}
+		};
 		next();
 		return Object.freeze({
 			hasNext:function(){ return hasNext; },

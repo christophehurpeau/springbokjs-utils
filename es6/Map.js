@@ -52,7 +52,7 @@ global.Map = global.Map || (function(){
 		toString:{ value: function() {
 			return '[Object Map]';
 		} }
-	})
+	});
 	return Map;
 })();
 /* firefox implementation is lacking of the forEach method*/
@@ -73,4 +73,4 @@ if(!Map.prototype.forEach)
 		var it=S.iterator(this);
 		while(it.hasNext())
 			callbackfn.apply(this,it.next());
-	}
+	};

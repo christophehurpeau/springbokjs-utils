@@ -37,7 +37,7 @@ global.UString={
 		return UString.vformat(s, UArray.slice1(arguments));
 	},
 	vformat:function(s,args){
-		var number=0;
-		return s.replace(/%s/g, function(m) { return args[number++] || ''; });
+		var i=0;
+		return s.replace(/%s/g, function(m) { return args[i++] || ''; });
 	}
 };

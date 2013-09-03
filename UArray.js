@@ -137,4 +137,4 @@ global.UArray={
 		return true;
 	}
 };
-!Array.prototype.iterator && (Array.prototype.iterator=function(){ return UArray.iterator(this); });
+if(!Array.prototype.iterator) Array.prototype.iterator=function(){ return UArray.iterator(this); };

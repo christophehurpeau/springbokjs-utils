@@ -44,6 +44,7 @@ if(!String.prototype.repeat) String.prototype.repeat=function(count){
             var method = String.prototype[methodName];
             /*#if DEV*/if(!method) throw new Error('Method does not exists '+methodName);/*#/if*/
             String[methodName] = function (arg1) {
+            	/*#if DEV*/ throw new Error('Do not use String.'+methodName+'()');/*#/if*/
                 return method.apply(arg1, Array.prototype.slice.call(arguments, 1));
             };
         };
