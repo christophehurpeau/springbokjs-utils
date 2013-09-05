@@ -1,5 +1,5 @@
 var S=global.S={
-	log:function(){console&&console.log.apply(console,arguments);},
+	log: (console && console.log ) || function(){},
 	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
 	toInt:function(arg){ return parseInt(arg,10); },
 	
@@ -28,8 +28,8 @@ var S=global.S={
 			try{
 				nextValue=iterator.next();
 			}catch(StopIteration){
-				hasNext=false;
-				nextValue=undefined;
+				hasNext = false;
+				nextValue = undefined;
 			}
 		};
 		next();
@@ -56,7 +56,7 @@ var S=global.S={
 	},
 	
 	
-	extProto:function(targetClass,methods, writable){
+	extPrototype:function(targetClass,methods, writable){
 		S.defineProperties(targetClass.prototype,methods, writable);
 		return targetClass;
 	},
@@ -78,7 +78,7 @@ var S=global.S={
 		
 		// Add prototype properties (instance properties) to the subclass,
 		// if supplied.
-		S.extProto(child,protoProps);
+		S.extPrototype(child,protoProps);
 		Object.defineProperty(child,'_inheritsproto_',{ value:protoProps });
 		
 		return child;
@@ -86,17 +86,15 @@ var S=global.S={
 	
 	
 	/* http://backbonejs.org/backbone.js */
-	inherits:function(parent,protoProps,classProps){
+	inherits:function(parent,params){
 		// The constructor function for the new subclass is either defined by you
 		// (the "constructor" property in your `extend` definition), or defaulted
 		// by us to simply call the parent's constructor.
-		var child = protoProps && protoProps.hasOwnProperty('ctor') ?
-				protoProps.ctor
-				: function(){ parent.apply(this,arguments); };
-		S.extChild(child,parent,protoProps,classProps);
+		var child = params.ctor || function(){ parent.apply(this,arguments); };
+		S.extChild(child,parent,params.prototype);
 		
 		// Add static properties to the constructor function, if supplied.
-		UObj.extend(child,classProps);
+		UObj.extend(child,params.properties);
 		
 		child.prototype.self = child;
 		//child.prototype.super_ = child.super_;
@@ -106,13 +104,15 @@ var S=global.S={
 	},
 	
 	extThis:function(protoProps,classProps){ return S.extClass(this,protoProps,classProps); },
-	extClass:function(parent,protoProps,classProps){
-		var child = S.inherits(parent,protoProps,classProps);
+	extClass:function(parent,fn){
+		var params = {};
+		fn.call(params);
+		var child = S.inherits(parent,params);
 		child.extend || (child.extend = S.extThis);
 		return child;
 	},
-	newClass:function(protoProps,classProps){
-		return S.extClass(Object,protoProps,classProps);
+	newClass:function(fn){
+		return S.extClass(Object,fn);
 	},
 	extClasses:function(parents,protoProps,classProps){
 		var parent=parents[0];
