@@ -46,9 +46,10 @@ global.Map = global.Map || (function(){
 		iterator:{ value:function(){
 			return UObj.iterator(this.items);
 		} },
+		/*
 		forEach:{ value:function(callback){
 			UObj.forEach(this.items,callback,this);
-		} },
+		} },*/
 		toString:{ value: function() {
 			return '[Object Map]';
 		} }
@@ -71,6 +72,8 @@ if(!Map.prototype.forEach)
 			callbackfn.call(this,current[0],current[1]);
 		}*/
 		var it=S.iterator(this);
-		while(it.hasNext())
-			callbackfn.apply(this,it.next());
+		while(it.hasNext()){
+			var next = it.next();
+			callbackfn.call(this,next[1],next[0]);
+		}
 	};
