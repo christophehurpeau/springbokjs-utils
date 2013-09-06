@@ -103,7 +103,7 @@ var S=global.S={
 		return child;
 	},
 	
-	extThis:function(protoProps,classProps){ return S.extClass(this,protoProps,classProps); },
+	extThis:function(fn){ return S.extClass(this,fn); },
 	extClass:function(parent,fn){
 		var params = {};
 		fn.call(params);
