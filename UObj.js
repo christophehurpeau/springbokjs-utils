@@ -44,12 +44,15 @@ global.UObj={
 		if(!S.isFunc(callback)) throw new Error('UObj.forEach: callback must be a function !');
 		/*#/if*/
 		if(!thisArg) thisArg=o;
+		/*#if DEV*/
 		if(o.forEach)
-			o.forEach(function(){
+			throw new Error('call forEach !');
+			/*o.forEach(function(){
 				var res=callback && callback.apply(thisArg,arguments);
 				if(res===false) callback=false;
-			});
+			});*/
 		else
+		/*#/if*/
 			Object.keys(o).forEach(function(k){
 				var res=callback && callback.call(thisArg,k,o[k]);
 				if(res===false) callback=false;
