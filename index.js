@@ -1,3 +1,4 @@
+
 var S=global.S={
 	log:function(){console&&console.log.apply(console,arguments);},
 	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
@@ -87,6 +88,12 @@ var S=global.S={
 	
 	/* http://backbonejs.org/backbone.js */
 	inherits:function(parent,protoProps,classProps){
+		if(S.isFunc(protoProps)) protoProps = protoProps();
+		if(!classProps & protoProps.hasOwnProperty('static')){
+			classProps = protoProps.static;
+			delete protoProps.static;
+		}
+		
 		// The constructor function for the new subclass is either defined by you
 		// (the "constructor" property in your `extend` definition), or defaulted
 		// by us to simply call the parent's constructor.
