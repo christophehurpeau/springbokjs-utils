@@ -42,6 +42,9 @@ var S=global.S={
 	
 	
 	/* Inheritance & Classes */
+	defineProperty:function(targetObject,prop,value, writable,configurable){
+		Object.defineProperty(targetObject,prop,{ value:value, writable:!!writable, configurable:!!configurable });
+	},
 	defineProperties:function(targetObject,props, writable,configurable){
 		/*#if DEV*/if(!S.isObj(targetObject) && !S.isFunc(targetObject)){
 			console.error('targetObject is not an Object: ',targetObject,'props=',props,'writable=',writable);
@@ -58,6 +61,10 @@ var S=global.S={
 	
 	
 	extProto:function(targetClass,methods, writable){
+		S.log('Use S.extPrototype insteadof S.extProto');
+		return S.extPrototype(targetClass,methods, writable);
+	},
+	extPrototype:function(targetClass,methods, writable){
 		S.defineProperties(targetClass.prototype,methods, writable);
 		return targetClass;
 	},
@@ -88,7 +95,7 @@ var S=global.S={
 	
 	/* http://backbonejs.org/backbone.js */
 	inherits:function(parent,protoProps,classProps){
-		if(S.isFunc(protoProps)) protoProps = protoProps();
+		if(S.isFunc(protoProps)) protoProps = protoProps(parent);
 		if(!classProps & protoProps.hasOwnProperty('static')){
 			classProps = protoProps.static;
 			delete protoProps.static;
