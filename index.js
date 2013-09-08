@@ -1,6 +1,8 @@
-
+/*#if NODE*/
+require('./UObj');
+/*#/if*/
 var S=global.S={
-	log:function(){console&&console.log.apply(console,arguments);},
+	log: (console && console.log ) || function(){},
 	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
 	toInt:function(arg){ return parseInt(arg,10); },
 	
@@ -27,10 +29,10 @@ var S=global.S={
 		var nextValue, hasNext=true;
 		var next=function(){
 			try{
-				nextValue=iterator.next();
+				nextValue = iterator.next();
 			}catch(StopIteration){
-				hasNext=false;
-				nextValue=undefined;
+				hasNext = false;
+				nextValue = undefined;
 			}
 		};
 		next();
@@ -61,7 +63,7 @@ var S=global.S={
 	
 	
 	extProto:function(targetClass,methods, writable){
-		S.log('Use S.extPrototype insteadof S.extProto');
+		S.log('Use S.extPrototype instead of S.extProto');
 		return S.extPrototype(targetClass,methods, writable);
 	},
 	extPrototype:function(targetClass,methods, writable){
