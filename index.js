@@ -104,10 +104,10 @@ var S=global.S={
 		var child = protoProps && protoProps.hasOwnProperty('ctor') ?
 				protoProps.ctor
 				: function(){ parent.apply(this,arguments); };
-		S.extChild(child,parent,protoProps,classProps);
+		S.extChild(child,parent,protoProps);
 		
 		// Add static properties to the constructor function, if supplied.
-		UObj.extend(child,classProps);
+		S.defineProperties(child,classProps);
 		
 		child.prototype.self = child;
 		//child.prototype.super_ = child.super_;
