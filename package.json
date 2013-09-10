@@ -1,6 +1,6 @@
 {
-  "name": "springboktools",
-  "description": "Springbok NodeJS Tools",
+  "name": "springbokjs-utils",
+  "description": "Springbok NodeJS Utils",
   "version": "0.2.2",
   "homepage": "www.springbokjs.com",
   "repository": {
