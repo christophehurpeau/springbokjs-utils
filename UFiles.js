@@ -2,6 +2,9 @@
 var fs=require('fs'),YAML=require('js-yaml');
 
 global.UFiles={
+	existsSync:function(file){
+		return fs.existsSync(file);
+	},
 	readSync:function(file){
 		return fs.readFileSync(file,'UTF-8');
 	},

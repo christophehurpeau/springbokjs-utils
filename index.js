@@ -2,7 +2,7 @@
 require('./UObj');
 /*#/if*/
 var S=global.S={
-	log: (console && console.log ) || function(){},
+	log: console && console.log ? /*#ifelse NODE*/(console.log||function(){ console.log.apply(console,arguments); })/*#/if*/ : function(){},
 	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
 	toInt:function(arg){ return parseInt(arg,10); },
 	
