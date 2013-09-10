@@ -61,11 +61,6 @@ var S=global.S={
 		return targetObject;
 	},
 	
-	
-	extProto:function(targetClass,methods, writable){
-		S.log('Use S.extPrototype instead of S.extProto');
-		return S.extPrototype(targetClass,methods, writable);
-	},
 	extPrototype:function(targetClass,methods, writable){
 		S.defineProperties(targetClass.prototype,methods, writable);
 		return targetClass;
@@ -88,7 +83,7 @@ var S=global.S={
 		
 		// Add prototype properties (instance properties) to the subclass,
 		// if supplied.
-		S.extProto(child,protoProps);
+		S.extPrototype(child,protoProps);
 		Object.defineProperty(child,'_inheritsproto_',{ value:protoProps });
 		
 		return child;
