@@ -1,13 +1,20 @@
 /*#if NODE*/
 var fs=require('fs'),YAML=require('js-yaml');
+require('./UObj');
 
 global.UFiles={
-	existsSync:function(file){
-		return fs.existsSync(file);
+	existsSync: fs.existsSync.bind(fs),
+	existsAsync: fs.exists.bind(fs),
+	
+	readSync: function(file){
+		return fs.readFileSync(file,'UTF-8').toString();
 	},
-	readSync:function(file){
-		return fs.readFileSync(file,'UTF-8');
+	readAsync: function(file,callback){
+		return fs.readFile(file,'UTF-8',function(err,result){
+			err ? callback(false,err) : callback(result.toString());
+		});
 	},
+	
 	readJsonSync:function(file){
 		return JSON.parse(fs.readFileSync(file,'UTF-8'));
 	},
