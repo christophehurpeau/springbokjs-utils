@@ -2,10 +2,10 @@
 global.UArray={
 	slice1:function(a){ return Array.prototype.slice.call(a,1); }, //we cannot use Array.slice here
 	
-	has:function(a,searchElement,i){ return Array.indexOf(a,searchElement,i) !== -1; },
+	has:function(a,searchElement,i){ return Array.prototype.indexOf.call(a,searchElement,i) !== -1; },
 	hasAmong:function(a,searchElements,i){
 		for(var j=0, l=searchElements.length; j<l ; j++)
-			if(Array.indexOf(a,searchElements[j],i) !== -1) return true;
+			if(Array.prototype.indexOf.call(a,searchElements[j],i) !== -1) return true;
 		return false;
 	},
 	remove:function(a,elt){
@@ -14,7 +14,7 @@ global.UArray={
 		return a;
 	},
 	
-	last:function(a){return a[a.length-1]},//TODO
+	last:function(a){return a[a.length-1]; },//TODO
 	
 	random:function(a){ return a[Math.floor(Math.random() * a.length)]; },
 	

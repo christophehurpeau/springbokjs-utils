@@ -42,6 +42,17 @@ var S=global.S={
 		});
 	},
 	
+	asyncWhile: function(nextCallback,forEachCallback,endCallback){
+		(function _while(){
+			nextCallback(function(next){
+				if(next){
+					forEachCallback(next);
+					_while();
+				}else endCallback();
+			});
+		})();
+	},
+	
 	
 	/* Inheritance & Classes */
 	defineProperty:function(targetObject,prop,value, writable,configurable){
@@ -66,13 +77,11 @@ var S=global.S={
 		return targetClass;
 	},
 	
-	mixin:function(targetClass){
-		UArray.slice1(arguments).forEach(function(mixin){
-			var methods=mixin._inheritsproto_;
-			for(var i in methods)
-				if(!targetClass.prototype.hasOwnProperty(i))
-					Object.defineProperty(targetClass.prototype,i,{ value:methods[i] });
-		});
+	mixin:function(targetClass,mixin){
+		var methods=mixin._inheritsproto_;
+		for(var i in methods)
+			if(!targetClass.prototype.hasOwnProperty(i))
+				Object.defineProperty(targetClass.prototype,i,{ value:methods[i] });
 	},
 	
 	extChild:function(child,parent,protoProps){
@@ -91,11 +100,15 @@ var S=global.S={
 	
 	
 	/* http://backbonejs.org/backbone.js */
-	inherits:function(parent,protoProps,classProps){
+	inherits:function(parent,protoProps,classProps,mixins){
 		if(S.isFunc(protoProps)) protoProps = protoProps(parent);
-		if(!classProps & protoProps.hasOwnProperty('static')){
+		if(!classProps && protoProps.hasOwnProperty('static')){
 			classProps = protoProps.static;
 			delete protoProps.static;
+		}
+		if(!mixins && protoProps.hasOwnProperty('mixins')){
+			mixins = protoProps.mixins;
+			delete protoProps.mixins;
 		}
 		
 		// The constructor function for the new subclass is either defined by you
@@ -103,11 +116,17 @@ var S=global.S={
 		// by us to simply call the parent's constructor.
 		var child = protoProps && protoProps.hasOwnProperty('ctor') ?
 				protoProps.ctor
-				: function(){ parent.apply(this,arguments); };
+				: function(){
+						parent.apply(this,arguments);
+						mixins && mixins.forEach(function(mixin){ mixin.apply(this); }.bind(this));
+				};
 		S.extChild(child,parent,protoProps);
 		
 		// Add static properties to the constructor function, if supplied.
 		S.defineProperties(child,classProps);
+		
+		// Add mixins
+		mixins && mixins.forEach(function(mixin){ S.mixin(child,mixin); }.bind(this));
 		
 		child.prototype.self = child;
 		//child.prototype.super_ = child.super_;
