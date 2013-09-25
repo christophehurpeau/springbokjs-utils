@@ -14,6 +14,10 @@ global.UArray={
 		return a;
 	},
 	
+	clone:function(a){
+		return a.slice(0);
+	},
+	
 	last:function(a){return a[a.length-1]; },//TODO
 	
 	random:function(a){ return a[Math.floor(Math.random() * a.length)]; },
@@ -48,7 +52,7 @@ global.UArray={
 		var l, i=1;
 		if(!a || !(l=a.length)) return onEnd();
 		
-		iterator(a[0],function callback(err){
+		iterator.call(thisArg,a[0],function callback(err){
 			if(err) return onEnd(err);
 			if(i===l) return onEnd();
 			iterator.call(thisArg,a[i++],callback);
