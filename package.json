@@ -1,14 +1,14 @@
 {
   "name": "springbokjs-utils",
-  "description": "Springbok NodeJS Utils",
+  "description": "Springbok NodeJS and Browsers Utils",
+  "keywords": ["springbokjs","utils","ecmascript"],
   "version": "0.2.6",
-  "homepage": "www.springbokjs.com",
+  "homepage": "springbokjs.org",
+  "license": "MIT",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/christophehurpeau/Springbok-JsUtils.git"
-  },
-  "author": {
-    "name": "Christophe Hurpeau"
+    "url": "https://github.com/christophehurpeau/springbokjs-utils.git"
   },
   "dependencies": {
 		"js-yaml":">=2.1"
