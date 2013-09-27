@@ -68,16 +68,21 @@ global.UObj={
 	
 	map:function(o,callback){
 		var mappedO={};
-		Object.keys(o).forEach(function(k){ mappedO[k]=callback(o[k],k) });
+		Object.keys(o).forEach(function(k){ mappedO[k]=callback(o[k],k); });
 		return mappedO;
 	},
 	join:function(o,separator){
-		return Object.keys(o).map(function(k){ return o[k] }).join(separator);
+		return Object.keys(o).map(function(k){ return o[k]; }).join(separator);
+	},
+	filterKeys:function(o,keys){
+		var mappedO={};
+		keys.forEach(function(k){ mappedO[k]=o[k]; });
+		return mappedO;
 	},
 	
 	implode:function(o,glue,callback){
 		if(S.isFunc(glue)){ callback=glue; glue=''; }
-		if(!callback) callback=function(k,v){ return v };
+		if(!callback) callback=function(k,v){ return v; };
 		for(var res,keys=Object.keys(o),length=keys.length,i=0;i<length;i++){
 			var k=keys[i];
 			if(i!==0) res+=glue;
