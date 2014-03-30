@@ -1,7 +1,7 @@
-S.alphaNumber=function(index){
-	return S.defineProperties({},{
-		encode:function(number){
-			var base=index.length;
+S.alphaNumber = function(index) {
+	return S.defineProperties({}, {
+		encode: function(number) {
+			var base = index.length;
 			
 			var result = "";
 			for (var t = Math.floor(Math.log(number) / Math.log(base)); t >= 0; t--) {
@@ -12,8 +12,8 @@ S.alphaNumber=function(index){
 			}
 			return result; // reverse
 		},
-		decode:function(string){
-			var base=index.length, result = 0;
+		decode: function(string) {
+			var base = index.length, result = 0;
 			var len = string.length - 1;
 			for (var t = 0; t <= len; t++){
 				result += index.indexOf(string.substr(t,1)) * this.bcpow(base, len - t);
@@ -24,10 +24,10 @@ S.alphaNumber=function(index){
 			return substr($result, 0, strpos($result, '.'));
 		},
 		/* http://php.net/manual/fr/function.bcpow.php */
-		bcpow:function(_a, _b){
+		bcpow: function(_a, _b) {
 			return Math.floor(Math.pow(parseFloat(_a), parseInt(_b)));
 		}
 	});
 };
-S.alphaNumber.html=S.alphaNumber("abcdfghjklmonpqrstvwxyz_012345ABCDFGHJKLMNOPQRSTVWXYZ6789"); // - could be allowed too, but reserved as separator
-S.alphaNumber.url=S.alphaNumber("abcdfghjklmonpqrstvwxyz_012345ABCDFGHJKLMNOPQRSTVWXYZ6789-~");
+S.alphaNumber.html = S.alphaNumber("abcdfghjklmonpqrstvwxyz_012345ABCDFGHJKLMNOPQRSTVWXYZ6789"); // - could be allowed too, but reserved as separator
+S.alphaNumber.url = S.alphaNumber("abcdfghjklmonpqrstvwxyz_012345ABCDFGHJKLMNOPQRSTVWXYZ6789-~");

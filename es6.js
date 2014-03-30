@@ -1,0 +1,1 @@
+require('springbokjs-shim/es6.js');

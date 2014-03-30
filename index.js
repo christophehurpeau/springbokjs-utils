@@ -1,112 +1,145 @@
 /*#if NODE*/
 require('./UObj');
 /*#/if*/
-var S=global.S={
+var S = global.S = {
 	log: console && console.log ? /*#ifelse NODE*/(console.log||function(){ console.log.apply(console,arguments); })/*#/if*/ : function(){},
-	nextTick:/*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
-	toInt:function(arg){ return parseInt(arg,10); },
+	nextTick: /*#ifelse NODE*/(process.nextTick||function(fn){ setTimeout(fn,0); })/*#/if*/,
+	toInt: function(arg){
+        return parseInt(arg, 10);
+    },
 	
 	/* IS */
 	
-	isString:function(varName){ return typeof varName === 'string'; },
-	isObj:function(varName){ return typeof varName === 'object'; },
-	isFunc:function(varName){ return typeof varName === 'function'; },
-	isNumber:function(varName){ return typeof varName === 'number'; },
-	isArray:Array.isArray,
+	isString: function(varName){ return typeof varName === 'string'; },
+	isObj: function(varName){ return typeof varName === 'object'; },
+	isFunc: function(varName){ return typeof varName === 'function'; },
+	isNumber: function(varName){ return typeof varName === 'number'; },
+	isArray: Array.isArray,
 	
 	/* utils */
-	map:function(arrayOrObject,callback){
+	map: function(arrayOrObject, callback) {
 		return S.isArray(arrayOrObject) ? arrayOrObject.map(callback) : UObj.map(arrayOrObject,callback);
 	},
-	join:function(arrayOrObject,separator){
+	join: function(arrayOrObject, separator) {
 		return S.isArray(arrayOrObject) ? arrayOrObject.join(separator) : UObj.join(arrayOrObject,separator);
 	},
 	
-	iterator:function(iterable){
-		var iterator=iterable.iterator();
-		if(S.isFunc(iterator.hasNext)) return iterator;
-		
+	iterator: function(iterable) {
+		var iterator = iterable.iterator();
+		if (S.isFunc(iterator.hasNext)) {
+            return iterator;
+		}
+
 		var nextValue, hasNext=true;
-		var next=function(){
-			try{
+		var next = function(){
+			try {
 				nextValue = iterator.next();
-			}catch(StopIteration){
+			} catch(StopIteration) {
 				hasNext = false;
 				nextValue = undefined;
 			}
 		};
 		next();
 		return Object.freeze({
-			hasNext:function(){ return hasNext; },
-			next:function(){ var currentValue=nextValue; next(); return currentValue; }
+			hasNext: function(){
+                return hasNext;
+            },
+			next: function(){
+                var currentValue = nextValue;
+                next();
+                return currentValue;
+            }
 		});
 	},
 	
-	asyncWhile: function(nextCallback,forEachCallback,endCallback){
-		(function _while(){
-			nextCallback(function(next){
-				if(next){
-					forEachCallback(next);
-					_while();
-				}else endCallback();
+	asyncWhile: function(nextCallback, forEachCallback, endCallback) {
+		(function _while(err) {
+			if (err) {
+                return endCallback(err);
+            }
+			nextCallback(function(next) {
+				if (next) {
+					forEachCallback(next, _while);
+				} else {
+                    endCallback();
+                }
 			});
 		})();
 	},
 	
 	
 	/* Inheritance & Classes */
-	defineProperty:function(targetObject,prop,value, writable,configurable){
-		Object.defineProperty(targetObject,prop,{ value:value, writable:!!writable, configurable:!!configurable });
+	defineProperty: function(targetObject, prop, value, writable, configurable) {
+		Object.defineProperty(targetObject, prop, {
+            value:value,
+            writable:!!writable,
+            configurable:!!configurable
+        });
 	},
-	defineProperties:function(targetObject,props, writable,configurable){
-		/*#if DEV*/if(!S.isObj(targetObject) && !S.isFunc(targetObject)){
+	defineProperties: function(targetObject, props, writable, configurable) {
+		/*#if DEV*/if(!S.isObj(targetObject) && !S.isFunc(targetObject)) {
 			console.error('targetObject is not an Object: ',targetObject,'props=',props,'writable=',writable);
 			throw new Error('S.defineProperties : targetObject is not an Object !');
 		}/*#/if*/
-		writable=!!writable; configurable=!!configurable;
-		if(props)
-			for(var k in props)
-				if(k==='writable') S.defineProperties(targetObject,props[k],true);
-				else if(k==='configurable') S.defineProperties(targetObject,props[k],false,true);
-				else Object.defineProperty(targetObject,k,{ value:props[k], writable:writable, configurable:configurable });
+		writable=!!writable;
+        configurable=!!configurable;
+		if (props) {
+			for (var k in props) {
+				if (k==='writable') {
+                    S.defineProperties(targetObject, props[k], true);
+				} else if (k==='configurable') {
+                    S.defineProperties(targetObject, props[k], false, true);
+				} else {
+                    Object.defineProperty(targetObject, k, {
+                        value:props[k],
+                        writable:writable,
+                        configurable:configurable
+                    });
+                }
+            }
+        }
 		return targetObject;
 	},
 	
-	extPrototype:function(targetClass,methods, writable){
-		S.defineProperties(targetClass.prototype,methods, writable);
+	extPrototype: function(targetClass, methods, writable) {
+		S.defineProperties(targetClass.prototype, methods, writable);
 		return targetClass;
 	},
 	
-	mixin:function(targetClass,mixin){
-		var methods=mixin._inheritsproto_;
-		for(var i in methods)
-			if(!targetClass.prototype.hasOwnProperty(i))
-				Object.defineProperty(targetClass.prototype,i,{ value:methods[i] });
+	mixin: function(targetClass, mixin) {
+		var methods = mixin._inheritsproto_;
+		for (var i in methods) {
+			if (!targetClass.prototype.hasOwnProperty(i)) {
+				Object.defineProperty(targetClass.prototype, i, { value:methods[i] });
+            }
+        }
 	},
 	
-	extChild:function(child,parent,protoProps){
+	extChild: function(child, parent, protoProps) {
 		// Set the prototype chain to inherit from `parent`, without calling `parent`'s constructor function.
 		// + Set a convenience property in case the parent's prototype is needed later.
-		child.prototype=Object.create(child.super_ = parent.prototype);
-		Object.defineProperty(child,'superCtor',{ value:parent });
+		child.prototype = Object.create(child.super_ = parent.prototype);
+		Object.defineProperty(child, 'superCtor', { value:parent });
 		
 		// Add prototype properties (instance properties) to the subclass,
 		// if supplied.
 		S.extPrototype(child,protoProps);
-		Object.defineProperty(child,'_inheritsproto_',{ value:protoProps });
+		Object.defineProperty(child, '_inheritsproto_', { value:protoProps });
 		
 		return child;
 	},
 	
 	
 	/* http://backbonejs.org/backbone.js */
-	inherits:function(parent,protoProps,classProps,mixins){
-		if(S.isFunc(protoProps)) protoProps = protoProps(parent);
-		if(!classProps && protoProps.hasOwnProperty('static')){
+	inherits: function(parent, protoProps, classProps, mixins) {
+		if (S.isFunc(protoProps)) {
+            protoProps = protoProps(parent);
+        }
+		if (!classProps && protoProps.hasOwnProperty('static')) {
 			classProps = protoProps.static;
 			delete protoProps.static;
 		}
-		if(!mixins && protoProps.hasOwnProperty('mixins')){
+		if (!mixins && protoProps.hasOwnProperty('mixins')) {
 			mixins = protoProps.mixins;
 			delete protoProps.mixins;
 		}
@@ -120,13 +153,15 @@ var S=global.S={
 						parent.apply(this,arguments);
 						mixins && mixins.forEach(function(mixin){ mixin.apply(this); }.bind(this));
 				};
-		S.extChild(child,parent,protoProps);
+		S.extChild(child,parent, protoProps);
 		
 		// Add static properties to the constructor function, if supplied.
-		S.defineProperties(child,classProps);
+		S.defineProperties(child, classProps);
 		
 		// Add mixins
-		mixins && mixins.forEach(function(mixin){ S.mixin(child,mixin); }.bind(this));
+        if (mixins) {
+		  mixins.forEach(function(mixin){ S.mixin(child,mixin); }.bind(this));
+        }
 		
 		child.prototype.self = child;
 		//child.prototype.super_ = child.super_;
@@ -135,39 +170,43 @@ var S=global.S={
 		return child;
 	},
 	
-	extThis:function(protoProps,classProps){ return S.extClass(this,protoProps,classProps); },
-	extClass:function(parent,protoProps,classProps){
+	extThis: function(protoProps, classProps) {
+        return S.extClass(this, protoProps, classProps);
+    },
+	extClass: function(parent, protoProps, classProps) {
 		var child = S.inherits(parent,protoProps,classProps);
 		child.extend || (child.extend = S.extThis);
 		return child;
 	},
-	newClass:function(protoProps,classProps){
-		return S.extClass(Object,protoProps,classProps);
+	newClass: function(protoProps, classProps) {
+		return S.extClass(Object, protoProps, classProps);
 	},
-	extClasses:function(parents,protoProps,classProps){
-		var parent=parents[0];
-		for(var i=1,l=parents.length;i<l;i++) UObj.union(protoProps,parents[i].prototype);
-		return S.extClass(parent,protoProps,classProps);
+	extClasses: function(parents, protoProps, classProps) {
+		var parent = parents[0];
+		for(var i=1, l=parents.length ; i<l ; i++) {
+            UObj.union(protoProps, parents[i].prototype);
+        }
+		return S.extClass(parent, protoProps, classProps);
 	},
 	
 	/* HTML */
-	escape:function(html){
+	escape: function(html) {
 		return String(html)
 			.replace(/&(?!\w+;)/g, '&amp;')
 			.replace(/</g, '&lt;')
 			.replace(/>/g, '&gt;')
 			.replace(/"/g, '&quot;');
 	},
-	escapeUrl:function(html){
+	escapeUrl: function(html) {
 		return html.replace(/&/g,'&amp;');
 	},
 	
-	regexpEscape:function(s){
+	regexpEscape: function(s) {
 		return s.replace( /([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
 	},
 };
 //S.Class=S.extClass(Object);
 
 /*#if NODE*/
-module.exports=S;
+module.exports = S;
 /*#/if*/
