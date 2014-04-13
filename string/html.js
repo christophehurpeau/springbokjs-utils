@@ -1,5 +1,7 @@
+var string = require('./string.js');
+
 /* http://phpjs.org/functions/strip_tags:535 */
-UString.stripTags=function(s,allowed){
+string.stripTags = function(s, allowed) {
 	allowed = (((allowed || "") + "").toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
 	var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
 		commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi,
@@ -11,5 +13,11 @@ UString.stripTags=function(s,allowed){
 	}).replace(/\n+\s*\n*/,"\n");
 };
 
-UString.nl2br=function(s){return s.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ '<br />' +'$2');};
-UString.br2nl=function(s){return s.replace(/<br\s*\/?>/mg,'\n');};
+string.nl2br = function(s) {
+    return s.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ '<br />' +'$2');
+};
+string.br2nl = function(s) {
+    return s.replace(/<br\s*\/?>/mg,'\n');
+};
+
+module.exports = string;

@@ -1,17 +1,17 @@
 {
-  "name": "springboktools",
-  "description": "Springbok NodeJS Tools",
-  "version": "0.1.15",
-  "homepage": "www.springbokjs.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/christophehurpeau/Springbok-JsUtils.git"
-  },
-  "author": {
-    "name": "Christophe Hurpeau"
-  },
-  "dependencies": {
+    "name": "springbokjs-utils",
+    "description": "Springbok NodeJS Tools",
+    "version": "0.3.0",
+    "homepage": "www.springbokjs.org",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/christophehurpeau/springbokjs-utils.git"
+    },
+    "author": {
+        "name": "Christophe Hurpeau"
+    },
+    "dependencies": {
 		"js-yaml":">=1.2"
 	},
-  "devDependencies": {}
+    "devDependencies": {}
 }

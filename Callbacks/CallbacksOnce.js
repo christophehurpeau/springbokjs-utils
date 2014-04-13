@@ -1,5 +1,5 @@
-global.CallbacksOnce=function(){};
-CallbacksOnce.prototype={
+var CallbacksOnce = function(){};
+CallbacksOnce.prototype = {
 	add: function(listener){
 		var events = this._callbacks || (this._callbacks = []);
 		if(UArray.has(callbacks,listener)) return this;
@@ -28,3 +28,4 @@ CallbacksOnce.prototype={
 		return this;
 	}
 };
+module.exports = CallbacksOnce;

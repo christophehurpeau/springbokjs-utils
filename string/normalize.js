@@ -1,4 +1,7 @@
-UString.translit=function(s){
+var S = require('../index.js');
+var string = require('./string.js');
+
+string.translit = function(s) {
 	[
 		[/æ|ǽ/g,'ae'],
 		[/œ/g,'oe'], [/Œ/g,'OE'],
@@ -30,19 +33,29 @@ UString.translit=function(s){
 		
 		[/þ/g,'th'],
 		[/Þ/g,'TH'],
-	].forEach(function(v){ s=s.replace(v[0],v[1]); });
+	].forEach(function(v){
+        s = s.replace(v[0], v[1]);
+    });
 	return s;
 };
 
-UString.normalize=function(s){
-	return UString.translit(s).replace(/[ \-\'\"\_\(\)\[\]\{\}\#\~\&\*\,\.\;\:\!\?\/\\\\|\`\<\>\+]+/g,' ').trim().toLowerCase();
+string.normalize = function(s) {
+	return string.translit(s)
+            .replace(/[ \-\'\"\_\(\)\[\]\{\}\#\~\&\*\,\.\;\:\!\?\/\\\\|\`\<\>\+]+/g,' ')
+            .trim()
+            .toLowerCase();
 };
-UString.slugify=function(s,replacement){
-	if(replacement===undefined) replacement='-';
-	return UString.translit(s.trim())
+
+string.slugify = function(s, replacement) {
+	if (replacement === undefined) {
+        replacement = '-';
+    }
+	return string.translit(s.trim())
 		.replace(/([^\d\.])\.+([^\d\.]|$)/g,'$1 $2')
 		.replace(/[^\w\d\.]/g,' ')
 		.trim()
 		.replace(/\s+/g,replacement)
-		.replace(new RegExp('^'+S.regexpEscape(replacement)+'+|'+S.regexpEscape(replacement)+'+$'),'');
+		.replace(new RegExp('^'+S.regexpEscape(replacement)+'+|'+S.regexpEscape(replacement)+'+$'), '');
 };
+
+module.exports = string;

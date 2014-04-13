@@ -1,0 +1,51 @@
+var array = require('../array.js');
+module.exports={
+	slice1:function(t){
+		t.deepEqual(array.slice1([1,2,3]),[2,3]);
+		t.done();
+	},
+	has:function(t){
+		t.strictEqual(array.has([1,2,3],4),false);
+		t.strictEqual(array.has([1,2,3],2),true);
+		t.done();
+	},
+	hasAmong:function(t){
+		t.strictEqual(array.hasAmong([1,2,3],[4]),false);
+		t.strictEqual(array.hasAmong([1,2,3],[2,4,6]),true);
+		t.strictEqual(array.hasAmong([1,2,3],[4,2]),true);
+		t.done();
+	},
+	remove:function(t){
+		t.deepEqual(array.remove([1,2,3],1),[2,3]);
+		t.deepEqual(array.remove([1,2,3],2),[1,3]);
+		t.deepEqual(array.remove([1,2,3],3),[1,2]);
+		t.deepEqual(array.remove([1,2,3],4),[1,2,3]);
+		t.done();
+	},
+	last:function(t){
+		t.strictEqual(array.last([1]),1);
+		t.strictEqual(array.last([1,2,3]),3);
+		t.done();
+	},
+	sortBy:function(t){
+		t.deepEqual(array.sortBy([{a:2},{a:1}],'a','number'),[{a:1},{a:2}]);
+		t.deepEqual(array.sortBy([{a:2},{a:1}],'a',true,'number'),[{a:2},{a:1}]);
+		
+		t.deepEqual(array.sortBy([{a:'a'},{a:'b'}],'a','string'),[{a:'a'},{a:'b'}]);
+		t.deepEqual(array.sortBy([{a:'a'},{a:'b'}],'a',true,'string'),[{a:'b'},{a:'a'}]);
+		
+		t.done();
+	},
+	findBy:function(t){
+		t.deepEqual(array.findBy([{a:2},{a:1}],'a',2),{a:2});
+		t.strictEqual(array.findBy([{a:2},{a:1}],'a',3),false);
+		t.deepEqual(array.findBy([{a:2},{a:1}],'a',1),{a:1});
+		t.done();
+	},
+	findKeyBy:function(t){
+		t.deepEqual(array.findKeyBy([{a:2},{a:1}],'a',2),0);
+		t.strictEqual(array.findKeyBy([{a:2},{a:1}],'a',3),false);
+		t.deepEqual(array.findKeyBy([{a:2},{a:1}],'a',1),1);
+		t.done();
+	}
+}
