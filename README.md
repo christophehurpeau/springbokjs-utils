@@ -2,7 +2,7 @@ springbokjs-utils
 
 ### Use class
 
-```
+```js
 var S = require('springbokjs-utils');
 
 var Person = S.newClass({
