@@ -20,12 +20,12 @@ dateUtils.defineProperties({
     },
     parseSqlDate: function(date) {
         date = date.split(' ');
-        date[0] = ate[0].split('-')
-        if(date.length == 2){
+        date[0] = date[0].split('-')
+        if(date.length === 2){
             date[1] = date[1].split(':');
-            return new Date(date[0][0],date[0][1]-1,date[0][2],date[1][0],date[1][1]);
+            return new Date(date[0][0], date[0][1]-1, date[0][2], date[1][0], date[1][1]);
         }
-        return new Date(date[0][0],date[0][1]-1,date[0][2]);
+        return new Date(date[0][0], date[0][1]-1, date[0][2]);
     },
     parseDate: function(date) {
         if(!date) {
