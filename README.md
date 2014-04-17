@@ -34,7 +34,7 @@ jack.sayHello();
 ```
 
 You can also write:
-```
+```js
 // file Person.js
 
 var S = require('springbokjs-utils');
@@ -52,14 +52,14 @@ Person.extendPrototype({
 });
 ```
 
-The first argument of S.newClass is either a callback, or an object. If it is an object, extendPrototype is called.
+The first argument of `S.newClass` or `.extend` is either a callback, or an object. If it is an object, extendPrototype is called.
 With a function you can create private methods.
 You can also use defineProperties, defineProperty, see the full API for more informations.
 
 
 ### fs with Promises
 
-```
+```js
 var fs = require('springbokjs-utils/fs');
 
 fs.readFile('./myfile')
