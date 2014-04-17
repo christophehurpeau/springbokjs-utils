@@ -64,7 +64,7 @@ var fs = require('springbokjs-utils/fs');
 
 fs.readFile('./myfile')
     .then(function(contentBuffer) {
-        console.log('succes ', contentBuffer.toString());
+        console.log('success ', contentBuffer.toString());
     })
     .catch(function(error) {
         console.error('error', error);
