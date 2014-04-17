@@ -143,10 +143,16 @@ S.extendClass = function(parent, fn) {
     // Set the prototype chain to inherit from `parent`, without calling `parent`'s constructor function.
     // + Set a convenience property in case the parent's prototype is needed later.
     child.prototype = Object.create(child.super_ = parent.prototype);
-    child.prototype.construct = function() {
-        this.self.superConstructor.apply(this, arguments);
-    };
-    Object.defineProperty(child, 'superConstructor', { value: parent });
+    if (!child.prototype.construct) {
+        child.prototype.construct = function() {
+            if (child.super_.construct) {
+                child.super_.construct.apply(this, arguments);
+            }
+        };
+    }
+    Object.defineProperty(child, 'superConstruct', { value: function() {
+        return child.super_.construct.apply(this, arguments);
+    } });
     Object.defineProperty(child.prototype, 'self', { value: child });
     Object.defineProperty(child, 'extend', { configurable: true, value: S.extendThis });
     Object.defineProperty(child, 'extendPrototype', { value: S.extendPrototype.bind(null, child) });
@@ -157,7 +163,7 @@ S.extendClass = function(parent, fn) {
         if (S.isObject(fn)) {
             child.extendPrototype(fn);
         } else {
-            fn(child);
+            fn(child, parent);
         }
     }
 

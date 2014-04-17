@@ -1,3 +1,4 @@
+'use strict';
 var array = require('../array.js');
 module.exports={
 	slice1:function(t){
