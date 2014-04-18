@@ -1,5 +1,5 @@
-module.exports = {
-	lcFirst: function(str) {
+var stringUtils = {
+    lcFirst: function(str) {
         return str.charAt(0).toLowerCase() + str.substr(1);
     },
     ucFirst: function(str) {
@@ -60,7 +60,7 @@ module.exports = {
     
     
     format: function(s) {
-        return UString.vformat(s, UArray.slice1(arguments));
+        return stringUtils.vformat(s, Array.prototype.slice.call(arguments, 1));
     },
     vformat: function(s, args) {
         var i = 0;
@@ -69,3 +69,5 @@ module.exports = {
         });
     }
 };
+
+module.exports = stringUtils;
