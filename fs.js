@@ -4,6 +4,7 @@
 
 require('springbokjs-shim/es6');
 var fs = require('fs');
+var YAML = require('js-yaml');
 
 [
     'rename',
@@ -59,3 +60,32 @@ var fs = require('fs');
         });
     };
 });
+
+
+module.exports.readJsonFile = function() {
+    return module.exports.readFile.apply(module.exports, arguments)
+        .then(JSON.parse);
+};
+module.exports.writeJsonFile = function() {
+    var args = arguments;
+    args[1] = JSON.stringify(args[1]);
+    return module.exports.writeFile.apply(module.exports, args);
+};
+
+
+var parseYaml = function(content) {
+    return YAML.safeLoad(content);
+};
+
+var stringifyYaml = YAML.safeDump;
+
+module.exports.readYamlFile = function() {
+    return module.exports.readFile.apply(module.exports, arguments)
+        .then(parseYaml);
+};
+
+module.exports.writeYamlFile = function() {
+    var args = arguments;
+    args[2] = stringifyYaml(args[2]);
+    return module.exports.writeFile.apply(module.exports, args);
+};

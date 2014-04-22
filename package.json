@@ -1,7 +1,7 @@
 {
   "name": "springbokjs-utils",
   "description": "Springbok NodeJS Tools",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "homepage": "www.springbokjs.org",
   "repository": {
     "type": "git",
@@ -11,8 +11,8 @@
     "name": "Christophe Hurpeau"
   },
   "dependencies": {
-    "js-yaml": ">=1.2",
-    "springbokjs-shim": "^0.1.10"
+    "js-yaml": "^3.0",
+    "springbokjs-shim": "^0.1.13"
   },
   "devDependencies": {}
 }
