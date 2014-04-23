@@ -20,6 +20,9 @@ var S = {
     },
     
     iterator: function(iterable) {
+        if (Array.isArray(iterable)) {
+            return S.array.iterator(iterable);
+        }
         var iterator = iterable.iterator();
         if (S.isFunction(iterator.hasNext)) {
             return iterator;
