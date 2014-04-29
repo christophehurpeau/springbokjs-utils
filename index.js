@@ -18,6 +18,13 @@ var S = {
     join: function(arrayOrObject, separator) {
         return S.isArray(arrayOrObject) ? arrayOrObject.join(separator) : S.object.join(arrayOrObject,separator);
     },
+
+    forEach: function(iterable, callback, thisArg) {
+        if (iterable.forEach) {
+            return iterable.forEach(callback, thisArg);
+        }
+        return S.object.forEach(iterable, callback, thisArg);
+    },
     
     iterator: function(iterable) {
         if (Array.isArray(iterable)) {

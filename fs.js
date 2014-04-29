@@ -66,6 +66,15 @@ module.exports.readJsonFile = function() {
     return module.exports.readFile.apply(module.exports, arguments)
         .then(JSON.parse);
 };
+
+module.exports.readJsonFileSync = function() {
+    var result = fs.readFileSync.apply(fs, arguments);
+    if (result) {
+        result = JSON.parse(result);
+    }
+    return result;
+};
+
 module.exports.writeJsonFile = function() {
     var args = arguments;
     args[1] = JSON.stringify(args[1]);
@@ -74,7 +83,7 @@ module.exports.writeJsonFile = function() {
 
 
 var parseYaml = function(content) {
-    return YAML.safeLoad(content);
+    return YAML.safeLoad(content.toString());
 };
 
 var stringifyYaml = YAML.safeDump;
@@ -82,6 +91,14 @@ var stringifyYaml = YAML.safeDump;
 module.exports.readYamlFile = function() {
     return module.exports.readFile.apply(module.exports, arguments)
         .then(parseYaml);
+};
+
+module.exports.readYamlFileSync = function() {
+    var result = fs.readFileSync.apply(fs, arguments);
+    if (result) {
+        result = parseYaml(result);
+    }
+    return result;
 };
 
 module.exports.writeYamlFile = function() {

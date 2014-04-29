@@ -55,34 +55,17 @@ objectUtils.defineProperties({
         });
     },
     forEach: function(o, callback, thisArg) {
+        if (!thisArg) {
+            thisArg = o;
+        }
         /*#if DEV*/
-        if(!S.isFunction(callback)) throw new Error('UObj.forEach: callback must be a function !');
-        /*#/if*/
-        if(!thisArg) thisArg=o;
-        /*#if DEV*/
-        if(o.forEach)
+        if (o.forEach) {
             throw new Error('call forEach !');
-            /*o.forEach(function(){
-                var res=callback && callback.apply(thisArg,arguments);
-                if(res===false) callback=false;
-            });*/
-        else
+        }
         /*#/if*/
-            Object.keys(o).forEach(function(k) {
-                var res=callback && callback.call(thisArg,k,o[k]);
-                if(res===false) callback=false;
-            });
-    },
-    
-    forEachAsync: function(o, iterator, onEnd) {
-        arrayUtils.forEachAsync(Object.keys(o), function(k, onEnd) {
-            iterator(k, o[k], onEnd);
-        }, onEnd);
-    },
-    forEachSeries: function(o, iterator, onEnd) {
-        arrayUtils.forEachSeries(Object.keys(o), function(k,onEnd) {
-            iterator(k, o[k], onEnd);
-        }, onEnd);
+        Object.keys(o).forEach(function(k) {
+            callback.call(thisArg, o[k], k);
+        });
     },
     
     map: function(o,callback) {
