@@ -12,19 +12,6 @@ var S = {
     isArray: Array.isArray,
     
     /* utils */
-    map: function(arrayOrObject, callback) {
-        return S.isArray(arrayOrObject) ? arrayOrObject.map(callback) : S.object.map(arrayOrObject,callback);
-    },
-    join: function(arrayOrObject, separator) {
-        return S.isArray(arrayOrObject) ? arrayOrObject.join(separator) : S.object.join(arrayOrObject,separator);
-    },
-
-    forEach: function(iterable, callback, thisArg) {
-        if (iterable.forEach) {
-            return iterable.forEach(callback, thisArg);
-        }
-        return S.object.forEach(iterable, callback, thisArg);
-    },
     
     iterator: function(iterable) {
         if (Array.isArray(iterable)) {
@@ -92,6 +79,20 @@ var S = {
     }
 };
 //S.Class=S.extClass(Object);
+
+'filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
+    S[methodName] = function(arrayOrObject) {
+        var args = Array.prototype.slice.call(arrayOrObject, 1);
+        var method;
+        if (S.isArray(arrayOrObject)) {
+            method = arrayOrObject[methodName];
+        } else {
+            method = S.object[methodName];
+            args.unshift(arrayOrObject);
+        }
+        return method.apply(null, args);
+    };
+});
 
 /**
  * Create a new object library
