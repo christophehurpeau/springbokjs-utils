@@ -82,11 +82,9 @@ var S = {
 
 'filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
     S[methodName] = function(arrayOrObject) {
-        var args = Array.prototype.slice.call(arrayOrObject, 1);
-        var method;
-        if (S.isArray(arrayOrObject)) {
-            method = arrayOrObject[methodName];
-        } else {
+        var args = Array.prototype.slice.call(arguments, 1);
+        var method = arrayOrObject[methodName];
+        if (!method) {
             method = S.object[methodName];
             args.unshift(arrayOrObject);
         }
