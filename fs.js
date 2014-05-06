@@ -80,6 +80,12 @@ module.exports.writeJsonFile = function() {
     return module.exports.writeFile.apply(module.exports, args);
 };
 
+module.exports.writePrettyJsonFile = function() {
+    var args = arguments;
+    args[1] = JSON.stringify(args[1], null, 4);
+    return module.exports.writeFile.apply(module.exports, args);
+};
+
 
 var parseYaml = function(content) {
     return YAML.safeLoad(content.toString());
