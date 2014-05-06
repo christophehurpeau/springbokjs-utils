@@ -17,12 +17,19 @@ var arrayUtils = {
         }
         return false;
     },
-    remove: function(a, elt) {
-        var i = a.indexOf(elt);
-        if (i!==-1) {
-            return a.splice(i, 1);
+    /**
+     * Remove an element in an array
+     * @param  {Array} array   [description]
+     * @param  {*} elt [description]
+     * @return {int}     [description]
+     */
+    remove: function(array, elt) {
+        var i = array.indexOf(elt);
+        if (i === -1) {
+            return false;
         }
-        return a;
+        array.splice(i, 1);
+        return i;
     },
     
     clone: function(a) {

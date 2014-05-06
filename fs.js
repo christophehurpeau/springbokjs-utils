@@ -47,14 +47,13 @@ var YAML = require('js-yaml');
         return new Promise(function(resolve, reject) {
             Array.prototype.push.call(args, function(err) {
                 if (err) {
-                    reject(err);
-                } else {
-                    var result = Array.prototype.slice.call(arguments, 1);
-                    if (result.length === 1) {
-                        result = result[0];
-                    }
-                    resolve(result);
+                    return reject(err);
                 }
+                var result = Array.prototype.slice.call(arguments, 1);
+                if (result.length === 1) {
+                    result = result[0];
+                }
+                resolve(result);
             });
             fsFn.apply(fs, args);
         });

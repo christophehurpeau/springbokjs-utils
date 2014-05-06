@@ -1,7 +1,7 @@
 {
   "name": "springbokjs-utils",
   "description": "Springbok NodeJS Tools",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "homepage": "www.springbokjs.org",
   "repository": {
     "type": "git",
@@ -10,9 +10,15 @@
   "author": {
     "name": "Christophe Hurpeau"
   },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --harmony -u tdd tests/"
+  },
   "dependencies": {
     "js-yaml": "^3.0",
     "springbokjs-shim": "^0.1.14"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "proclaim": "^2.0.0"
+  }
 }

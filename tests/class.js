@@ -6,7 +6,7 @@ var Person = S.newClass({
         this.name = name;
     },
     sayHello: function() {
-        console.log("hello, I'm " + this.name);
+        return "hello, I'm " + this.name;
     }
 });
 
@@ -17,7 +17,7 @@ var Student = Person.extend(function(Student) {
             this.grade = grade;
         },
         sayHello: function() {
-            console.log("hi, I'm a student, my name is " + this.name + " and my grade is " + this.grade);
+            return "hi, I'm a student, my name is " + this.name + " and my grade is " + this.grade;
         }
     });
 });
@@ -25,5 +25,14 @@ var Student = Person.extend(function(Student) {
 var bob = new Person('Bob');
 var jack = new Student('Jack', 'A');
 
-bob.sayHello();
-jack.sayHello();
+
+var assert = require('proclaim');
+var expect = assert.strictEqual;
+
+
+test('Person sayHello', function() {
+    expect(bob.sayHello(), "hello, I'm Bob");
+});
+test('Student sayHello', function() {
+    expect(jack.sayHello(), "hi, I'm a student, my name is Jack and my grade is A");
+});
