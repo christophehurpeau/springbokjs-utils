@@ -4,6 +4,8 @@
 
 require('springbokjs-shim/es6');
 var fs = require('fs');
+var objectUtils = require('./object');
+var promiseUtils = require('./promise');
 var YAML = require('js-yaml');
 
 [
@@ -60,6 +62,12 @@ var YAML = require('js-yaml');
     };
 });
 
+// Copy sync and other functions
+Object.keys(fs).forEach(function(name) {
+    if (!module.exports[name]) {
+        module.exports[name] = fs[name];
+    }
+});
 
 module.exports.readJsonFile = function() {
     return module.exports.readFile.apply(module.exports, arguments)
@@ -110,4 +118,40 @@ module.exports.writeYamlFile = function() {
     var args = arguments;
     args[2] = stringifyYaml(args[2]);
     return module.exports.writeFile.apply(module.exports, args);
+};
+
+/**
+ * Recursively read a directory.
+ * callback is called for each files
+ * Return a Promise when all files are read.
+ * @param {String} dir
+ * @param {Object} options
+ * @param {Function} callback
+ * @return {Promise}
+ */
+module.exports.readRecursiveDirectory = function(dir, options, callback) {
+    options = objectUtils.extend({
+        recursive: true,
+        directories: false,
+    }, options);
+    return module.exports.readdir(dir)
+        .then(function(files) {
+            return promiseUtils.forEach(files, function(file) {
+                var path = dir + '/' + file;
+                return module.exports.stat(path)
+                    .then(function(stat) {
+                        if (stat && stat.isDirectory()) {
+                            if (options.directories) {
+                                callback({ dirname: file, path: path, basedir: dir, stat: stat });
+                            }
+                            if (options.recursive) {
+                                return module.exports.readRecursiveDirectory(path, options, callback);
+                            }
+                        } else {
+                            callback({ filename: file, path: path, basedir: dir, stat: stat });
+                            return true;
+                        }
+                    });
+            });
+        });
 };
