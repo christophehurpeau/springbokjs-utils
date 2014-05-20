@@ -2,7 +2,7 @@
  * fs API with Promises
  */
 
-require('springbokjs-shim/es6');
+require('./es6');
 var fs = require('fs');
 var objectUtils = require('./object');
 var promiseUtils = require('./promise');
