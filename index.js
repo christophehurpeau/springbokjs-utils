@@ -94,7 +94,7 @@ var S = {
 
 /**
  * Create a new object library
- * @param {Function} fn
+ * @param {Function|Object} fn
  * @return {Object}
  */
 S.newLibrary = function(fn) {
@@ -112,8 +112,7 @@ S.newLibrary = function(fn) {
  * @return {Object}
  */
 S.freezeLibrary = function(lib) {
-    Object.freeze(lib);
-    return lib;
+    return Object.freeze(lib);
 };
 
 

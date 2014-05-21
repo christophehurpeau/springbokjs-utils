@@ -9,13 +9,16 @@ S.defineProperties(promiseUtils, {
     callbackToPromise: function(callback) {
         var args = Array.prototype.slice.call(arguments, 1);
         return new Promise(function(resolve, reject) {
-            args.push(function(err, result) {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(result);
-            });
+            args.push(promiseUtils.resolveFromCallback(resolve, reject));
             callback.apply(null, args);
         });
+    },
+    resolveFromCallback: function(resolve, reject) {
+        return function(err, result) {
+            if (err) {
+                return reject(err);
+            }
+            resolve(result);
+        };
     }
 });

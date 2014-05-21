@@ -73,8 +73,7 @@ objectUtils.defineProperties({
 
     forEach: function(o, callback, thisArg) {
     },
-    
-    
+
     implode: function(object, glue, callback) {
         if (S.isFunction(glue)){
             callback=glue;
