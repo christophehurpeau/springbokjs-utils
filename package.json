@@ -14,11 +14,11 @@
     "test": "node_modules/.bin/mocha --harmony -u tdd tests/"
   },
   "dependencies": {
-    "js-yaml": "^3.0",
-    "springbokjs-shim": "^0.1.14"
+    "es6-shim": "^0.11.0",
+    "js-yaml": "^3.0"
   },
   "devDependencies": {
-    "mocha": "~1.18.2",
+    "mocha": "~1.19.0",
     "proclaim": "^2.0.0"
   }
 }
