@@ -4,7 +4,7 @@ module.exports = promiseUtils;
 
 S.defineProperties(promiseUtils, {
     forEach: function(iterable, callback) {
-        return Promise.all(iterable.map(callback));
+        return Promise.all(S.map(iterable, callback));
     },
     callbackToPromise: function(callback) {
         var args = Array.prototype.slice.call(arguments, 1);
