@@ -88,7 +88,7 @@ var S = {
             method = S.object[methodName];
             args.unshift(arrayOrObject);
         }
-        return method.apply(null, args);
+        return method.apply(arrayOrObject, args);
     };
 });
 
