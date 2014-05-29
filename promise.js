@@ -3,6 +3,7 @@ var promiseUtils = S.newLibrary();
 
 module.exports = promiseUtils;
 
+var createdPromise;
 S.defineProperties(promiseUtils, {
     creator: function() {
         var resolveCallback, rejectCallback;
@@ -14,6 +15,30 @@ S.defineProperties(promiseUtils, {
             done: promiseUtils.resolveFromCallback(resolveCallback, rejectCallback)
         };
     },
+    done: function() {
+        if (createdPromise) {
+            throw new Error('A promise is already created, promise() was not called !');
+        }
+        var resolveCallback, rejectCallback;
+        createdPromise = new Promise(function(resolve, reject) {
+            resolveCallback = resolve;
+            rejectCallback = reject;
+        });
+        return promiseUtils.resolveFromCallback(resolveCallback, rejectCallback);
+    },
+    /**
+     * Returns the Promise created by the previously called method done()
+     * @return {Promise}
+     */
+    promise: function() {
+        if (!createdPromise) {
+            throw new Error('No promise in stack, done() should be called before');
+        }
+        var p = createdPromise;
+        createdPromise = undefined;
+        return p;
+    },
+
     parallel: function(array) {
         var pending = 0, nextIndex = 0;
         var results = [];

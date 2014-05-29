@@ -18,6 +18,16 @@ test('promise creator', function() {
         });
 });
 
+
+test('promise creator with done() and promise()', function() {
+    asyncDouble(2, promiseUtils.done());
+    return promiseUtils.promise()
+        .then(function(result) {
+            expect(result, 4);
+        });
+});
+
+
 test('parallel with no array', function() {
     var p = promiseUtils.parallel();
     asyncDouble(1, p.done());
