@@ -96,6 +96,32 @@ S.defineProperties(promiseUtils, {
     forEach: function(iterable, callback) {
         return Promise.all(S.map(iterable, callback));
     },
+    forEachSeries: function(iterable, callback) {
+        return new Promise(function(resolve, reject) {
+            var entriesIterator = iterable.entries();
+            var results = new iterable.constructor;
+            var next = function() {
+                var current = entriesIterator.next();
+                if (current.done) {
+                    return resolve(results);
+                }
+                var key = current.value[0], value = current.value[1];
+                var result = callback(value, key);
+                if (result instanceof Promise) {
+                    result
+                        .then(function(result) {
+                            results[key] = result;
+                            next();
+                        })
+                        .catch(reject);
+                } else {
+                    results[key] = result;
+                    setImmediate(next);
+                }
+            };
+            next();
+        });
+    },
     callbackToPromise: function(callback) {
         var args = Array.prototype.slice.call(arguments, 1);
         return new Promise(function(resolve, reject) {

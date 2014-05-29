@@ -71,3 +71,39 @@ test('parallel with array not containing all callbacks', function() {
             assert.deepEqual(results, [1, 2, 3, 4, 6]);
         });
 });
+
+
+
+
+test('promise forEach', function() {
+    var resolvedInOrder = [];
+    return promiseUtils.forEach([1, 2, 3], function(value) {
+        return new Promise(function(resolve) {
+            setTimeout(function() {
+                resolvedInOrder.push(value);
+                resolve(value * 2);
+            }, 10 - value);
+        });
+    })
+        .then(function(results) {
+            assert.deepEqual(results, [2, 4, 6]);
+            assert.deepEqual(resolvedInOrder, [3, 2, 1]);
+        });
+});
+
+
+test('promise forEachSeries', function() {
+    var resolvedInOrder = [];
+    return promiseUtils.forEachSeries([1, 2, 3], function(value) {
+        return new Promise(function(resolve) {
+            setTimeout(function() {
+                resolvedInOrder.push(value);
+                resolve(value * 2);
+            }, 10 - value);
+        });
+    })
+        .then(function(results) {
+            assert.deepEqual(results, [2, 4, 6]);
+            assert.deepEqual(resolvedInOrder, [1, 2, 3]);
+        });
+});
