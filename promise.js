@@ -29,6 +29,8 @@ S.defineProperties(promiseUtils, {
     /**
      * Returns the Promise created by the previously called method done()
      * @return {Promise}
+     *
+     * example : promiseUtils.promise(callback(promiseUtils.done()));
      */
     promise: function() {
         if (!createdPromise) {

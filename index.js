@@ -12,7 +12,8 @@ var S = {
     isArray: Array.isArray,
     
     /* utils */
-    
+
+    // TODO remove this
     iterator: function(iterable) {
         if (Array.isArray(iterable)) {
             return S.array.iterator(iterable);
@@ -43,7 +44,8 @@ var S = {
             }
         });
     },
-    
+
+    //TODO remove this
     asyncWhile: function(nextCallback, forEachCallback, endCallback) {
         (function _while(err) {
             if (err) {
@@ -116,7 +118,7 @@ S.freezeLibrary = function(lib) {
 };
 
 
-
+// TODO remove this
 
 /**
  * Create a new class

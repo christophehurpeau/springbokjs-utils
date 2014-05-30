@@ -6,10 +6,16 @@ var objectUtils = S.newLibrary();
 module.exports = objectUtils;
 
 objectUtils.defineProperties({
+    toMap: function(object) {
+        var map = new Map();
+        for (var k in object)
+            map.set(k, object[k]);
+        return map;
+    },
     extend: function(target, object) {
         if (object) {
-            for (var i in object) {
-                target[i] = object[i];
+            for (var k in object) {
+                target[k] = object[i];
             }
         }
         return target;
@@ -37,6 +43,7 @@ objectUtils.defineProperties({
     clone: function(o) {
         return objectUtils.extend({}, o);
     },
+    //TODO remove this, use map !
     iterator: function(o) {
         if (Array.isArray(o)) {
             return arrayUtils.iterator(o);
@@ -64,15 +71,6 @@ objectUtils.defineProperties({
     },
 
     // Array-like function
-
-    filter: function(o, callback, thisArg) {
-        Object.keys(o).filter(function(k) {
-            return callback.call(thisArg, o[k], k);
-        });
-    },
-
-    forEach: function(o, callback, thisArg) {
-    },
 
     implode: function(object, glue, callback) {
         if (S.isFunction(glue)){

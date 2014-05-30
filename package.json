@@ -1,7 +1,7 @@
 {
   "name": "springbokjs-utils",
   "description": "Springbok NodeJS Tools",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "homepage": "www.springbokjs.org",
   "repository": {
     "type": "git",

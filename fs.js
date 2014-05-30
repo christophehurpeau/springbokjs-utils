@@ -39,11 +39,12 @@ var YAML = require('js-yaml');
     'readFile',
     'writeFile',
     'appendFile',
-    'watchFile',
-    'watch',
     'exists'
 ].forEach(function(name){
     var fsFn = fs[name];
+    if (!fsFn) {
+        return;
+    }
     module.exports[name] = function() {
         var args = arguments;
         return new Promise(function(resolve, reject) {
