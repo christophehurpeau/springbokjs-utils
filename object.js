@@ -7,6 +7,9 @@ module.exports = objectUtils;
 
 objectUtils.defineProperties({
     toMap: function(object) {
+        if (object instanceof Map) {
+            return object;
+        }
         var map = new Map();
         for (var k in object)
             map.set(k, object[k]);
