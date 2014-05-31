@@ -18,7 +18,7 @@ objectUtils.defineProperties({
     extend: function(target, object) {
         if (object) {
             for (var k in object) {
-                target[k] = object[i];
+                target[k] = object[k];
             }
         }
         return target;
@@ -113,7 +113,7 @@ var _common_object_array = function(propertyName, object, callback, thisArg) {
 objectUtils.defineProperties({
     /**
      * The filter() method creates a new object with all elements that pass the test implemented by the provided function.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} thisArg
@@ -126,7 +126,7 @@ objectUtils.defineProperties({
 
     /**
      * The find() method returns a value in the object, if an element in the object satisfies the provided testing function. Otherwise undefined is returned.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} thisArg
@@ -139,7 +139,7 @@ objectUtils.defineProperties({
 
     /**
      * The findIndex() method returns an key in the object, if an element in the object satisfies the provided testing function. Otherwise undefined is returned.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} thisArg
@@ -149,7 +149,7 @@ objectUtils.defineProperties({
 
     /**
      * The forEach() method executes a provided function once per object element.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*} thisArg
@@ -159,7 +159,7 @@ objectUtils.defineProperties({
 
     /**
      * The join() method joins all elements of an object into a string.
-     * 
+     *
      * @param {Object} object
      * @param {String} separator
      * @return {String}
@@ -172,7 +172,7 @@ objectUtils.defineProperties({
 
     /**
      * The map() method creates a new object with the results of calling a provided function on every element in this object.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} thisArg
@@ -188,7 +188,7 @@ objectUtils.defineProperties({
 
     /**
      * The reduce() method applies a function against an accumulator and each value of the object (from left-to-right) has to reduce it to a single value.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} initialValue
@@ -202,7 +202,7 @@ objectUtils.defineProperties({
 
     /**
      * The reduceRight() method applies a function against an accumulator and each value of the object (from right-to-left) as to reduce it to a single value.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} initialValue
@@ -216,7 +216,7 @@ objectUtils.defineProperties({
 
     /**
      * The some() method tests whether some element in the object passes the test implemented by the provided function.
-     * 
+     *
      * @param {Object} object
      * @param {Function} callback
      * @param {*=} thisArg
