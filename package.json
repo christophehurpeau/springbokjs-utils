@@ -1,7 +1,7 @@
 {
   "name": "springbokjs-utils",
   "description": "Springbok NodeJS Tools",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "homepage": "www.springbokjs.org",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "js-yaml": "^3.0"
   },
   "devDependencies": {
-    "mocha": "~1.19.0",
+    "mocha": "~1.20.0",
     "proclaim": "^2.0.0"
   }
 }
