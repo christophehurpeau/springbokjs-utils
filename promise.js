@@ -16,9 +16,6 @@ S.defineProperties(promiseUtils, {
         };
     },
     done: function() {
-        if (createdPromise) {
-            throw new Error('A promise is already created, promise() was not called !');
-        }
         var resolveCallback, rejectCallback;
         createdPromise = new Promise(function(resolve, reject) {
             resolveCallback = resolve;
@@ -66,7 +63,7 @@ S.defineProperties(promiseUtils, {
                 } else {
                     results[index] = value;
                 }
-            })
+            });
         }
 
         var resolveCallback, rejectCallback;
@@ -93,7 +90,7 @@ S.defineProperties(promiseUtils, {
                     }
                 };
             }
-        }
+        };
     },
     forEach: function(iterable, callback) {
         return Promise.all(S.map(iterable, callback));
@@ -101,7 +98,7 @@ S.defineProperties(promiseUtils, {
     forEachSeries: function(iterable, callback) {
         return new Promise(function(resolve, reject) {
             var entriesIterator = iterable.entries();
-            var results = new iterable.constructor;
+            var results = new iterable.constructor();
             var next = function() {
                 var current = entriesIterator.next();
                 if (current.done) {
