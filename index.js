@@ -2,15 +2,15 @@
 var S = {
 	log: (typeof console !== 'undefined' && console.log ) || function(){},
 	toInt:function(arg){ return parseInt(arg,10); },
-	
+
     /* IS */
-    
+
     isString: function(varName){ return typeof varName === 'string'; },
     isObject: function(varName){ return typeof varName === 'object'; },
     isFunction: function(varName){ return typeof varName === 'function'; },
     isNumber: function(varName){ return typeof varName === 'number'; },
     isArray: Array.isArray,
-    
+
     /* utils */
 
     // TODO remove this
