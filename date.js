@@ -13,7 +13,7 @@ dateUtils.defineProperties({
     },
     toSqlDate: function(date, withoutHours) {
         var day=date.getDate(),month=date.getMonth(),
-            str=date.getFullYear()+'-'+(day<10?'0':'')+day+'-'+ (month<9?'0':'')+(month+1);
+            str=date.getFullYear()+'-'+ (month<9?'0':'')+(month+1)+'-'+(day<10?'0':'')+day;
         if(withoutHours) return str;
         var hours = date.getHours(), minutes = date.getMinutes(),seconds=date.getSeconds();
         return str+' '+((hours < 10)?"0":"")+hours +((minutes < 10)?":0":":") + minutes +((seconds < 10)?":0":":") + seconds;
