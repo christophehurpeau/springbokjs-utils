@@ -121,6 +121,26 @@ S.defineProperties(promiseUtils, {
             next();
         });
     },
+    whileTrue: function(conditionCallback, callback) {
+        return new Promise(function(resolve, reject) {
+            (function next() {
+                if (!conditionCallback) {
+                    resolve();
+                }
+                if (result instanceof Promise) {
+                    result
+                        .then(function() {
+                            setImmediate(next);
+                        })
+                        .catch(reject);
+                } else {
+                    results[key] = result;
+                    setImmediate(next);
+                }
+            })();
+        });
+    },
+
     callbackToPromise: function(callback) {
         var args = Array.prototype.slice.call(arguments, 1);
         return new Promise(function(resolve, reject) {

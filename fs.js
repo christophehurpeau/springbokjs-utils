@@ -143,14 +143,13 @@ module.exports.readRecursiveDirectory = function(dir, options, callback) {
                     .then(function(stat) {
                         if (stat && stat.isDirectory()) {
                             if (options.directories) {
-                                callback({ dirname: file, path: path, basedir: dir, stat: stat });
+                                return callback({ dirname: file, path: path, basedir: dir, stat: stat });
                             }
                             if (options.recursive) {
                                 return module.exports.readRecursiveDirectory(path, options, callback);
                             }
                         } else {
-                            callback({ filename: file, path: path, basedir: dir, stat: stat });
-                            return true;
+                            return callback({ filename: file, path: path, basedir: dir, stat: stat });
                         }
                     });
             });
