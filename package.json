@@ -1,7 +1,7 @@
 {
   "name": "springbokjs-utils",
   "description": "Springbok NodeJS Tools",
-  "version": "0.3.22",
+  "version": "0.3.23",
   "homepage": "www.springbokjs.org",
   "repository": {
     "type": "git",
@@ -14,11 +14,11 @@
     "test": "node_modules/.bin/mocha --harmony -u tdd tests/"
   },
   "dependencies": {
-    "es6-shim": "^0.11.0",
+    "es6-shim": "^0.13.0",
     "js-yaml": "^3.0"
   },
   "devDependencies": {
-    "mocha": "~1.20.0",
+    "mocha": "~1.20.1",
     "proclaim": "^2.0.0"
   }
 }
