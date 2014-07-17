@@ -1,0 +1,22 @@
+{
+  "name": "springbokjs-utils",
+  "description": "springbokjs Utils",
+  "keywords": ["springbokjs", "utils", "promise"],
+  "version": "0.4.0",
+  "homepage": "www.springbokjs.org",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:christophehurpeau/springbokjs-utils.git"
+  },
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "MIT",
+  "scripts": {
+    "test": "node_modules/.bin/mocha --harmony -u tdd tests/"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "mocha": "~1.20.1",
+    "proclaim": "^2.0.0",
+    "springbokjs-library": "^2.4.7"
+  }
+}
