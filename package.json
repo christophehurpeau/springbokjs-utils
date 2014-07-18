@@ -11,11 +11,10 @@
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "MIT",
   "scripts": {
-    "test": "node_modules/.bin/mocha --harmony -u tdd tests/"
+    "test": "node_modules/.bin/mocha --harmony -u tdd tests/lib/"
   },
   "devDependencies": {
     "gulp": "^3.8.6",
-    "mocha": "~1.20.1",
     "proclaim": "^2.0.0",
     "springbokjs-library": "^2.4.7"
   }
