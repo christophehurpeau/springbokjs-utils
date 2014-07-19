@@ -196,7 +196,7 @@ objectUtils.defineProperties({
      */
     reduce: function(object, callback, initialValue) {
         return Object.keys(object).reduce(function(previousValue, currentValue, index, array) {
-            return callback(previousValue, currentValue, array[key], object);
+            return callback(previousValue, currentValue, array[currentValue], object);
         });
     },
 
@@ -210,7 +210,7 @@ objectUtils.defineProperties({
      */
     reduceRight: function(object, callback, initialValue) {
         return Object.keys(object).reduceRight(function(previousValue, currentValue, index, array) {
-            return callback(previousValue, currentValue, array[key], object);
+            return callback(previousValue, currentValue, array[currentValue], object);
         });
     },
 
