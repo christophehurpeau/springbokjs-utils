@@ -1,7 +1,11 @@
 {
   "name": "springbokjs-utils",
   "description": "springbokjs Utils",
-  "keywords": ["springbokjs", "utils", "promise"],
+  "keywords": [
+    "springbokjs",
+    "utils",
+    "promise"
+  ],
   "version": "0.4.0",
   "homepage": "www.springbokjs.org",
   "repository": {
@@ -17,5 +21,8 @@
     "gulp": "^3.8.6",
     "proclaim": "^2.0.0",
     "springbokjs-library": "^2.4.7"
+  },
+  "dependencies": {
+    "rimraf": "^2.2.8"
   }
 }

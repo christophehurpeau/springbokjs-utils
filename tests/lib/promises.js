@@ -1,13 +1,8 @@
 "use strict";
 var assert = require('proclaim');
 var expect = assert.strictEqual;
-var promises = require('../../lib/promises');
-function asyncDouble(num, cb) {
-  setTimeout(cb.bind(null, null, num * 2), 20);
-}
-function asyncError(cb) {
-  setTimeout(cb.bind(null, new Error('oops')), 20);
-}
+var lib = '../../lib' + (process.env.TEST_COV && '-cov' || '') + '/';
+var promises = require(lib + 'promises');
 test('it should failed because done() should be called before promise()', function() {
   assert.throws(promises.promise, 'No promise in stack, done() should be called before');
 });
@@ -34,6 +29,80 @@ test('done() and promise() should work when there is an error', function() {
   });
   callback('test error');
   return promise;
+});
+test('forEach() with an array with one value', function() {
+  var promise = promises.forEach([new Promise(function(resolve) {
+    return resolve('ok');
+  })], function(value) {
+    return value;
+  });
+  return promise.then(function(result) {
+    assert.deepEqual(result, ['ok']);
+  });
+});
+test('forEach() with an array with several values', function() {
+  var promise = promises.forEach(['ok', 'test2', new Promise(function(resolve) {
+    return resolve('ok3');
+  })], function(value) {
+    if (value === 'ok') {
+      return new Promise(function(resolve) {
+        return resolve('ok1');
+      });
+    }
+    return value;
+  });
+  return promise.then(function(result) {
+    assert.deepEqual(result, ['ok1', 'test2', 'ok3']);
+  });
+});
+test('forEach() with an object with several values', function() {
+  var promise = promises.forEach({
+    value1: new Promise(function(resolve) {
+      return resolve('ok');
+    }),
+    value2: 'test2',
+    value3: new Promise(function(resolve) {
+      setTimeout(function() {
+        resolve(4);
+      }, 20);
+    })
+  }, function(value) {
+    return value;
+  });
+  return promise.then(function(result) {
+    assert.deepEqual(result, {
+      value1: 'ok',
+      value2: 'test2',
+      value3: 4
+    });
+  });
+});
+test('forEach() fails', function() {
+  var promise = promises.forEach(['test1', 'test2'], function() {
+    return new Promise(function(resolve, reject) {
+      reject('test error');
+    });
+  });
+  return promise.then(function() {
+    assert.notOk(true, 'This should never be called');
+  }).catch(function(err) {
+    console.log(err);
+    expect(err, 'test error');
+  });
+});
+test('forEach() fails asynchronously', function() {
+  var promise = promises.forEach(['test1', new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      reject('test error');
+    }, 20);
+  })], function(value) {
+    return value;
+  });
+  return promise.then(function() {
+    assert.notOk(true, 'This should never be called');
+  }).catch(function(err) {
+    expect(err, 'test error');
+  });
 });
 
 //# sourceMappingURL=promises.js.map

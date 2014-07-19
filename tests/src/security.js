@@ -1,8 +1,9 @@
 /* global test */
 var assert = require('proclaim');
 var expect = assert.strictEqual;
+var lib = '../../lib' + (process.env.TEST_COV && '-cov' || '') + '/';
 
-var security = require('../../lib/security.js');
+var security = require(lib + 'security.js');
 
 test('it should create a md5 base64 hash', function() {
     expect(security.md5('test'), 'CY9rzUYh03PK3k6DJie09g==');

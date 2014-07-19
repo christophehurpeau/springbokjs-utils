@@ -1,5 +1,8 @@
+# springbokjs-library [![NPM version][npm-image]][npm-url] [![Coverage][coverage-image]][coverage-url]
 springbokjs-utils
 
+
+http://img.shields.io/badge/coverage-100%-brightgreen.svg?style=flat
 
 ### fs with Promises
 
@@ -24,3 +27,7 @@ Promise.all([
 
 ```
 
+[npm-image]: https://img.shields.io/npm/v/springbokjs-library.svg?style=flat
+[npm-url]: https://npmjs.org/package/springbokjs-library
+[coverage-image]: http://img.shields.io/badge/coverage-100%-brightgreen.svg?style=flat
+[coverage-url]: http://christophehurpeau.github.io/springbokjs-utils/docs/coverage.html

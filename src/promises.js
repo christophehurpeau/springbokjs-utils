@@ -22,9 +22,9 @@ var promises = {
 
     /**
     * Returns the Promise created by the previously called method done()
-    * 
+    *
     * example : promises.promise(callback(promises.done()));
-    * 
+    *
     * @return {Promise}
     */
     promise() {
@@ -37,68 +37,6 @@ var promises = {
     },
 
     /**
-     * Executes promises in parallel
-     *
-     * @param {array} array value can be a Promise or undefined
-     *
-     * @return {Object} Object ccontaining promise creator and done function
-     */
-    parallel(array) {
-        var pending = 0, nextIndex = 0;
-        var results = [];
-        var resultsCallbacksIndexes = [];
-
-        var arrayLength = array && array.length || 0;
-        if (array) {
-            array.forEach(function(value, index) {
-                if (value === undefined) {
-                    resultsCallbacksIndexes.push(index);
-                } else if (value instanceof Promise) {
-                    pending++;
-                    value
-                        .then(function(result) {
-                            results[index] = result;
-                            if (--pending === 0) {
-                                resolveCallback(results);
-                            }
-                        })
-                        .catch(function(err) {
-                            rejectCallback(err);
-                        });
-                } else {
-                    results[index] = value;
-                }
-            });
-        }
-
-        var resolveCallback, rejectCallback;
-        return {
-            promise: new Promise(function(resolve, reject) {
-                resolveCallback = resolve;
-                rejectCallback = reject;
-            }),
-            done() {
-                var index = nextIndex++;
-                pending++;
-                return function(err, result) {
-                    if (err) {
-                        return rejectCallback(err);
-                    }
-                    if (resultsCallbacksIndexes.length <= index) {
-                        results[arrayLength - resultsCallbacksIndexes.length + index] = result;
-                    } else {
-                        var indexResults = resultsCallbacksIndexes[index];
-                        results[indexResults] = result;
-                    }
-                    if (--pending === 0) {
-                        resolveCallback(results);
-                    }
-                };
-            }
-        };
-    },
-
-    /**
      * Execute promises in parallel
      *
      * @param {Array|Object} iterable an iterable with .map method (like Array), or an key/value object
@@ -106,12 +44,25 @@ var promises = {
      * @return {Promise}
      */
     forEach(iterable, callback) {
-        return Promise.all(S.map(iterable, callback));
+        if (Array.isArray(iterable)) {
+            return Promise.all(iterable.map(callback));
+        }
+        var keys = [], values = [];
+        S.forEach(S.map(iterable, callback), function(value, index) {
+            keys.push(index);
+            values.push(value);
+        });
+
+        return Promise.all(values).then((results) => {
+            return S.map(iterable, function(value, index) {
+                return results[keys.indexOf(index)];
+            });
+        });
     },
 
     /**
      * Execute promises in series
-     * 
+     *
      * @param {Array|Object} iterable an iterable with .map method (like Array), or an key/value object
      * @param {Function} callback callback(value, index) called for each values
      * @return {Promise}
@@ -145,7 +96,7 @@ var promises = {
 
     /**
      * Execute the second callback wile the first callback is true
-     * 
+     *
      * @param {Function} iterable an iterable with .map method (like Array), or an key/value object
      * @param {Function} callback callback(value, index) called for each values
      * @return {Promise}
@@ -173,7 +124,7 @@ var promises = {
     /**
      * Creates a callback that resolve or reject a promise
      * according to the default callback convention in node: (err, result)
-     * 
+     *
      * @param {Function} resolve resolve function of the promise
      * @param {Function} reject reject function of the promise
      * @return {Function}
