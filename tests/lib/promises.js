@@ -104,5 +104,17 @@ test('forEach() fails asynchronously', function() {
     expect(err, 'test error');
   });
 });
+test('creator() should work', function() {
+  var $__0 = $traceurRuntime.assertObject(promises.creator()),
+      promise = $__0[0],
+      callback = $__0[1];
+  assert.isFunction(callback);
+  assert.isInstanceOf(promise, Promise);
+  promise = promise.then(function(result) {
+    expect(result, 20);
+  });
+  callback(null, 20);
+  return promise;
+});
 
 //# sourceMappingURL=promises.js.map

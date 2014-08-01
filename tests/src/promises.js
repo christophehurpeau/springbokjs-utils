@@ -125,3 +125,17 @@ test('forEach() fails asynchronously', function() {
         });
 });
 
+
+test('creator() should work', function() {
+    var [promise, callback] = promises.creator();
+    assert.isFunction(callback);
+    assert.isInstanceOf(promise, Promise);
+
+    promise = promise.then((result) => {
+         expect(result, 20);
+    });
+
+    callback(null, 20); //resolve promise
+
+    return promise;
+});

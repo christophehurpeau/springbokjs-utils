@@ -7,7 +7,29 @@ var createdPromise;
  */
 var promises = {
     /**
+     * Returns a array with two values : the promise and the callback to call
+     * @example
+     * var [promise, doneCallback] = promises.creator();
+     * fs.readFile('./myFile.txt', doneCallback);
+     * promise.then((txtContentBuffer) => {
+     * 	   console.log(txtContentBuffer.toString());
+     * });
+     *
+     * @return {Array}
+     */
+    creator() {
+        var resolveCallback, rejectCallback;
+        var createdPromise = new Promise(function(resolve, reject) {
+            resolveCallback = resolve;
+            rejectCallback = reject;
+        });
+        var doneCallback = promises.resolveFromCallback(resolveCallback, rejectCallback);
+        return [createdPromise, doneCallback];
+    },
+
+    /**
      * Returns a callback that resolve or reject the created promise that you can get with {promises}
+     * Prefer use creator()
      *
      * @return {Function} callback(err, result)
      */
