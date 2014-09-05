@@ -18,9 +18,9 @@
     "test": "node_modules/.bin/mocha --harmony -u tdd tests/lib/"
   },
   "devDependencies": {
-    "gulp": "^3.8.6",
+    "gulp": "^3.8.7",
     "proclaim": "^2.0.0",
-    "springbokjs-library": "^2.4.7"
+    "springbokjs-library": "^2.6.1"
   },
   "dependencies": {
     "rimraf": "^2.2.8"
