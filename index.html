@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Springbokjs-utils : NodeJS and Browser Utils">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Springbokjs-utils</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/christophehurpeau/springbokjs-utils">View on GitHub</a>
+
+          <h1 id="project_title">Springbokjs-utils</h1>
+          <h2 id="project_tagline">NodeJS and Browser Utils</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/christophehurpeau/springbokjs-utils/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/christophehurpeau/springbokjs-utils/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="springbokjs-utils--" class="anchor" href="#springbokjs-utils--"><span class="octicon octicon-link"></span></a>springbokjs-utils <a href="https://npmjs.org/package/springbokjs-utils"><img src="https://img.shields.io/npm/v/springbokjs-utils.svg?style=flat" alt="NPM version"></a> <a href="http://christophehurpeau.github.io/springbokjs-utils/docs/coverage.html"><img src="http://img.shields.io/badge/coverage-100%-brightgreen.svg?style=flat" alt="Coverage"></a>
+</h1>
+
+<p><a href="http://christophehurpeau.github.io/springbokjs-utils/docs/module-utils.html">API</a></p>
+
+<h3>
+<a name="fs-with-promises" class="anchor" href="#fs-with-promises"><span class="octicon octicon-link"></span></a>fs with Promises</h3>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'springbokjs-utils/fs'</span><span class="p">);</span>
+
+<span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">'./myfile'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">contentBuffer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'success '</span><span class="p">,</span> <span class="nx">contentBuffer</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">'./myFirstFile'</span><span class="p">),</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">'./mySecondFile'</span><span class="p">)</span>
+<span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">contents</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'myFirstFile content'</span><span class="p">,</span> <span class="nx">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toString</span><span class="p">());</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'mySecondFile content'</span><span class="p">,</span> <span class="nx">contents</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">toString</span><span class="p">());</span>
+<span class="p">});</span>
+
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Springbokjs-utils maintained by <a href="https://github.com/christophehurpeau">christophehurpeau</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
