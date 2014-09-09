@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: fs.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: fs.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * fs API with Promises
+ */
+
+var fs = require('fs');
+var objectUtils = require('./object');
+var promiseUtils = require('./promises');
+var YAML = require('js-yaml');
+
+[
+    'rename',
+    'ftruncate',
+    'truncate',
+    'chown',
+    'fchown',
+    'lchown',
+    'chmod',
+    'fchmod',
+    'lchmod',
+    'stat',
+    'lstat',
+    'fstat',
+    'link',
+    'symlink',
+    'readlink',
+    'realpath',
+    'unlink',
+    'rmdir',
+    'mkdir',
+    'readdir',
+    'close',
+    'open',
+    'utimes',
+    'futimes',
+    'fsync',
+    'write',
+    'read',
+    'readFile',
+    'writeFile',
+    'appendFile',
+    'exists'
+].forEach(function(name){
+    var fsFn = fs[name];
+    if (!fsFn) {
+        return;
+    }
+    exports[name] = function() {
+        var args = arguments;
+        return new Promise(function(resolve, reject) {
+            Array.prototype.push.call(args, function(err) {
+                if (err) {
+                    return reject(err);
+                }
+                var result = Array.prototype.slice.call(arguments, 1);
+                if (result.length === 1) {
+                    result = result[0];
+                }
+                resolve(result);
+            });
+            fsFn.apply(fs, args);
+        });
+    };
+});
+
+// Copy sync and other functions
+Object.keys(fs).forEach(function(name) {
+    if (!exports[name]) {
+        exports[name] = fs[name];
+    }
+});
+
+exports.readJsonFile = function() {
+    return exports.readFile.apply(exports, arguments)
+        .then(JSON.parse);
+};
+
+exports.readJsonFileSync = function() {
+    var result = fs.readFileSync.apply(fs, arguments);
+    if (result) {
+        result = JSON.parse(result);
+    }
+    return result;
+};
+
+exports.writeJsonFile = function() {
+    var args = arguments;
+    args[1] = JSON.stringify(args[1]);
+    return exports.writeFile.apply(exports, args);
+};
+
+exports.writePrettyJsonFile = function() {
+    var args = arguments;
+    args[1] = JSON.stringify(args[1], null, 4);
+    return exports.writeFile.apply(exports, args);
+};
+
+
+var parseYaml = function(content) {
+    return YAML.safeLoad(content.toString());
+};
+
+var stringifyYaml = YAML.safeDump;
+
+exports.readYamlFile = function() {
+    return exports.readFile.apply(exports, arguments)
+        .then(parseYaml);
+};
+
+exports.readYamlFileSync = function() {
+    var result = fs.readFileSync.apply(fs, arguments);
+    if (result) {
+        result = parseYaml(result);
+    }
+    return result;
+};
+
+exports.writeYamlFile = function() {
+    var args = arguments;
+    args[2] = stringifyYaml(args[2]);
+    return exports.writeFile.apply(exports, args);
+};
+
+/**
+ * Recursively read a directory.
+ * callback is called for each files
+ * Return a Promise when all files are read.
+ * @param {String} dir
+ * @param {Object} options
+ * @param {Function} callback
+ * @return {Promise}
+ */
+exports.readRecursiveDirectory = function(dir, options, callback) {
+    options = objectUtils.extend({
+        recursive: true,
+        directories: false,
+    }, options);
+    return exports.readdir(dir)
+        .then((files) => {
+            return promiseUtils.forEach(files, (file) => {
+                var path = dir + '/' + file;
+                return exports.stat(path)
+                    .then((stat) => {
+                        if (stat &amp;&amp; stat.isDirectory()) {
+                            if (options.directories) {
+                                return callback({ dirname: file, path: path, basedir: dir, stat: stat });
+                            }
+                            if (options.recursive) {
+                                return exports.readRecursiveDirectory(path, options, callback);
+                            }
+                        } else {
+                            return callback({ filename: file, path: path, basedir: dir, stat: stat });
+                        }
+                    });
+            });
+        });
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-array.html">array</a></li><li><a href="module-generators.html">generators</a></li><li><a href="module-object.html">object</a></li><li><a href="module-php.html">php</a></li><li><a href="module-promises.html">promises</a></li><li><a href="module-security.html">security</a></li><li><a href="module-utils.html">utils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#fs">fs</a></li><li><a href="global.html#readRecursiveDirectory">readRecursiveDirectory</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a> on Tue Sep 09 2014 01:35:56 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
