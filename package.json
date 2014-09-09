@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "js-yaml": "^3.2.2",
+    "mocha": "^1.21.4",
     "rimraf": "^2.2.8"
   }
 }

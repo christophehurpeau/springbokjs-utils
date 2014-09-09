@@ -11,9 +11,9 @@ node_modules/.bin/gulp lint || exit 1
 echo "\n> Run tests"
 npm test || exit 1
 
-echo "\n> Run browser tests"
-sudo start xvfb
-karma start --single-run --browsers=Firefox,Chrome,PhantomJS || exit 1
+#echo "\n> Run browser tests"
+#sudo start xvfb
+#karma start --single-run --browsers=Firefox,Chrome,PhantomJS || exit 1
 
 #echo "\n> Run build"
 #node_modules/.bin/gulp build || exit 1
@@ -23,12 +23,12 @@ node_modules/.bin/gulp docs || exit 1
 
 echo "\n> Copy docs up to github gh-pages branch"
 mv docs docs-tmp
-git checkout gh-pages
+git checkout -f gh-pages
 rm -Rf docs
 mv docs-tmp docs
 date > date.txt
 git add docs
 git commit -m"auto commit from drone.io"
-git remote set-url origin git@github.com:christophehurpeau/springbokjs-logger.git
+git remote set-url origin git@github.com:christophehurpeau/springbokjs-utils.git
 git push origin gh-pages
 
