@@ -15,7 +15,7 @@ exports.slice1 = function(array) {
 /**
  * Search if the array has an element.
  * Shortcut for indexOf !== -1
- * 
+ *
  * @param {Array} array
  * @param {*} searchElement
  * @param {Number} i
@@ -28,7 +28,7 @@ exports.has = function(array, searchElement, i) {
 /**
  * Search if the array has an element among provided elements.
  * Shortcut for indexOf !== -1
- * 
+ *
  * @param {Array} array
  * @param {Array} searchElements
  * @param {Number} i
@@ -45,7 +45,7 @@ exports.hasAmong = function(array, searchElements, i) {
 
 /**
  * Remove an element in an array
- * 
+ *
  * @param {Array} array
  * @param {*} element
  * @return {Boolean}
@@ -62,7 +62,7 @@ exports.remove = function(array, element) {
 
 /**
  * Clone an array
- * 
+ *
  * @param {Array} array
  * @return {Array} cloned array
  */
@@ -72,7 +72,7 @@ exports.clone = function(array) {
 
 /**
  * Last element in an array
- * 
+ *
  * @param {Array} array
  * @return {*} last element
  */
@@ -82,7 +82,7 @@ exports.last = function(array) {
 
 /**
  * Random element in an array
- * 
+ *
  * @param {Array} array
  * @return {*} last element
  */
@@ -93,7 +93,7 @@ exports.random = function(array) {
 
 /**
  * Sort functions
- * 
+ *
  * @type {Object}
  */
 exports.sortFunctions = {
@@ -153,12 +153,12 @@ exports.sortBy = function(array, propertyName, descending, sortFunction) {
 /**
  * The removeAll() method removes all elements
  * that pass the test implemented by the provided function.
- * 
+ *
  * @param {array} array
  * @param {Function} callback
  * @return {Number} the new array's length
  */
-exports.removeAll = function(array, callback) {
+exports.removeWhen = function(array, callback) {
     array.forEach(function(elt, index) {
         if (callback(elt, index)) {
             array.splice(index, 1);
@@ -171,7 +171,7 @@ exports.removeAll = function(array, callback) {
 
 /**
  * Tests if an array equals another
- * 
+ *
  * @param {array} array1
  * @param {array} array2
  * @return {Boolean}

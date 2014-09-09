@@ -2,7 +2,7 @@ var S = require('./index');
 
 /**
  * Php utils
- * 
+ *
  * @exports php
  */
 var phpUtils = {
@@ -22,29 +22,29 @@ var phpUtils = {
     },
 
     _exportCode(v, start) {
-        if (!S.isObject(v)) {
+        if (v === null || !S.isObject(v)) {
             return phpUtils._exportCodeVar(v);
         }
-        
-        var content='array(';
+
+        var content = 'array(';
         if (S.isArray(v)) {
             for (var i=0, l=v.length ; i<l ; i++) {
-                content += this._exportCode(content, v[i]);
+                content += this._exportCode(v[i]) + ',';
             }
         } else {
             for (var k in v) {
-                content+=this._exportCodeVar(k)+'=>'+this._exportCode(v[k])+',';
+                content += this._exportCodeVar(k) + '=>' + this._exportCode(v[k]) + ',';
             }
         }
         if (content) {
-            content = UString.trimRight(content, ',');
+            content = content.replace(/,+$/, '');
         }
         content += start ? ')' : '),';
         return content;
     },
     _exportCodeVar(v) {
         if (S.isString(v)) {
-            return this.exportString(v);
+            return phpUtils.exportString(v);
         }
         if (v===undefined || v===null) {
             return 'null';
@@ -57,7 +57,7 @@ var phpUtils = {
         }
         return v;//numeric
     },
-    
+
     /**
      * Export string into a php string in string
      *

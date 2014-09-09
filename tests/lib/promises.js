@@ -86,7 +86,6 @@ test('forEach() fails', function() {
   return promise.then(function() {
     assert.notOk(true, 'This should never be called');
   }).catch(function(err) {
-    console.log(err);
     expect(err, 'test error');
   });
 });
@@ -105,7 +104,7 @@ test('forEach() fails asynchronously', function() {
   });
 });
 test('creator() should work', function() {
-  var $__0 = $traceurRuntime.assertObject(promises.creator()),
+  var $__0 = promises.creator(),
       promise = $__0[0],
       callback = $__0[1];
   assert.isFunction(callback);

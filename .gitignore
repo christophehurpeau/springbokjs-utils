@@ -37,3 +37,4 @@ _svn
 svn-commit*.tmp
 
 /node_modules
+/lib-cov

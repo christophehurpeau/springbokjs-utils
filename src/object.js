@@ -44,14 +44,16 @@ exports.extend = function(target) {
  * @param {Object} object
  * @return {Object} target
  */
-exports.union = function(target, object) {
-    if (object) {
-        for (var key in object) {
-            if (target[key] === undefined) {
-                target[key] = object[key];
+exports.union = function(target) {
+    Array.from(arguments).slice(1).forEach((object) => {
+        if (object) {
+            for (var key in object) {
+                if (target[key] === undefined) {
+                    target[key] = object[key];
+                }
             }
         }
-    }
+    });
     return target;
 };
 

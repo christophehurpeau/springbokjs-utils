@@ -2,13 +2,18 @@
 # Then click on "View Key" and paste it on github
 
 sudo apt-get install jscoverage
-npm -d install
+npm install -g karma-cli
+npm install
 
 echo "\n> Ensure that the code is warning free"
 node_modules/.bin/gulp lint || exit 1
 
 echo "\n> Run tests"
 npm test || exit 1
+
+echo "\n> Run browser tests"
+sudo start xvfb
+karma start --single-run --browsers=Firefox,Chrome,PhantomJS || exit 1
 
 #echo "\n> Run build"
 #node_modules/.bin/gulp build || exit 1

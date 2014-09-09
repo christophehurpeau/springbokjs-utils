@@ -6,7 +6,7 @@
     "utils",
     "promise"
   ],
-  "version": "0.4.0",
+  "version": "0.5.0",
   "homepage": "www.springbokjs.org",
   "repository": {
     "type": "git",
@@ -18,11 +18,14 @@
     "test": "node_modules/.bin/mocha --harmony -u tdd tests/lib/"
   },
   "devDependencies": {
-    "gulp": "^3.8.7",
+    "es6-shim": "*",
+    "gulp": "^3.8.8",
+    "karma": "^0.12.23",
     "proclaim": "^2.0.0",
     "springbokjs-library": "^2.6.1"
   },
   "dependencies": {
+    "js-yaml": "^3.2.2",
     "rimraf": "^2.2.8"
   }
 }

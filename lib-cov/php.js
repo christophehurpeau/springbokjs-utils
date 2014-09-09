@@ -76,7 +76,7 @@ if (! _$jscoverage['php.js']) {
   _$jscoverage['php.js'][57] = 0;
   _$jscoverage['php.js'][60] = 0;
 }
-_$jscoverage['php.js'].source = ["\"use strict\";","var S = require('./index');","var phpUtils = {","  exportCode: function(v, ifEmptyArray) {","    var content = this._exportCode(v, true);","    if (ifEmptyArray !== undefined &amp;&amp; (content === 'false' || content === 'array()')) {","      return ifEmptyArray;","    }","    return content;","  },","  _exportCode: function(v, start) {","    if (!S.isObject(v)) {","      return phpUtils._exportCodeVar(v);","    }","    var content = 'array(';","    if (S.isArray(v)) {","      for (var i = 0,","          l = v.length; i &lt; l; i++) {","        content += this._exportCode(content, v[i]);","      }","    } else {","      for (var k in v) {","        content += this._exportCodeVar(k) + '=&gt;' + this._exportCode(v[k]) + ',';","      }","    }","    if (content) {","      content = UString.trimRight(content, ',');","    }","    content += start ? ')' : '),';","    return content;","  },","  _exportCodeVar: function(v) {","    if (S.isString(v)) {","      return this.exportString(v);","    }","    if (v === undefined || v === null) {","      return 'null';","    }","    if (v === true) {","      return 'true';","    }","    if (v === false) {","      return 'false';","    }","    return v;","  },","  exportString: function(str) {","    if (!str.contains(\"'\")) {","      return \"'\" + str + \"'\";","    }","    if (!str.contains('\"')) {","      return '\"' + str.replace(/\\$/g, '$') + '\"';","    }","    if (str.contains(\"\\n\") || str.contains(\"\\r\") || str.contains(\"\\t\") || str.contains(\"\\v\") || str.contains(\"\\f\")) {","      return '\"' + str.replace(/\\\\/g, '\\\\\\\\').replace(/\\n/g, '\\n').replace(/\\r/g, '\\r').replace(/\\t/g, '\\t').replace(/\\v/g, '\\v').replace(/\\f/g, '\\f').replace(/\\$/, '$') + '\"';","    }","    return \"'\".str.replace(/\\\\\\'/g, '\\'').replace(/\\\\\\\\\\'/, '\\\\\\'') + \"'\";","  }","};","module.exports = phpUtils;","","//# sourceMappingURL=php.js.map"];
+_$jscoverage['php.js'].source = ["\"use strict\";","var S = require('./index');","var phpUtils = {","  exportCode: function(v, ifEmptyArray) {","    var content = this._exportCode(v, true);","    if (ifEmptyArray !== undefined &amp;&amp; (content === 'false' || content === 'array()')) {","      return ifEmptyArray;","    }","    return content;","  },","  _exportCode: function(v, start) {","    if (v === null || !S.isObject(v)) {","      return phpUtils._exportCodeVar(v);","    }","    var content = 'array(';","    if (S.isArray(v)) {","      for (var i = 0,","          l = v.length; i &lt; l; i++) {","        content += this._exportCode(v[i]) + ',';","      }","    } else {","      for (var k in v) {","        content += this._exportCodeVar(k) + '=&gt;' + this._exportCode(v[k]) + ',';","      }","    }","    if (content) {","      content = content.replace(/,+$/, '');","    }","    content += start ? ')' : '),';","    return content;","  },","  _exportCodeVar: function(v) {","    if (S.isString(v)) {","      return phpUtils.exportString(v);","    }","    if (v === undefined || v === null) {","      return 'null';","    }","    if (v === true) {","      return 'true';","    }","    if (v === false) {","      return 'false';","    }","    return v;","  },","  exportString: function(str) {","    if (!str.contains(\"'\")) {","      return \"'\" + str + \"'\";","    }","    if (!str.contains('\"')) {","      return '\"' + str.replace(/\\$/g, '$') + '\"';","    }","    if (str.contains(\"\\n\") || str.contains(\"\\r\") || str.contains(\"\\t\") || str.contains(\"\\v\") || str.contains(\"\\f\")) {","      return '\"' + str.replace(/\\\\/g, '\\\\\\\\').replace(/\\n/g, '\\n').replace(/\\r/g, '\\r').replace(/\\t/g, '\\t').replace(/\\v/g, '\\v').replace(/\\f/g, '\\f').replace(/\\$/, '$') + '\"';","    }","    return \"'\".str.replace(/\\\\\\'/g, '\\'').replace(/\\\\\\\\\\'/, '\\\\\\'') + \"'\";","  }","};","module.exports = phpUtils;","","//# sourceMappingURL=php.js.map"];
 _$jscoverage['php.js'][1]++;
 "use strict";
 _$jscoverage['php.js'][2]++;
@@ -94,7 +94,7 @@ var phpUtils = {exportCode: (function (v, ifEmptyArray) {
   return content;
 }), _exportCode: (function (v, start) {
   _$jscoverage['php.js'][12]++;
-  if ((! S.isObject(v))) {
+  if (((v === null) || (! S.isObject(v)))) {
     _$jscoverage['php.js'][13]++;
     return phpUtils._exportCodeVar(v);
   }
@@ -105,7 +105,7 @@ var phpUtils = {exportCode: (function (v, ifEmptyArray) {
     _$jscoverage['php.js'][17]++;
     for (var i = 0, l = v.length; (i < l); (i++)) {
       _$jscoverage['php.js'][19]++;
-      content += this._exportCode(content, v[i]);
+      content += (this._exportCode(v[i]) + ",");
 }
   }
   else {
@@ -118,7 +118,7 @@ var phpUtils = {exportCode: (function (v, ifEmptyArray) {
   _$jscoverage['php.js'][26]++;
   if (content) {
     _$jscoverage['php.js'][27]++;
-    content = UString.trimRight(content, ",");
+    content = content.replace(/,+$/, "");
   }
   _$jscoverage['php.js'][29]++;
   content += (start? ")": "),");
@@ -128,7 +128,7 @@ var phpUtils = {exportCode: (function (v, ifEmptyArray) {
   _$jscoverage['php.js'][33]++;
   if (S.isString(v)) {
     _$jscoverage['php.js'][34]++;
-    return this.exportString(v);
+    return phpUtils.exportString(v);
   }
   _$jscoverage['php.js'][36]++;
   if (((v === undefined) || (v === null))) {

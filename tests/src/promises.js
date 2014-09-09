@@ -102,7 +102,6 @@ test('forEach() fails', function() {
             assert.notOk(true, 'This should never be called');
         })
         .catch((err) => {
-            console.log(err);
             expect(err, 'test error');
         });
 });

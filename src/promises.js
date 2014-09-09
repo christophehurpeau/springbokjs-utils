@@ -29,7 +29,7 @@ var promises = {
 
     /**
      * Returns a callback that resolve or reject the created promise that you can get with {promises}
-     * Prefer use creator()
+     * @deprecated Prefer use of creator()
      *
      * @return {Function} callback(err, result)
      */
