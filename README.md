@@ -2,8 +2,6 @@
 springbokjs-utils
 
 
-http://img.shields.io/badge/coverage-100%-brightgreen.svg?style=flat
-
 ### fs with Promises
 
 ```js
