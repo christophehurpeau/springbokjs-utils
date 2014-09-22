@@ -1,1 +1,1 @@
-module.exports = require('lib/php');
+module.exports = require('./lib/php');

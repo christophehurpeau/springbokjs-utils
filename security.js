@@ -1,1 +1,1 @@
-module.exports = require('lib/security');
+module.exports = require('./lib/security');
