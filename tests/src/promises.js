@@ -138,3 +138,19 @@ test('creator() should work', function() {
 
     return promise;
 });
+
+
+test('promiseCallback() should work', function() {
+    var promise = promises.promiseCallback((done) => {
+        assert.isFunction(done);
+
+        done(null, 20); //resolve promise
+    });
+    assert.isInstanceOf(promise, Promise);
+
+    promise = promise.then((result) => {
+         expect(result, 20);
+    });
+
+    return promise;
+});

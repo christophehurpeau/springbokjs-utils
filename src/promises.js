@@ -1,13 +1,38 @@
 var S = require('./index');
 var createdPromise;
 
-
 /**
  * @exports promises
  */
 var promises = {
     /**
-     * Returns a array with two values : the promise and the callback to call
+     * Returns a promise
+     * The first argument is a callback with a done function
+     *
+     * @example
+     * S.promiseCallback((done) => {
+     *     fs.readFile('./myFile.txt', done);
+     * }).then((txtContentBuffer) => {
+     *     console.log(txtContentBuffer.toString());
+     * });
+     *
+     * @return {Promise}
+     */
+    promiseCallback(callback) {
+        var resolveCallback, rejectCallback;
+        var createdPromise = new Promise(function(resolve, reject) {
+            resolveCallback = resolve;
+            rejectCallback = reject;
+        });
+        var doneCallback = promises.resolveFromCallback(resolveCallback, rejectCallback);
+        callback(doneCallback);
+        return createdPromise;
+    },
+
+    /**
+     * Returns an array with two values : the promise and the callback to call
+     * @deprecated Prefer use of S.promiseCallback()
+     *
      * @example
      * var [promise, doneCallback] = promises.creator();
      * fs.readFile('./myFile.txt', doneCallback);
@@ -29,7 +54,7 @@ var promises = {
 
     /**
      * Returns a callback that resolve or reject the created promise that you can get with {promises}
-     * @deprecated Prefer use of creator()
+     * @deprecated Prefer use of S.promiseCallback()
      *
      * @return {Function} callback(err, result)
      */
@@ -44,6 +69,7 @@ var promises = {
 
     /**
     * Returns the Promise created by the previously called method done()
+     * @deprecated Prefer use of S.promiseCallback()
     *
     * example : promises.promise(callback(promises.done()));
     *

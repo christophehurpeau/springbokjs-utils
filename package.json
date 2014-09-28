@@ -6,7 +6,7 @@
     "utils",
     "promise"
   ],
-  "version": "0.5.1",
+  "version": "0.5.2",
   "homepage": "http://www.springbokjs.org",
   "repository": {
     "type": "git",
@@ -21,12 +21,12 @@
     "es6-shim": "*",
     "gulp": "^3.8.8",
     "karma": "^0.12.23",
+    "mocha": "^1.21.4",
     "proclaim": "^2.0.0",
     "springbokjs-library": "^2.6.1"
   },
   "dependencies": {
     "js-yaml": "^3.2.2",
-    "mocha": "^1.21.4",
     "rimraf": "^2.2.8"
   }
 }

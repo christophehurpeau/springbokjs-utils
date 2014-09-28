@@ -115,5 +115,16 @@ test('creator() should work', function() {
   callback(null, 20);
   return promise;
 });
+test('promiseCallback() should work', function() {
+  var promise = promises.promiseCallback(function(done) {
+    assert.isFunction(done);
+    done(null, 20);
+  });
+  assert.isInstanceOf(promise, Promise);
+  promise = promise.then(function(result) {
+    expect(result, 20);
+  });
+  return promise;
+});
 
 //# sourceMappingURL=promises.js.map

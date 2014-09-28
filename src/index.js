@@ -234,3 +234,5 @@ utils.mapToArray = function(arrayOrObject, callback) {
 
 utils.array = require('./array.js');
 utils.object = require('./object.js');
+utils.promises = require('./promises');
+utils.promiseCallback = utils.promises.promiseCallback;
