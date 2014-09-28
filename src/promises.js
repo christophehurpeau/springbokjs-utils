@@ -7,6 +7,7 @@ var createdPromise;
 var promises = {
     /**
      * Returns a promise
+     *
      * The first argument is a callback with a done function
      *
      * @example
@@ -16,6 +17,7 @@ var promises = {
      *     console.log(txtContentBuffer.toString());
      * });
      *
+     * @param {Function} callback callback((done) => {})
      * @return {Promise}
      */
     promiseCallback(callback) {
@@ -31,6 +33,7 @@ var promises = {
 
     /**
      * Returns an array with two values : the promise and the callback to call
+     *
      * @deprecated Prefer use of S.promiseCallback()
      *
      * @example
@@ -54,6 +57,7 @@ var promises = {
 
     /**
      * Returns a callback that resolve or reject the created promise that you can get with {promises}
+     *
      * @deprecated Prefer use of S.promiseCallback()
      *
      * @return {Function} callback(err, result)
@@ -69,9 +73,11 @@ var promises = {
 
     /**
     * Returns the Promise created by the previously called method done()
-     * @deprecated Prefer use of S.promiseCallback()
     *
-    * example : promises.promise(callback(promises.done()));
+    * @deprecated Prefer use of S.promiseCallback()
+    *
+    * @example
+    * promises.promise(callback(promises.done()));
     *
     * @return {Promise}
     */
