@@ -6,8 +6,8 @@
     "utils",
     "promise"
   ],
-  "version": "0.5.0",
-  "homepage": "www.springbokjs.org",
+  "version": "0.5.1",
+  "homepage": "http://www.springbokjs.org",
   "repository": {
     "type": "git",
     "url": "git@github.com:christophehurpeau/springbokjs-utils.git"
