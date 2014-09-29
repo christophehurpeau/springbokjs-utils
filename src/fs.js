@@ -1,11 +1,33 @@
 /**
  * fs API with Promises
+ *
+ *  @module fs
  */
 
 var fs = require('fs');
 var objectUtils = require('./object');
 var promiseUtils = require('./promises');
 var YAML = require('js-yaml');
+
+
+/**
+ * Rename a file
+ *
+ * @param {String} oldPath
+ * @param {String} newPath
+ * @return {Promise}
+ */
+exports.rename = function(){}; // jsdoc
+
+/**
+ * Rename a file synchronously
+ *
+ * @param {String} oldPath
+ * @param {String} newPath
+ * @return {Boolean}
+ */
+exports.rename = function(){}; // jsdoc
+
 
 [
     'rename',
@@ -124,6 +146,7 @@ exports.writeYamlFile = function() {
  * Recursively read a directory.
  * callback is called for each files
  * Return a Promise when all files are read.
+ *
  * @param {String} dir
  * @param {Object} options
  * @param {Function} callback
