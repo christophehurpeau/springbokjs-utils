@@ -5,8 +5,6 @@ var lib = '../../lib' + (process.env.TEST_COV && '-cov' || '') + '/';
 
 var arrayUtils = require(lib + 'array');
 
-
-
 test('slice1: slicing an empty array should return an empty array', function() {
     assert.deepEqual(arrayUtils.slice1([]), []);
 });

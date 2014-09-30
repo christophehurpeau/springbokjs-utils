@@ -21,7 +21,7 @@ var utils = {
      * @param  {*}  arg
      * @return {boolean}
      */
-    isString: function(arg){
+    isString: function(arg) {
         return typeof arg === 'string';
     },
 
@@ -30,7 +30,7 @@ var utils = {
      * @param  {*}  arg
      * @return {boolean}
      */
-    isObject: function(arg){
+    isObject: function(arg) {
         return typeof arg === 'object';
     },
 
@@ -39,7 +39,7 @@ var utils = {
      * @param  {*}  arg
      * @return {boolean}
      */
-    isFunction: function(arg){
+    isFunction: function(arg) {
         return typeof arg === 'function';
     },
 
@@ -83,8 +83,8 @@ var utils = {
      * @param {string} string
      * @return {string} escaped string
      */
-    regexpEscape(s) {
-        return s.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
+    regexpEscape(string) {
+        return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
     }
 };
 
@@ -234,5 +234,6 @@ utils.mapToArray = function(arrayOrObject, callback) {
 
 utils.array = require('./array.js');
 utils.object = require('./object.js');
+utils.string = require('./string/string.js');
 utils.promises = require('./promises');
 utils.promiseCallback = utils.promises.promiseCallback;

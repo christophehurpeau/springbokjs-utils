@@ -1,4 +1,54 @@
 "use strict";
+var $__getIteratorRange = function(iterator, index, begin, len) {
+  if (index > begin) {
+    throw new RangeError();
+  }
+  if (typeof len === "undefined") {
+    len = Infinity;
+  }
+  var range = [],
+      end = begin + len;
+  while (index < end) {
+    var next = iterator.next();
+    if (next.done) {
+      break;
+    }
+    if (index >= begin) {
+      range.push(next.value);
+    }
+    index++;
+  }
+  return {
+    range: range,
+    index: index
+  };
+};
+var $__getIterator = function(iterable) {
+  var sym = typeof Symbol === "function" && Symbol.iterator || "@@iterator";
+  if (typeof iterable[sym] === "function") {
+    return iterable[sym]();
+  } else if (typeof iterable === "object" || typeof iterable === "function") {
+    return $__getArrayIterator(iterable);
+  } else {
+    throw new TypeError();
+  }
+};
+var $__getArrayIterator = function(array) {
+  var index = 0;
+  return {next: function() {
+      if (index < array.length) {
+        return {
+          done: false,
+          value: array[index++]
+        };
+      } else {
+        return {
+          done: true,
+          value: void 0
+        };
+      }
+    }};
+};
 var assert = require('proclaim');
 var expect = assert.strictEqual;
 var lib = '../../lib' + (process.env.TEST_COV && '-cov' || '') + '/';
@@ -104,9 +154,11 @@ test('forEach() fails asynchronously', function() {
   });
 });
 test('creator() should work', function() {
-  var $__0 = promises.creator(),
-      promise = $__0[0],
-      callback = $__0[1];
+  var var$0 = promises.creator(),
+      iterator$0 = $__getIterator(var$0),
+      iteratorValue$0 = {index: 0},
+      promise = (iteratorValue$0 = $__getIteratorRange(iterator$0, iteratorValue$0.index, 0, 1), iteratorValue$0.range[0]),
+      callback = (iteratorValue$0 = $__getIteratorRange(iterator$0, iteratorValue$0.index, 1, 1), iteratorValue$0.range[0]);
   assert.isFunction(callback);
   assert.isInstanceOf(promise, Promise);
   promise = promise.then(function(result) {
