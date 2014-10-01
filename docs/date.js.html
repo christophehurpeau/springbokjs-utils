@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: generators.js</title>
+    <title>JSDoc: Source: date.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: generators.js</h1>
+    <h1 class="page-title">Source: date.js</h1>
 
     
 
@@ -27,30 +27,52 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module generators
+ * @module date
  */
 
 /**
- * Generate a random code with the specified size
+ * Returns if the year in parameter is a leap year
  *
- * @param {Number} size
- * @param {String=} characters
- * @return {Map}
+ * @param {Number} year
+ * @return {Boolean}
  */
-exports.randomCode = function(size, characters) {
-    characters = (characters||'abcdefghijklmnopqrstuvwxyz0123456789').split('')
-        .sort(() => { return 0.5 - Math.random(); });//shuffle
-
-    var finalWord = '', lastChar = '', charBeforeLast = '';
-    var i = 0, length = characters.length, ch;
-    while (i++ &lt; size) {
-        while ((ch=characters[Math.floor(Math.random() * length)])===lastChar || ch===charBeforeLast) {
-        }
-        charBeforeLast = lastChar;
-        finalWord += (lastChar = ch);
-    }
-    return finalWord;
+exports.isLeapYear = function(year) {
+    return (0 === year % 400) || ((0 === year % 4) &amp;&amp; (0 !== year % 100)) || (0 === year);
 };
+
+var _daysInMonth = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+/**
+ * Returns the number of days in the month and year in parameters
+ *
+ * @param {Number} month from 0 to 11
+ * @param {Number} year
+ * @return {Number} 28, 29, 30 or 31
+ */
+exports.daysInMonth = function(month, year) {
+    if (month === 1) {
+        return exports.isLeapYear(year) ? 29 : 28;
+    }
+    return _daysInMonth[month];
+};
+
+/**
+ * Transform a date into a SQL date : YYYY-MM-DD HH:MM:SS
+ *
+ * @param {Date} date
+ * @return {Boolean} withHours
+ */
+exports.toSqlDate = function(date, withHours) {
+    var day = date.getDate(), month = date.getMonth();
+    var result = date.getFullYear() + '-' + (month&lt;9 ? '0' : '') + (month+1) + '-' + (day&lt;10 ? '0' : '') + day;
+    if (withHours === false) {
+        return result;
+    }
+    var hours = date.getHours(), minutes = date.getMinutes(), seconds = date.getSeconds();
+    return result + ' ' + ((hours &lt; 10) ? '0' : '') + hours
+                  + ((minutes &lt; 10) ? ':0' : ':') + minutes
+                  + ((seconds &lt; 10) ? ':0' : ':') + seconds;
+};
+
 </code></pre>
         </article>
     </section>
