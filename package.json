@@ -6,12 +6,9 @@
     "utils",
     "promise"
   ],
-  "version": "0.5.5",
+  "version": "0.5.7",
   "homepage": "http://www.springbokjs.org",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:christophehurpeau/springbokjs-utils.git"
-  },
+  "repository": "git://github.com/christophehurpeau/springbokjs-utils.git",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "MIT",
   "scripts": {
@@ -20,7 +17,7 @@
   "devDependencies": {
     "es6-shim": "*",
     "gulp": "^3.8.8",
-    "karma": "^0.12.23",
+    "karma": "^0.12.24",
     "mocha": "^1.21.4",
     "proclaim": "^2.0.0",
     "springbokjs-library": "^2.7"
