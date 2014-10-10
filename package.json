@@ -6,7 +6,7 @@
     "utils",
     "promise"
   ],
-  "version": "0.5.7",
+  "version": "0.5.8",
   "homepage": "http://www.springbokjs.org",
   "repository": "git://github.com/christophehurpeau/springbokjs-utils.git",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -25,5 +25,8 @@
   "dependencies": {
     "js-yaml": "^3.2.2",
     "rimraf": "^2.2.8"
+  },
+  "optionalDependencies": {
+    "request": "2.*"
   }
 }
