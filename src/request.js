@@ -12,7 +12,7 @@ module.exports = function(uri, options) {
 'defaults put patch post head del get'.split(' ').forEach((key) => {
     module.exports[key] = function(uri, options) {
         return promiseUtils.promiseCallback((done) => {
-            request(uri, options, function(error, response, body) {
+            request[key](uri, options, function(error, response, body) {
                 done(error, response);
             });
         });
