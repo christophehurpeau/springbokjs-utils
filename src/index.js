@@ -236,4 +236,3 @@ utils.array = require('./array.js');
 utils.object = require('./object.js');
 utils.string = require('./string/string.js');
 utils.promises = require('./promises');
-utils.promiseCallback = utils.promises.promiseCallback;
