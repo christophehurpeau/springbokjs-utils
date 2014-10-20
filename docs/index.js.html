@@ -29,94 +29,93 @@
             <pre class="prettyprint source linenums"><code>/**
  * Utils
  *
- * @exports utils
+ * @module utils
  */
-var utils = {
-    /**
-     * shortcut for parseInt(arg, 10)
-     *
-     * @param {string} arg
-     * @return {number} parsed int
-     */
-    toInt(arg) {
-        return parseInt(arg, 10);
-    },
 
-    /* IS */
-
-    /**
-     * Test is a variable is a string
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isString: function(arg) {
-        return typeof arg === 'string';
-    },
-
-    /**
-     * Test is a variable is an object
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isObject: function(arg) {
-        return typeof arg === 'object';
-    },
-
-    /**
-     * Test is a variable is a function
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isFunction: function(arg) {
-        return typeof arg === 'function';
-    },
-
-    /**
-     * Test is a variable is an array
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isArray: Array.isArray,
-
-
-    /* HTML */
-
-    /**
-     * Escape an html string
-     *
-     * @param {string} html string to be escaped
-     * @return {string} escaped string
-     */
-    escape(html) {
-        return String(html)
-            .replace(/&amp;(?!\w+;)/g, '&amp;amp;')
-            .replace(/&lt;/g, '&amp;lt;')
-            .replace(/>/g, '&amp;gt;')
-            .replace(/"/g, '&amp;quot;');
-    },
-
-    /**
-     * Escape an url for html
-     *
-     * @param {string} url
-     * @return {string} escaped url
-     */
-    escapeUrl(html) {
-        return html.replace(/&amp;/g,'&amp;amp;');
-    },
-
-    /**
-     * Escape a string for regexp
-     *
-     * @param {string} string
-     * @return {string} escaped string
-     */
-    regexpEscape(string) {
-        return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
-    }
+/**
+ * shortcut for parseInt(arg, 10)
+ *
+ * @param {String} arg
+ * @return {Number} parsed int
+ */
+exports.toInt = function(arg) {
+    return parseInt(arg, 10);
 };
 
-module.exports = utils;
+/* IS */
+
+/**
+ * Test is a variable is a string
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isString = function(arg) {
+    return typeof arg === 'string';
+};
+
+/**
+ * Test is a variable is an object
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isObject = function(arg) {
+    return typeof arg === 'object';
+};
+
+/**
+ * Test is a variable is a function
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isFunction = function(arg) {
+    return typeof arg === 'function';
+};
+
+/**
+ * Test is a variable is an array
+ *
+ * @function
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isArray = Array.isArray;
+
+
+/* HTML */
+
+/**
+ * Escape an html string
+ *
+ * @param {String} html string to be escaped
+ * @return {String} escaped string
+ */
+exports.escape = function(html) {
+    return String(html)
+        .replace(/&amp;(?!\w+;)/g, '&amp;amp;')
+        .replace(/&lt;/g, '&amp;lt;')
+        .replace(/>/g, '&amp;gt;')
+        .replace(/"/g, '&amp;quot;');
+};
+
+/**
+ * Escape an url for html
+ *
+ * @param {String} url
+ * @return {String} escaped url
+ */
+exports.escapeUrl = function(html) {
+    return html.replace(/&amp;/g,'&amp;amp;');
+};
+
+/**
+ * Escape a string for regexp
+ *
+ * @param {String} string
+ * @return {String} escaped string
+ */
+exports.regexpEscape = function(string) {
+    return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
+};
 
 /**
  * The filter() method creates a new object|array with all elements
@@ -172,8 +171,8 @@ module.exports = utils;
  * @method forEach
  * @memberof utils
  * @param {object|array} arg
- * @param {string} separator
- * @return {string}
+ * @param {String} separator
+ * @return {String}
  */
 
 /**
@@ -226,11 +225,11 @@ module.exports = utils;
  */
 
 'filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
-    utils[methodName] = function(arrayOrObject) {
+    exports[methodName] = function(arrayOrObject) {
         var args = Array.prototype.slice.call(arguments, 1);
         var method = arrayOrObject[methodName];
         if (!method) {
-            method = utils.object[methodName];
+            method = exports.object[methodName];
             args.unshift(arrayOrObject);
         }
         return method.apply(arrayOrObject, args);
@@ -249,21 +248,21 @@ module.exports = utils;
  * @return {Array}
  */
 
-utils.mapToArray = function(arrayOrObject, callback) {
+exports.mapToArray = function(arrayOrObject, callback) {
     if (Array.isArray(arrayOrObject)) {
         return arrayOrObject.map(callback);
     }
     var array = [];
-    utils.forEach(arrayOrObject, function(value, index) {
+    exports.forEach(arrayOrObject, function(value, index) {
         array.push(callback(value, index));
     });
     return array;
 };
 
-utils.array = require('./array.js');
-utils.object = require('./object.js');
-utils.string = require('./string/string.js');
-utils.promises = require('./promises');
+exports.array = require('./array.js');
+exports.object = require('./object.js');
+exports.string = require('./string/string.js');
+exports.promises = require('./promises');
 </code></pre>
         </article>
     </section>
@@ -280,7 +279,7 @@ utils.promises = require('./promises');
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a> on Mon Oct 13 2014 15:43:08 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a> on Mon Oct 20 2014 18:13:43 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
