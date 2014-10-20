@@ -36,5 +36,21 @@ test('escape should return an escaped html string', function() {
 test('escapeUrl should return an escaped url string', function() {
   expect(utils.escapeUrl('<div>hello & "welcome"'), '<div>hello &amp; "welcome"');
 });
+test('defineProperty should work', function() {
+  var o = {};
+  var res = utils.defineProperty(o, 'a', 1);
+  expect(res, o);
+  expect(res.a, 1);
+});
+test('defineProperties should work', function() {
+  var o = {};
+  var res = utils.defineProperties(o, {
+    a: 1,
+    b: 2
+  });
+  expect(res, o);
+  expect(res.a, 1);
+  expect(res.b, 2);
+});
 
 //# sourceMappingURL=index.js.map

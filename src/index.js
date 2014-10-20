@@ -1,94 +1,144 @@
 /**
  * Utils
  *
- * @exports utils
+ * @module utils
  */
-var utils = {
-    /**
-     * shortcut for parseInt(arg, 10)
-     *
-     * @param {string} arg
-     * @return {number} parsed int
-     */
-    toInt(arg) {
-        return parseInt(arg, 10);
-    },
 
-    /* IS */
-
-    /**
-     * Test is a variable is a string
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isString: function(arg) {
-        return typeof arg === 'string';
-    },
-
-    /**
-     * Test is a variable is an object
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isObject: function(arg) {
-        return typeof arg === 'object';
-    },
-
-    /**
-     * Test is a variable is a function
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isFunction: function(arg) {
-        return typeof arg === 'function';
-    },
-
-    /**
-     * Test is a variable is an array
-     * @param  {*}  arg
-     * @return {boolean}
-     */
-    isArray: Array.isArray,
-
-
-    /* HTML */
-
-    /**
-     * Escape an html string
-     *
-     * @param {string} html string to be escaped
-     * @return {string} escaped string
-     */
-    escape(html) {
-        return String(html)
-            .replace(/&(?!\w+;)/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
-    },
-
-    /**
-     * Escape an url for html
-     *
-     * @param {string} url
-     * @return {string} escaped url
-     */
-    escapeUrl(html) {
-        return html.replace(/&/g,'&amp;');
-    },
-
-    /**
-     * Escape a string for regexp
-     *
-     * @param {string} string
-     * @return {string} escaped string
-     */
-    regexpEscape(string) {
-        return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
-    }
+/**
+ * shortcut for parseInt(arg, 10)
+ *
+ * @param {String} arg
+ * @return {Number} parsed int
+ */
+exports.toInt = function(arg) {
+    return parseInt(arg, 10);
 };
 
-module.exports = utils;
+/* IS */
+
+/**
+ * Test is a variable is a string
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isString = function(arg) {
+    return typeof arg === 'string';
+};
+
+/**
+ * Test is a variable is an object
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isObject = function(arg) {
+    return typeof arg === 'object';
+};
+
+/**
+ * Test is a variable is a function
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isFunction = function(arg) {
+    return typeof arg === 'function';
+};
+
+/**
+ * Test is a variable is an array
+ *
+ * @function
+ * @param {*} arg
+ * @return {Boolean}
+ */
+exports.isArray = Array.isArray;
+
+
+/* HTML */
+
+/**
+ * Escape an html string
+ *
+ * @param {String} html string to be escaped
+ * @return {String} escaped string
+ */
+exports.escape = function(html) {
+    return String(html)
+        .replace(/&(?!\w+;)/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+};
+
+/**
+ * Escape an url for html
+ *
+ * @param {String} url
+ * @return {String} escaped url
+ */
+exports.escapeUrl = function(html) {
+    return html.replace(/&/g,'&amp;');
+};
+
+/**
+ * Escape a string for regexp
+ *
+ * @param {String} string
+ * @return {String} escaped string
+ */
+exports.regexpEscape = function(string) {
+    return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
+};
+
+
+/**
+ * Shortcut for Object.defineProperty
+ *
+ * @param {Object} target
+ * @param {Object} properties
+ * @param {Boolean=} writable
+ * @param {Boolean=} configurable
+ * @param {Boolean=} enumerable
+ * @return {Object} target
+ */
+exports.defineProperty = function(target, property, value, writable, configurable, enumerable) {
+    Object.defineProperty(target, property, {
+        value: value,
+        writable: !!writable,
+        configurable: !!configurable,
+        enumerable: !!enumerable
+    });
+    return target;
+};
+
+
+/**
+ * Shortcut for Object.defineProperties
+ *
+ * @param {Object} target
+ * @param {Object} properties
+ * @param {Boolean=} writable
+ * @param {Boolean=} configurable
+ * @param {Boolean=} enumerable
+ * @return {Object} target
+ */
+exports.defineProperties = function(target, properties, writable, configurable, enumerable) {
+    if (!properties) {
+        return target;
+    }
+    writable = !!writable;
+    configurable = !!configurable;
+    enumerable = !!enumerable;
+    Object.keys(properties).forEach((key) => {
+        Object.defineProperty(target, key, {
+            value: properties[key],
+            writable: writable,
+            configurable: configurable,
+            enumerable: enumerable
+        });
+    });
+    return target;
+};
+
 
 /**
  * The filter() method creates a new object|array with all elements
@@ -144,8 +194,8 @@ module.exports = utils;
  * @method forEach
  * @memberof utils
  * @param {object|array} arg
- * @param {string} separator
- * @return {string}
+ * @param {String} separator
+ * @return {String}
  */
 
 /**
@@ -198,11 +248,11 @@ module.exports = utils;
  */
 
 'filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
-    utils[methodName] = function(arrayOrObject) {
+    exports[methodName] = function(arrayOrObject) {
         var args = Array.prototype.slice.call(arguments, 1);
         var method = arrayOrObject[methodName];
         if (!method) {
-            method = utils.object[methodName];
+            method = exports.object[methodName];
             args.unshift(arrayOrObject);
         }
         return method.apply(arrayOrObject, args);
@@ -221,18 +271,18 @@ module.exports = utils;
  * @return {Array}
  */
 
-utils.mapToArray = function(arrayOrObject, callback) {
+exports.mapToArray = function(arrayOrObject, callback) {
     if (Array.isArray(arrayOrObject)) {
         return arrayOrObject.map(callback);
     }
     var array = [];
-    utils.forEach(arrayOrObject, function(value, index) {
+    exports.forEach(arrayOrObject, function(value, index) {
         array.push(callback(value, index));
     });
     return array;
 };
 
-utils.array = require('./array.js');
-utils.object = require('./object.js');
-utils.string = require('./string/string.js');
-utils.promises = require('./promises');
+exports.array = require('./array.js');
+exports.object = require('./object.js');
+exports.string = require('./string/string.js');
+exports.promises = require('./promises');
