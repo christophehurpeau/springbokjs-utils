@@ -13,6 +13,12 @@ test('toMap transforms an object into a Map', () => {
     expect(map.get('b'), 2);
 });
 
+test('toMap handles Map as argument', () => {
+    var map = new Map();
+    var result = objectUtils.toMap(map);
+    expect(map, result);
+});
+
 test('extend merge several objects into one, ignoring undefined args', () => {
     var object = objectUtils.extend({ a:1 }, { b:2 }, undefined, null, { c: 3 }, { c: 4 });
     expect(object.a, 1);
