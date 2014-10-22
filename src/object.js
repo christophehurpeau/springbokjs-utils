@@ -97,7 +97,7 @@ exports.mapJoin = function(object, separator, callback) {
         separator = '';
     }
     object = exports.map(object, callback);
-    return object.join(object, separator);
+    return exports.join(object, separator);
 };
 
 
@@ -116,6 +116,25 @@ var _commonObjectArray = function(propertyName, object, callback, thisArg) {
     });
 };
 
+
+
+/**
+ * The entries() method returns a new Iterator that contains the key/value pairs for each index in the Object.
+*
+* @param {Object|Map} object
+* @return {Iterator}
+*/
+exports.entries = function(object) {
+    var keys = Object.keys(object), i = 0;
+    return Object.freeze({
+        next() {
+            if (i >= keys.length) {
+                return Object.freeze({ done: true });
+            }
+            return Object.freeze({ value: [ keys[i], object[keys[i++]] ], done: false });
+        }
+    });
+};
 
 
 /**
@@ -141,7 +160,7 @@ exports.filter = function(object, callback, thisArg) {
 * @return {*}
 */
 exports.find = function(object, callback, thisArg) {
-    var key = this.findIndex.apply(null, arguments);
+    var key = exports.findIndex.apply(null, arguments);
     return key && object[key];
 };
 
@@ -161,7 +180,7 @@ exports.findIndex = _commonObjectArray.bind(null, 'find');
 * The forEach() method executes a provided function once per object element.
 *
 * @type {Function}
-* @param {Object} object
+* @param {Object|Map} object
 * @param {Function} callback
 * @param {*} thisArg
 * @return {*}
@@ -208,8 +227,8 @@ exports.map = function(object, callback, thisArg) {
 */
 exports.reduce = function(object, callback, initialValue) {
     return Object.keys(object).reduce(function(previousValue, currentValue, index, array) {
-        return callback(previousValue, currentValue, array[currentValue], object);
-    });
+        return callback(previousValue, object[currentValue], currentValue, object);
+    }, initialValue);
 };
 
 /**
@@ -223,8 +242,8 @@ exports.reduce = function(object, callback, initialValue) {
 */
 exports.reduceRight = function(object, callback, initialValue) {
     return Object.keys(object).reduceRight(function(previousValue, currentValue, index, array) {
-        return callback(previousValue, currentValue, array[currentValue], object);
-    });
+        return callback(previousValue, object[currentValue], currentValue, object);
+    }, initialValue);
 };
 
 /**

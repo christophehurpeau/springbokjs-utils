@@ -27,6 +27,18 @@ test('extend merge several objects into one, ignoring undefined args', function(
     expect(object.c, 4);
 });
 
+test('extend should work when only one arg', function() {
+    var object = objectUtils.extend({ a:1 });
+    assert.deepEqual(object, { a: 1 });
+});
+
+test('extend should work when the first object is not an object', function() {
+    assert.throws(function() {
+      return objectUtils.extend(0);
+    }, 'target is not an object');
+});
+
+
 test('union merge several objects into one, ignoring undefined args, only if the property doesn\'t exists yet', function() {
     var object = objectUtils.union({ a:1 }, { b:2 }, undefined, null, { c: 3 }, { c: 4 });
     expect(object.a, 1);
@@ -51,5 +63,20 @@ test('filterKeys creates an new object', function() {
     expect(o.b, filtered.b);
     expect(o.c, filtered.c);
 });
+
+test('mapJoin should work', function() {
+    var result = objectUtils.mapJoin({ a: 1, b: 2}, '_', function(v, k) {
+      return k + '-' + v;
+    });
+    expect(result, 'a-1_b-2');
+});
+
+test('mapJoin should work with only two arguments', function() {
+    var result = objectUtils.mapJoin({ a: 1, b: 2}, function(v, k) {
+      return k + '-' + v;
+    });
+    expect(result, 'a-1b-2');
+});
+
 
 //# sourceMappingURL=object.js.map

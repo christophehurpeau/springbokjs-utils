@@ -5,42 +5,60 @@
  */
 
 /**
- * shortcut for parseInt(arg, 10)
+ * shortcut for parseInt(value, 10)
  *
- * @param {String} arg
+ * @param {String} value
  * @return {Number} parsed int
  */
-exports.toInt = function(arg) {
-    return parseInt(arg, 10);
+exports.toInt = function(value) {
+    return parseInt(value, 10);
 };
 
 /* IS */
 
 /**
  * Test is a variable is a string
- * @param {*} arg
+ * @param {*} value
  * @return {Boolean}
  */
-exports.isString = function(arg) {
-    return typeof arg === 'string';
+exports.isString = function(value) {
+    return typeof value === 'string';
 };
 
 /**
  * Test is a variable is an object
- * @param {*} arg
+ * @param {*} value
  * @return {Boolean}
  */
-exports.isObject = function(arg) {
-    return typeof arg === 'object';
+exports.isObject = function(value) {
+    return typeof value === 'object';
 };
 
 /**
  * Test is a variable is a function
- * @param {*} arg
+ * @param {*} value
  * @return {Boolean}
  */
-exports.isFunction = function(arg) {
-    return typeof arg === 'function';
+exports.isFunction = function(value) {
+    return typeof value === 'function';
+};
+
+/**
+ * Test is a variable is a number
+ * @param {*} value
+ * @return {Boolean}
+ */
+exports.isNumber = function(value) {
+    return typeof value === 'number';
+};
+
+/**
+ * Test is a variable is a integer number
+ * @param {*} value
+ * @return {Boolean}
+ */
+exports.isInteger = function(value) {
+    return Number.isInteger(value);
 };
 
 /**
@@ -141,24 +159,32 @@ exports.defineProperties = function(target, properties, writable, configurable, 
 
 
 /**
- * The filter() method creates a new object|array with all elements
- * that pass the test implemented by the provided function.
+ * The entries() method returns a new Iterator that contains the key/value pairs for each index in the Object|Array.
  *
- * @method filter
- * @memberof utils
- * @param {object|array} arg
+ * @function module:utils.entries
+ * @param {Object|Array|Map} arg
  * @param {Function} callback
  * @param {*=} thisArg
- * @return {object|array}
+ * @return {Iterator}
  */
 
 /**
- * The find() method returns a value in the object|array
- * if an element in the object|array satisfies the provided testing function.
+ * The filter() method creates a new Object|Array with all elements
+ * that pass the test implemented by the provided function.
  *
- * @method find
- * @memberof utils
- * @param {object|array} arg
+ * @function module:utils.filter
+ * @param {Object|Array} arg
+ * @param {Function} callback
+ * @param {*=} thisArg
+ * @return {Object|Array}
+ */
+
+/**
+ * The find() method returns a value in the Object|Array
+ * if an element in the Object|Array satisfies the provided testing function.
+ *
+ * @function module:utils.find
+ * @param {Object|Array} arg
  * @param {Function} callback
  * @param {*=} thisArg
  * @return {*}
@@ -166,57 +192,52 @@ exports.defineProperties = function(target, properties, writable, configurable, 
 
 
 /**
- * The findIndex() method returns a value in the object|array
- * if an element in the object|array satisfies the provided testing function.
+ * The findIndex() method returns a value in the Object|Array
+ * if an element in the Object|Array satisfies the provided testing function.
  *
- * @method findIndex
- * @memberof utils
- * @param {object|array} arg
+ * @function module:utils.findIndex
+ * @param {Object|Array} arg
  * @param {Function} callback
  * @param {*=} thisArg
  * @return {number|string|undefined}
  */
 
 /**
- * The forEach() method executes a provided function once per object|array element.
+ * The forEach() method executes a provided function once per Object|Array element.
  *
- * @method forEach
- * @memberof utils
- * @param {object|array} arg
+ * @function module:utils.forEach
+ * @param {Object|Array|Map} arg
  * @param {Function} callback
  * @param {*=} thisArg
  * @return {number|string|undefined}
  */
 
 /**
- * The join() method joins all elements of an object|array into a string.
+ * The join() method joins all elements of an Object|Array into a string.
  *
- * @method forEach
- * @memberof utils
- * @param {object|array} arg
+ * @function module:utils.join
+ * @param {Object|Array} arg
  * @param {String} separator
  * @return {String}
  */
 
 /**
- * The map() method creates a new object|array with the results
- * of calling a provided function on every element in this object|array.
+ * The map() method creates a new Object|Array with the results
+ * of calling a provided function on every element in this Object|Array.
  *
- * @method map
- * @memberof utils
- * @param {object|array} arg
+ * @function module:utils.map
+ * @param {Object|Array} arg
  * @param {Function} callback
  * @param {*=} thisArg
- * @return {object|array}
+ * @return {Object|Array}
  */
 
 /**
  * The reduce() method applies a function against an accumulator
- * and each value of the object|array (from left-to-right) has to reduce it to a single value.
+ * and each value of the Object|Array (from left-to-right) has to reduce it to a single value.
  *
- * @method reduce
- * @memberOf utils
- * @param {object|array} arg
+ * @function module:utils.reduce
+ * @param {Object|Array} arg
  * @param {Function} callback callback(previousValue, currentKey, currentValue, objectOrArray)
  * @param {*=} initialValue
  * @return {*}
@@ -225,29 +246,27 @@ exports.defineProperties = function(target, properties, writable, configurable, 
 // TODO http://usejsdoc.org/tags-callback.html
 /**
  * The reduceRight() method applies a function against an accumulator
- * and each value of the object|array (from right-to-left) has to reduce it to a single value.
+ * and each value of the Object|Array (from right-to-left) has to reduce it to a single value.
  *
- * @method reduceRight
- * @memberOf utils
- * @param {object|array} arg
+ * @function module:utils.reduceRight
+ * @param {Object|Array} arg
  * @param {Function} callback callback(previousValue, currentKey, currentValue, objectOrArray)
  * @param {*=} initialValue
  * @return {*}
  */
 
 /**
- * The some() method tests whether some element in the object|array
+ * The some() method tests whether some element in the Object|Array
  * passes the test implemented by the provided function.
  *
- * @method some
- * @memberOf utils
- * @param {object|array} arg
+ * @function module:utils.some
+ * @param {Object|Array} arg
  * @param {Function} callback
  * @param {*=} thisArg
  * @return {*}
  */
 
-'filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
+'entries filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
     exports[methodName] = function(arrayOrObject) {
         var args = Array.prototype.slice.call(arguments, 1);
         var method = arrayOrObject[methodName];
@@ -261,11 +280,11 @@ exports.defineProperties = function(target, properties, writable, configurable, 
 
 /**
  * The mapToArray() method creates a new array with the results
- * of calling a provided function on every element in this object|array.
+ * of calling a provided function on every element in this Object|Array.
  *
  * @method mapToArray
  * @memberof utils
- * @param {object|array} arg
+ * @param {Object|Array} arg
  * @param {Function} callback
  * @param {*=} thisArg
  * @return {Array}

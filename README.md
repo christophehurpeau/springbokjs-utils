@@ -29,5 +29,5 @@ Promise.all([
 [build-status-url]: https://drone.io/github.com/christophehurpeau/springbokjs-utils/latest
 [npm-image]: https://img.shields.io/npm/v/springbokjs-utils.svg?style=flat
 [npm-url]: https://npmjs.org/package/springbokjs-utils
-[coverage-image]: http://img.shields.io/badge/coverage-81%-yellow.svg?style=flat
+[coverage-image]: http://img.shields.io/badge/coverage-86%-yellow.svg?style=flat
 [coverage-url]: http://christophehurpeau.github.io/springbokjs-utils/docs/coverage.html
