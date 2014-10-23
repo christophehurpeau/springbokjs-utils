@@ -54,12 +54,23 @@ test('remove', function() {
     assert.deepEqual(tab, [1,2,3]);
 });
 
+
+test('clone', function() {
+    var a = [2, 5];
+    var b = arrayUtils.clone(a);
+    assert.notStrictEqual(a, b);
+    assert.deepEqual(a, b);
+});
+
 test('last', function() {
     expect(arrayUtils.last([1]),1);
     expect(arrayUtils.last([1,2,3]),3);
 });
 
 test('sortBy', function() {
+    assert.deepEqual(arrayUtils.sortBy([{a:2}, {a:1}],'a'), [{a:1}, {a:2}]);
+    assert.deepEqual(arrayUtils.sortBy([{a:2}, {a:1}, {a:1}],'a',true), [{a:2}, {a:1}, {a:1}]);
+
     assert.deepEqual(arrayUtils.sortBy([{a:2},{a:1}],'a','number'), [{a:1},{a:2}]);
     assert.deepEqual(arrayUtils.sortBy([{a:2},{a:1}],'a',true,'number'), [{a:2},{a:1}]);
 
@@ -81,6 +92,15 @@ test('sortBy with number should sort', function() {
 test('sortBy with string should sort', function() {
     assert.deepEqual(arrayUtils.sortBy([{a: 'c'},{a: 'a'},{a: 'b'}], 'a', 'string'),
             [{a: 'a'},{a: 'b'},{a: 'c'}]);
+});
+
+test('removeWhen should return a new array with elements removed when callback is true', function() {
+    var array = [0,1,2,3,4];
+    var newLength = arrayUtils.removeWhen(array, function(v) {
+      return v % 2;
+    });
+    expect(newLength, 3);
+    assert.deepEqual(array, [0, 2, 4]);
 });
 
 test('equals should return true when the same array is used', function() {

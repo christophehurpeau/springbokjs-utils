@@ -123,7 +123,7 @@ exports.forEach = function(iterable, callback) {
  */
 exports.forEachSeries = function(iterable, callback) {
     return new Promise(function(resolve, reject) {
-        var entriesIterator = iterable.entries();
+        var entriesIterator = S.entries(iterable);
         var results = new iterable.constructor();
         var next = function() {
             var current = entriesIterator.next();
@@ -132,7 +132,7 @@ exports.forEachSeries = function(iterable, callback) {
             }
             var key = current.value[0], value = current.value[1];
             var result = callback(value, key);
-            if (result instanceof Promise) {
+            if (result && S.isFunction(result.then)) {
                 result
                     .then(function(result) {
                         results[key] = result;
@@ -159,10 +159,10 @@ exports.whileTrue = function(conditionCallback, callback) {
     return new Promise(function(resolve, reject) {
         (function next() {
             if (!conditionCallback()) {
-                resolve();
+                return resolve();
             }
             var result = callback();
-            if (result instanceof Promise) {
+            if (result && S.isFunction(result.then)) {
                 result
                     .then(function() {
                         setImmediate(next);

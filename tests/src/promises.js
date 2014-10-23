@@ -125,6 +125,57 @@ test('forEach() fails asynchronously', function() {
 });
 
 
+test('forEachSeries() with an array with one value', function() {
+    var promise = promises.forEachSeries([
+        new Promise((resolve) => resolve('ok'))
+    ], (value) => value);
+    return promise
+        .then((result) => {
+            assert.deepEqual(result, ['ok']);
+        });
+});
+
+test('forEachSeries() with an array with several values', function() {
+    var promise = promises.forEachSeries([
+        'ok',
+        'test2',
+        new Promise((resolve) => resolve('ok3')),
+    ], (value) => {
+        if (value === 'ok') {
+            return new Promise((resolve) => resolve('ok1'));
+        }
+        return value;
+    });
+    return promise
+        .then((result) => {
+            assert.deepEqual(result, ['ok1', 'test2', 'ok3']);
+        });
+});
+
+test('whileTrue() with an array with several values', function() {
+    var iterator = [
+        'ok',
+        'test2',
+        new Promise((resolve) => resolve('ok3')),
+    ].entries();
+    var current, results = [];
+    var promise = promises.whileTrue(() => {
+        current = iterator.next();
+        return !current.done;
+    }, () => {
+        if (current.value[1] instanceof Promise) {
+            return current.value[1].then((result) => results.push(result));
+        }
+        results.push(current.value[1]);
+    });
+    return promise
+        .then(() => {
+            assert.deepEqual(results, ['ok', 'test2', 'ok3']);
+        });
+});
+
+
+
 test('creator() should work', function() {
     var [promise, callback] = promises.creator();
     assert.isFunction(callback);

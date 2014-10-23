@@ -65,12 +65,6 @@ var phpUtils = {
      * @return {String}
      */
     exportString(str) {
-        if (!str.contains("'")) {
-            return "'" + str + "'";
-        }
-        if (!str.contains('"')) {
-            return '"' + str.replace(/\$/g,'$') + '"';
-        }
         if (str.contains("\n") || str.contains("\r") || str.contains("\t")
                                      || str.contains("\v") || str.contains("\f")) {
             return '"' + str.replace(/\\/g,'\\\\')
@@ -81,7 +75,13 @@ var phpUtils = {
                             .replace(/\f/g,'\f')
                             .replace(/\$/,'$') + '"';
         }
-        return "'".str.replace(/\\\'/g,'\'').replace(/\\\\\'/,'\\\'')+"'";
+        if (!str.contains("'")) {
+            return "'" + str + "'";
+        }
+        if (!str.contains('"')) {
+            return '"' + str.replace(/\$/g,'$') + '"';
+        }
+        return "'" + str.replace(/\'/g,'\\\'') + "'";
     }
 };
 

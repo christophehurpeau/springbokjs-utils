@@ -5,36 +5,36 @@ var lib = '../../lib' + (process.env.TEST_COV && '-cov' || '') + '/';
 
 var arrayUtils = require(lib + 'array');
 
-test('slice1: slicing an empty array should return an empty array', function() {
+test('slice1: slicing an empty array should return an empty array', () => {
     assert.deepEqual(arrayUtils.slice1([]), []);
 });
 
-test('slice1: slicing an empty array should return an array without the first value', function() {
+test('slice1: slicing an empty array should return an array without the first value', () => {
     assert.deepEqual(arrayUtils.slice1([1, 2, 3]), [2, 3]);
 });
 
-test('slice1: slicing an array-like object should return an array without the first value', function() {
+test('slice1: slicing an array-like object should return an array without the first value', () => {
     assert.deepEqual(arrayUtils.slice1({ length:3, 0:1, 1:2, 2:3 }), [2, 3]);
 });
 
-test('has', function() {
+test('has', () => {
     expect(arrayUtils.has([1,2,3],4),false);
     expect(arrayUtils.has([1,2,3],2),true);
 });
 
-test('hasAmong', function() {
+test('hasAmong', () => {
     expect(arrayUtils.hasAmong([1,2,3],[4]),false);
     expect(arrayUtils.hasAmong([1,2,3],[2,4,6]),true);
     expect(arrayUtils.hasAmong([1,2,3],[4,2]),true);
 });
 
-test('hasAmong', function() {
+test('hasAmong', () => {
     expect(arrayUtils.hasAmong([1,2,3],[4]), false);
     expect(arrayUtils.hasAmong([1,2,3],[2,4,6]), true);
     expect(arrayUtils.hasAmong([1,2,3],[4,2]), true);
 });
 
-test('remove', function() {
+test('remove', () => {
     var tab;
     tab = [1,2,3];
     expect(arrayUtils.remove(tab, 1), 0);
@@ -53,12 +53,23 @@ test('remove', function() {
     assert.deepEqual(tab, [1,2,3]);
 });
 
-test('last', function() {
+
+test('clone', () => {
+    var a = [2, 5];
+    var b = arrayUtils.clone(a);
+    assert.notStrictEqual(a, b);
+    assert.deepEqual(a, b);
+});
+
+test('last', () => {
     expect(arrayUtils.last([1]),1);
     expect(arrayUtils.last([1,2,3]),3);
 });
 
-test('sortBy', function() {
+test('sortBy', () => {
+    assert.deepEqual(arrayUtils.sortBy([{a:2}, {a:1}],'a'), [{a:1}, {a:2}]);
+    assert.deepEqual(arrayUtils.sortBy([{a:2}, {a:1}, {a:1}],'a',true), [{a:2}, {a:1}, {a:1}]);
+
     assert.deepEqual(arrayUtils.sortBy([{a:2},{a:1}],'a','number'), [{a:1},{a:2}]);
     assert.deepEqual(arrayUtils.sortBy([{a:2},{a:1}],'a',true,'number'), [{a:2},{a:1}]);
 
@@ -66,7 +77,7 @@ test('sortBy', function() {
     assert.deepEqual(arrayUtils.sortBy([{a:'a'},{a:'b'}],'a',true,'string'), [{a:'b'},{a:'a'}]);
 });
 
-test('random should return an element in the array', function() {
+test('random should return an element in the array', () => {
     var array = [1, 2, 3];
     assert.isTrue(array.indexOf(arrayUtils.random(array)) !== -1);
 });
@@ -80,6 +91,13 @@ test('sortBy with number should sort', () => {
 test('sortBy with string should sort', () => {
     assert.deepEqual(arrayUtils.sortBy([{a: 'c'},{a: 'a'},{a: 'b'}], 'a', 'string'),
             [{a: 'a'},{a: 'b'},{a: 'c'}]);
+});
+
+test('removeWhen should return a new array with elements removed when callback is true', () => {
+    var array = [0,1,2,3,4];
+    var newLength = arrayUtils.removeWhen(array, (v) => v % 2);
+    expect(newLength, 3);
+    assert.deepEqual(array, [0, 2, 4]);
 });
 
 test('equals should return true when the same array is used', () => {

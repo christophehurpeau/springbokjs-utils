@@ -6,13 +6,13 @@
     "utils",
     "promise"
   ],
-  "version": "0.6.2",
+  "version": "0.6.3",
   "homepage": "http://www.springbokjs.org",
   "repository": "git://github.com/christophehurpeau/springbokjs-utils.git",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "MIT",
   "scripts": {
-    "test": "node_modules/.bin/mocha --harmony -u tdd tests/lib/"
+    "test": "node_modules/.bin/mocha --harmony --recursive -u tdd tests/lib/"
   },
   "devDependencies": {
     "es6-shim": "*",

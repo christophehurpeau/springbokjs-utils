@@ -140,6 +140,69 @@ test('forEach() fails asynchronously', function() {
 });
 
 
+test('forEachSeries() with an array with one value', function() {
+    var promise = promises.forEachSeries([
+        new Promise(function(resolve) {
+          return resolve('ok');
+        })
+    ], function(value) {
+      return value;
+    });
+    return promise
+        .then(function(result) {
+            assert.deepEqual(result, ['ok']);
+        });
+});
+
+test('forEachSeries() with an array with several values', function() {
+    var promise = promises.forEachSeries([
+        'ok',
+        'test2',
+        new Promise(function(resolve) {
+          return resolve('ok3');
+        }),
+    ], function(value) {
+        if (value === 'ok') {
+            return new Promise(function(resolve) {
+              return resolve('ok1');
+            });
+        }
+        return value;
+    });
+    return promise
+        .then(function(result) {
+            assert.deepEqual(result, ['ok1', 'test2', 'ok3']);
+        });
+});
+
+test('whileTrue() with an array with several values', function() {
+    var iterator = [
+        'ok',
+        'test2',
+        new Promise(function(resolve) {
+          return resolve('ok3');
+        }),
+    ].entries();
+    var current, results = [];
+    var promise = promises.whileTrue(function() {
+        current = iterator.next();
+        return !current.done;
+    }, function() {
+        if (current.value[1] instanceof Promise) {
+            return current.value[1].then(function(result) {
+              return results.push(result);
+            });
+        }
+        results.push(current.value[1]);
+    });
+    return promise
+        .then(function() {
+            assert.deepEqual(results, ['ok', 'test2', 'ok3']);
+        });
+});
+
+
+
 test('creator() should work', function() {
   var _ref = promises.creator();
   var promise = _ref[0];

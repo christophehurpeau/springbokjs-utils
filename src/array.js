@@ -151,10 +151,10 @@ exports.sortBy = function(array, propertyName, descending, sortFunction) {
 
 
 /**
- * The removeAll() method removes all elements
- * that pass the test implemented by the provided function.
+ * The removeWhen() method removes elements
+ *  when element pass the test implemented by the provided function.
  *
- * @param {array} array
+ * @param {Array} array
  * @param {Function} callback
  * @return {Number} the new array's length
  */
@@ -172,8 +172,8 @@ exports.removeWhen = function(array, callback) {
 /**
  * Tests if an array equals another
  *
- * @param {array} array1
- * @param {array} array2
+ * @param {Array} array1
+ * @param {Array} array2
  * @return {Boolean}
  */
 exports.equals = function(array1, array2) {
