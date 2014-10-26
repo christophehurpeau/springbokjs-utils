@@ -21,7 +21,7 @@
     "mocha": "^1.21.5",
     "proclaim": "^2.0.0",
     "request": "2.*",
-    "springbokjs-library": "^3.0"
+    "springbokjs-library": "^3.1"
   },
   "dependencies": {
     "js-yaml": "^3.2.2",

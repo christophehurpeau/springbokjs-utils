@@ -1,0 +1,15 @@
+{
+    "opts": {
+        "template": "node_modules/springbokjs-library/node_modules/ink-docstrap/template"
+    },
+    "templates" : {
+        "systemName" : "springbokjs-utils",
+        "footer" : "",
+        "copyright" : "springbokjs-utils Copyright © 2010-2014 Christophe Hurpeau.",
+        "theme" : "spacelab",
+        "inverseNav" : true,
+        "outputSourceFiles" : true,
+        "outputSourcePath" : true,
+        "linenums": true
+    }
+}
