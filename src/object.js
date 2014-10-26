@@ -60,7 +60,6 @@ exports.union = function(target) {
 /**
  * Clones an object
  *
- * @param {Object} target
  * @param {Object} object
  * @return {Object} target
  */
