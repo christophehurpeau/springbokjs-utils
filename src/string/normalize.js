@@ -66,7 +66,7 @@ exports.normalize = function(string) {
 exports.slugify = function(string, replacement = '-') {
     return exports.translit(string.trim())
         .replace(/([^\d\.])\.+([^\d\.]|$)/g, '$1 $2')
-        .replace(/[^\w\d\.]/g, ' ')
+        .replace(/[^a-zA-Z\d\.]/g, ' ') // \w is a-z and _
         .trim()
         .replace(/\s+/g, replacement)
         .replace(new RegExp('^' + utils.regexpEscape(replacement) + '+|' + utils.regexpEscape(replacement) + '+$'), '');

@@ -16,6 +16,6 @@ test('normalize should normalize a string', function() {
 });
 
 test('slugify should create a slug from a string', function() {
-    expect(stringUtils.slugify('ah ah ééé !'), 'ah-ah-eee');
+    expect(stringUtils.slugify('ah_ah ééé !'), 'ah-ah-eee');
     expect(stringUtils.slugify('ah ah ééé !', '+'), 'ah+ah+eee');
 });
