@@ -9,7 +9,7 @@
  * @return {Boolean}
  */
 exports.isLeapYear = function(year) {
-    return (0 === year % 400) || ((0 === year % 4) && (0 !== year % 100)) || (0 === year);
+    return (year % 400) === 0 || ((year % 4) === 0 && (year % 100) !== 0) || year === 0;
 };
 
 var _daysInMonth = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -36,7 +36,7 @@ exports.daysInMonth = function(month, year) {
  */
 exports.toSqlDate = function(date, withHours) {
     var day = date.getDate(), month = date.getMonth();
-    var result = date.getFullYear() + '-' + (month<9 ? '0' : '') + (month+1) + '-' + (day<10 ? '0' : '') + day;
+    var result = date.getFullYear() + '-' + (month < 9 ? '0' : '') + (month + 1) + '-' + (day < 10 ? '0' : '') + day;
     if (withHours === false) {
         return result;
     }
@@ -58,7 +58,7 @@ exports.parseSqlDate = function(date) {
     date[0] = date[0].split('-');
     if (date.length === 2) {
         date[1] = date[1].split(':');
-        return new Date(date[0][0], date[0][1]-1, date[0][2], date[1][0], date[1][1], date[1][2]);
+        return new Date(date[0][0], date[0][1] - 1, date[0][2], date[1][0], date[1][1], date[1][2]);
     }
-    return new Date(date[0][0], date[0][1]-1, date[0][2]);
+    return new Date(date[0][0], date[0][1] - 1, date[0][2]);
 };

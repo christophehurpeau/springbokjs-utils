@@ -19,26 +19,8 @@ exports.toMap = function(object) {
     return map;
 };
 
-
 /**
- * Use Object.assign, but allows empty objects
- *
- * @param {Object} target
- * @param {...Object} objects
- * @return {Object} target
- */
-exports.extend = function(target) {
-    if (typeof target !== 'object') {
-        throw new Error('target is not an object');
-    }
-    var objects = Array.from(arguments).filter(function(value) { return !!value; });
-    if (objects.length === 1) {
-        return target;
-    }
-    return Object.assign.apply(null, objects);
-};
-
-/**
+ * Same as Object.assign, but doesn't override the value if !== undefined
  *
  * @param {Object} target
  * @param {Object} object
@@ -248,7 +230,7 @@ exports.reduceRight = function(object, callback, initialValue) {
 /**
 * The some() method tests whether some element in the object passes the test implemented by the provided function.
 *
-* @type {Function}
+* @function
 * @param {Object} object
 * @param {Function} callback
 * @param {*=} thisArg

@@ -19,7 +19,7 @@ test('exportCode should work with an array of numbers', function() {
 
 
 test('exportCode should work with an object', function() {
-    expect(php.exportCode({ a:0, b:1, test:'test'}), "array('a'=>0,'b'=>1,'test'=>'test')");
+    expect(php.exportCode({ a: 0, b: 1, test: 'test' }), "array('a'=>0,'b'=>1,'test'=>'test')");
 });
 
 

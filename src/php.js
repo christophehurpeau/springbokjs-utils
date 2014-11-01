@@ -15,7 +15,7 @@ var phpUtils = {
      */
     exportCode(v, ifEmptyArray) {
         var content = this._exportCode(v, true);
-        if (ifEmptyArray!==undefined && (content==='false' || content==='array()')) {
+        if (ifEmptyArray !== undefined && (content === 'false' || content === 'array()')) {
             return ifEmptyArray;
         }
         return content;
@@ -28,7 +28,7 @@ var phpUtils = {
 
         var content = 'array(';
         if (S.isArray(v)) {
-            for (var i=0, l=v.length ; i<l ; i++) {
+            for (var i = 0, l = v.length ; i < l ; i++) {
                 content += this._exportCode(v[i]) + ',';
             }
         } else {
@@ -46,16 +46,16 @@ var phpUtils = {
         if (S.isString(v)) {
             return phpUtils.exportString(v);
         }
-        if (v===undefined || v===null) {
+        if (v === undefined || v === null) {
             return 'null';
         }
-        if (v===true) {
+        if (v === true) {
             return 'true';
         }
-        if (v===false) {
+        if (v === false) {
             return 'false';
         }
-        return v;//numeric
+        return v; // numeric
     },
 
     /**
@@ -65,8 +65,8 @@ var phpUtils = {
      * @return {String}
      */
     exportString(str) {
-        if (str.contains("\n") || str.contains("\r") || str.contains("\t")
-                                     || str.contains("\v") || str.contains("\f")) {
+        if (str.contains('\n') || str.contains('\r') || str.contains('\t')
+                                     || str.contains('\v') || str.contains('\f')) {
             return '"' + str.replace(/\\/g,'\\\\')
                             .replace(/\n/g,'\n')
                             .replace(/\r/g,'\r')

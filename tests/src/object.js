@@ -6,7 +6,7 @@ var lib = '../../lib' + (process.env.TEST_COV && '-cov' || '') + '/';
 var objectUtils = require(lib + 'object');
 
 test('toMap transforms an object into a Map', () => {
-    var object = {a:1, b:2};
+    var object = { a: 1, b: 2 };
     var map = objectUtils.toMap(object);
     expect(map.size, 2);
     expect(map.get('a'), 1);
@@ -19,32 +19,15 @@ test('toMap handles Map as argument', () => {
     expect(map, result);
 });
 
-test('extend merge several objects into one, ignoring undefined args', () => {
-    var object = objectUtils.extend({ a:1 }, { b:2 }, undefined, null, { c: 3 }, { c: 4 });
-    expect(object.a, 1);
-    expect(object.b, 2);
-    expect(object.c, 4);
-});
-
-test('extend should work when only one arg', () => {
-    var object = objectUtils.extend({ a:1 });
-    assert.deepEqual(object, { a: 1 });
-});
-
-test('extend should work when the first object is not an object', () => {
-    assert.throws(() => objectUtils.extend(0), 'target is not an object');
-});
-
-
 test('union merge several objects into one, ignoring undefined args, only if the property doesn\'t exists yet', () => {
-    var object = objectUtils.union({ a:1 }, { b:2 }, undefined, null, { c: 3 }, { c: 4 });
+    var object = objectUtils.union({ a: 1 }, { b: 2 }, undefined, null, { c: 3 }, { c: 4 });
     expect(object.a, 1);
     expect(object.b, 2);
     expect(object.c, 3);
 });
 
 test('clone clones an object', () => {
-    var o = { a:1, b:2 };
+    var o = { a: 1, b: 2 };
     var cloned = objectUtils.clone(o);
     expect(o.a, cloned.a);
     expect(o.b, cloned.b);
@@ -54,7 +37,7 @@ test('clone clones an object', () => {
 });
 
 test('filterKeys creates an new object', () => {
-    var o = { a:1, b:2, c:3 };
+    var o = { a: 1, b: 2, c: 3 };
     var filtered = objectUtils.filterKeys(o, ['b', 'c']);
     expect(filtered.a, undefined);
     expect(o.b, filtered.b);
@@ -62,12 +45,11 @@ test('filterKeys creates an new object', () => {
 });
 
 test('mapJoin should work', () => {
-    var result = objectUtils.mapJoin({ a: 1, b: 2}, '_', (v, k) => k + '-' + v);
+    var result = objectUtils.mapJoin({ a: 1, b: 2 }, '_', (v, k) => k + '-' + v);
     expect(result, 'a-1_b-2');
 });
 
 test('mapJoin should work with only two arguments', () => {
-    var result = objectUtils.mapJoin({ a: 1, b: 2}, (v, k) => k + '-' + v);
+    var result = objectUtils.mapJoin({ a: 1, b: 2 }, (v, k) => k + '-' + v);
     expect(result, 'a-1b-2');
 });
-

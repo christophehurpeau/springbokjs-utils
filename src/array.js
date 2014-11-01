@@ -139,7 +139,7 @@ exports.sortBy = function(array, propertyName, descending, sortFunction) {
     return array.sort(
         descending ? function(b, a) {
             return sortFunction(a[propertyName], b[propertyName]);
-        } : function(a,b){
+        } : function(a, b) {
             return sortFunction(a[propertyName], b[propertyName]);
         });
 };

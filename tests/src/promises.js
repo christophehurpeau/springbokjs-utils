@@ -18,10 +18,10 @@ test('done() and promise() should work', function() {
     assert.isInstanceOf(promise, Promise);
 
     promise = promise.then((result) => {
-         expect(result, 20);
+        expect(result, 20);
     });
 
-    callback(null, 20); //resolve promise
+    callback(null, 20); // resolve promise
 
     return promise;
 });
@@ -37,7 +37,7 @@ test('done() and promise() should work when there is an error', function() {
             assert.notOk(true, 'This should never be called');
         })
         .catch((err) => {
-             expect(err, 'test error');
+            expect(err, 'test error');
         });
 
     callback('test error');
@@ -120,7 +120,7 @@ test('forEach() fails asynchronously', function() {
             assert.notOk(true, 'This should never be called');
         })
         .catch((err) => {
-             expect(err, 'test error');
+            expect(err, 'test error');
         });
 });
 
@@ -182,10 +182,10 @@ test('creator() should work', function() {
     assert.isInstanceOf(promise, Promise);
 
     promise = promise.then((result) => {
-         expect(result, 20);
+        expect(result, 20);
     });
 
-    callback(null, 20); //resolve promise
+    callback(null, 20); // resolve promise
 
     return promise;
 });
@@ -195,12 +195,12 @@ test('promiseCallback() should work', function() {
     var promise = promises.promiseCallback((done) => {
         assert.isFunction(done);
 
-        done(null, 20); //resolve promise
+        done(null, 20); // resolve promise
     });
     assert.isInstanceOf(promise, Promise);
 
     promise = promise.then((result) => {
-         expect(result, 20);
+        expect(result, 20);
     });
 
     return promise;

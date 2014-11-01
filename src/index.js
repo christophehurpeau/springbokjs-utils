@@ -104,7 +104,7 @@ exports.escapeUrl = function(html) {
  * @return {String} escaped string
  */
 exports.regexpEscape = function(string) {
-    return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1" );
+    return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, '\\$1' );
 };
 
 
@@ -112,46 +112,99 @@ exports.regexpEscape = function(string) {
  * Shortcut for Object.defineProperty
  *
  * @param {Object} target
- * @param {Object} properties
- * @param {Boolean=} writable
- * @param {Boolean=} configurable
- * @param {Boolean=} enumerable
+ * @param {String} property name of the property
+ * @param {*} value value
+ * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperty = function(target, property, value, writable, configurable, enumerable) {
+exports.defineProperty = function(target, property, value, options) {
     Object.defineProperty(target, property, {
         value: value,
-        writable: !!writable,
-        configurable: !!configurable,
-        enumerable: !!enumerable
+        writable: (options && options.writable) !== false,
+        configurable: (options && options.configurable) !== false,
+        enumerable: !!(options && options.enumerable)
     });
     return target;
 };
 
+/**
+ * Shortcut for Object.defineProperty
+ *
+ * @param {Object} target
+ * @param {String} property name of the property
+ * @param {*} value value
+ * @param {Object=} options: enumerable default false
+ * @return {Object} target
+ */
+exports.defineConstant = function(target, property, value, options) {
+    Object.defineProperty(target, property, {
+        value: value,
+        writable: false,
+        configurable: false,
+        enumerable: !!(options && options.enumerable)
+    });
+    return target;
+};
+
+/**
+ * Shortcut for Object.defineProperty
+ *
+ * @param {Object} target
+ * @param {String} property name of the property
+ * @param {Function} getter getter function
+ * @param {Object=} options: configurable default true, enumerable default false
+ * @return {Object} target
+ */
+exports.defineGetter = function(target, property, getter, options) {
+    Object.defineProperty(target, property, {
+        get: getter,
+        configurable: (options && options.configurable) !== false,
+        enumerable: !!(options && options.enumerable)
+    });
+    return target;
+};
+
+/**
+ * Shortcut for Object.defineProperty
+ *
+ * @param {Object} target
+ * @param {String} property name of the property
+ * @param {Function} setter setter function
+ * @param {Object=} options: configurable default true, enumerable default false
+ * @return {Object} target
+ */
+exports.defineSetter = function(target, property, setter, options) {
+    Object.defineProperty(target, property, {
+        set: setter,
+        configurable: (options && options.configurable) !== false,
+        enumerable: !!(options && options.enumerable)
+    });
+    return target;
+};
 
 /**
  * Shortcut for Object.defineProperties
  *
  * @param {Object} target
  * @param {Object} properties
- * @param {Boolean=} writable
- * @param {Boolean=} configurable
- * @param {Boolean=} enumerable
+ * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperties = function(target, properties, writable, configurable, enumerable) {
+exports.defineProperties = function(target, properties, options) {
     if (!properties) {
         return target;
     }
-    writable = !!writable;
-    configurable = !!configurable;
-    enumerable = !!enumerable;
+    options = {
+        writable: (options && options.writable) !== false,
+        configurable: (options && options.configurable) !== false,
+        enumerable: !!(options && options.enumerable)
+    };
     Object.keys(properties).forEach((key) => {
         Object.defineProperty(target, key, {
             value: properties[key],
-            writable: writable,
-            configurable: configurable,
-            enumerable: enumerable
+            writable: options.writable,
+            configurable: options.configurable,
+            enumerable: options.enumerable
         });
     });
     return target;
@@ -282,9 +335,8 @@ exports.defineProperties = function(target, properties, writable, configurable, 
  * The mapToArray() method creates a new array with the results
  * of calling a provided function on every element in this Object|Array.
  *
- * @method mapToArray
- * @memberof utils
- * @param {Object|Array} arg
+ * @function module:utils.mapToArray
+ * @param {Object|Array|Map} arg
  * @param {Function} callback
  * @param {*=} thisArg
  * @return {Array}
@@ -301,7 +353,35 @@ exports.mapToArray = function(arrayOrObject, callback) {
     return array;
 };
 
-exports.array = require('./array.js');
-exports.object = require('./object.js');
-exports.string = require('./string/string.js');
-exports.promises = require('./promises');
+
+/**
+ * Access to the array module
+ *
+ * @constant module:utils.array
+ * @type module:array
+ */
+exports.defineConstant(exports, 'array', require('./array'));
+
+/**
+ * Access to the object module
+ *
+ * @constant module:utils.object
+ * @type module:object
+ */
+exports.defineConstant(exports, 'object', require('./object'));
+
+/**
+ * Access to the string module
+ *
+ * @constant module:utils.string
+ * @type module:string
+ */
+exports.defineConstant(exports, 'string', require('./string/string'));
+
+/**
+ * Access to the promises module
+ *
+ * @constant module:utils.promises
+ * @type module:promises
+ */
+exports.defineConstant(exports, 'promises', require('./promises'));

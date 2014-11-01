@@ -6,7 +6,6 @@
  */
 
 var fs = require('fs');
-var objectUtils = require('./object');
 var promiseUtils = require('./promises');
 var YAML = require('js-yaml');
 
@@ -17,8 +16,6 @@ var YAML = require('js-yaml');
  * @param {String} newPath
  * @return {Boolean}
  */
-exports.renameSync = function(){}; // jsdoc
-
 
 [
     /**
@@ -259,10 +256,13 @@ exports.renameSync = function(){}; // jsdoc
      *
      * 'r' - Open file for reading. An exception occurs if the file does not exist.
      * 'r+' - Open file for reading and writing. An exception occurs if the file does not exist.
-     * 'rs' - Open file for reading in synchronous mode. Instructs the operating system to bypass the local file system cache.
-     *     This is primarily useful for opening files on NFS mounts as it allows you to skip the potentially stale local cache.
-     *     It has a very real impact on I/O performance so don't use this flag unless you need it.
-     * 'rs+' - Open file for reading and writing, telling the OS to open it synchronously. See notes for 'rs' about using this with caution.
+     * 'rs' - Open file for reading in synchronous mode.
+     * 		Instructs the operating system to bypass the local file system cache.
+     *     	This is primarily useful for opening files on NFS mounts
+     *     	as it allows you to skip the potentially stale local cache.
+     *      It has a very real impact on I/O performance so don't use this flag unless you need it.
+     * 'rs+' - Open file for reading and writing, telling the OS to open it synchronously.
+     * 		See notes for 'rs' about using this with caution.
      * 'w' - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
      * 'wx' - Like 'w' but fails if path exists.
      * 'w+' - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
@@ -272,7 +272,8 @@ exports.renameSync = function(){}; // jsdoc
      * 'a+' - Open file for reading and appending. The file is created if it does not exist.
      * 'ax+' - Like 'a+' but fails if path exists.
      *
-     * mode sets the file mode (permission and sticky bits), but only if the file was created. It defaults to 0666, readable and writeable.
+     * mode sets the file mode (permission and sticky bits), but only if the file was created.
+     * It defaults to 0666, readable and writeable.
      *
      * The exclusive flag 'x' (O_EXCL flag in open(2)) ensures that path is newly created.
      * On POSIX systems, path is considered to exist even if it is a symlink to a non-existent file.
@@ -297,7 +298,8 @@ exports.renameSync = function(){}; // jsdoc
      * If times is NULL, then the access and modification times of the file are set to the current time.
      *
      * Changing timestamps is permitted when: either the process has appropriate privileges,
-     * or the effective user ID equals the user ID of the file, or times is NULL and the process has write permission for the file.
+     * or the effective user ID equals the user ID of the file,
+     * or times is NULL and the process has write permission for the file.
      *
      * @function module:fs.utimes
      * @param {String} path
@@ -315,7 +317,8 @@ exports.renameSync = function(){}; // jsdoc
      * If times is NULL, then the access and modification times of the file are set to the current time.
      *
      * Changing timestamps is permitted when: either the process has appropriate privileges,
-     * or the effective user ID equals the user ID of the file, or times is NULL and the process has write permission for the file.
+     * or the effective user ID equals the user ID of the file,
+     * or times is NULL and the process has write permission for the file.
      *
      * @function module:fs.futimes
      * @param {FileDescriptor} fd file descriptor
@@ -437,7 +440,7 @@ exports.renameSync = function(){}; // jsdoc
      * @return {Promise}
      */
     'exists'
-].forEach(function(name){
+].forEach(function(name) {
     var fsFn = fs[name];
     exports[name] = function() {
         var args = arguments;
@@ -552,27 +555,26 @@ exports.writeYamlFile = function() {
  * @return {Promise}
  */
 exports.readRecursiveDirectory = function(dir, options, callback) {
-    options = objectUtils.extend({
+    options = Object.assign({
         recursive: true,
         directories: false,
     }, options);
-    return exports.readdir(dir)
-        .then((files) => {
-            return promiseUtils.forEach(files, (file) => {
-                var path = dir + '/' + file;
-                return exports.stat(path)
-                    .then((stat) => {
-                        if (stat && stat.isDirectory()) {
-                            if (options.directories) {
-                                return callback({ dirname: file, path: path, basedir: dir, stat: stat });
-                            }
-                            if (options.recursive) {
-                                return exports.readRecursiveDirectory(path, options, callback);
-                            }
-                        } else {
-                            return callback({ filename: file, path: path, basedir: dir, stat: stat });
+    return exports.readdir(dir).then((files) => {
+        return promiseUtils.forEach(files, (file) => {
+            var path = dir + '/' + file;
+            return exports.stat(path)
+                .then((stat) => {
+                    if (stat && stat.isDirectory()) {
+                        if (options.directories) {
+                            return callback({ dirname: file, path: path, basedir: dir, stat: stat });
                         }
-                    });
-            });
+                        if (options.recursive) {
+                            return exports.readRecursiveDirectory(path, options, callback);
+                        }
+                    } else {
+                        return callback({ filename: file, path: path, basedir: dir, stat: stat });
+                    }
+                });
         });
+    });
 };

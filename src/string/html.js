@@ -13,16 +13,16 @@ module.exports = exports;
  */
 exports.stripTags = function(s, allowed) {
     allowed = (allowed || '').toLowerCase().split(' ');
-    var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
-        commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi,
-        /*  http://www.tutorialchip.com/tutorials/html5-block-level-elements-complete-list/ */
-        blockTags = ('article aside blockquote br dd div dl dt embed fieldset figcaption figure footer form'
-            + ' h1 h2 h3 h4 h5 h6 header hgroup hr li menu nav ol output p pre'
-            + ' section table tbody textarea tfoot th thead tr ul').split(' ');
+    var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+    var commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+    /*  http://www.tutorialchip.com/tutorials/html5-block-level-elements-complete-list/ */
+    var blockTags = ('article aside blockquote br dd div dl dt embed fieldset figcaption figure footer form' +
+            ' h1 h2 h3 h4 h5 h6 header hgroup hr li menu nav ol output p pre' +
+            ' section table tbody textarea tfoot th thead tr ul').split(' ');
     return s.replace(commentsAndPhpTags, '').replace(tags, function($0, tag) {
         tag = tag.toLowerCase();
-        return allowed.indexOf(tag) !== -1 ? $0 : (blockTags.indexOf(tag) !== -1 ? "\n" : '');
-    }).replace(/\s*\n+\s*\n*/g, "\n").trim();
+        return allowed.indexOf(tag) !== -1 ? $0 : (blockTags.indexOf(tag) !== -1 ? '\n' : '');
+    }).replace(/\s*\n+\s*\n*/g, '\n').trim();
 };
 
 /**

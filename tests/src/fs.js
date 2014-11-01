@@ -1,4 +1,3 @@
-/* jshint maxlen: 200 */
 /* global test */
 
 var assert = require('proclaim');
@@ -10,7 +9,10 @@ var fs = require(lib + 'fs');
 test('read existant file', function() {
     return fs.readFile('./AUTHORS')
         .then(function(value) {
-            expect(value.toString().trim(), 'Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)');
+            expect(
+                value.toString().trim(),
+                'Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)'
+            );
         }, function(error) {
             assert.ok(false, error);
         });
@@ -87,5 +89,63 @@ test('write yaml file', function() {
         }).then((value) => {
             expect(value.name, 'springbokjs-utils');
             return fs.unlink('./_temp_file_yaml.yml');
+        });
+});
+
+test('readRecursiveDirectory files', function() {
+    var files = [];
+    return fs.readRecursiveDirectory(
+            './tests/src',
+            { recursive: false, directories: false },
+            (file) => files.push(file.filename)
+        ).then(() => {
+            assert.deepEqual(files, [
+                '_before.js',
+                'array.js',
+                'date.js',
+                'fs.js',
+                'generators.js',
+                'index.js',
+                'object.js',
+                'php.js',
+                'promises.js',
+                'security.js'
+            ]);
+        });
+});
+
+test('readRecursiveDirectory files recursivly', function() {
+    var files = [];
+    return fs.readRecursiveDirectory(
+            './tests/src',
+            { recursive: true, directories: false },
+            (file) => files.push(file.filename)
+        ).then(() => {
+            assert.deepEqual(files, [
+                '_before.js',
+                'array.js',
+                'date.js',
+                'fs.js',
+                'generators.js',
+                'index.js',
+                'object.js',
+                'php.js',
+                'promises.js',
+                'security.js',
+                'html.js',
+                'normalize.js',
+                'string.js'
+            ]);
+        });
+});
+
+test('readRecursiveDirectory directories', function() {
+    var directories = [];
+    return fs.readRecursiveDirectory(
+            './tests/src',
+            { recursive: false, directories: true },
+            (file) => file.dirname && directories.push(file.dirname)
+        ).then(() => {
+            assert.deepEqual(directories, ['string']);
         });
 });

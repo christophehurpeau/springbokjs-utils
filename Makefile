@@ -1,5 +1,1 @@
-clean:
-	rm -Rf docs lib lib-cov tests/lib
-
-watch:
-	gulp watch
+include node_modules/springbokjs-library/tasks.mk

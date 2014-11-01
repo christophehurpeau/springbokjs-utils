@@ -174,12 +174,12 @@ test('join should joins all elements of an Object into a string', () => {
 });
 
 test('map should transform all elements of an Array into a new array', () => {
-    var result = utils.map([ 1, 2, 3 ], (v) => v*2);
+    var result = utils.map([ 1, 2, 3 ], (v) => v * 2);
     assert.deepEqual(result, [2, 4, 6]);
 });
 
 test('map should transform all elements of an Object into a new array', () => {
-    var result = utils.map({ a: 1, b: 2, c: 3 }, (v) => v*2);
+    var result = utils.map({ a: 1, b: 2, c: 3 }, (v) => v * 2);
     assert.deepEqual(result, { a: 2, b: 4, c: 6 });
 });
 
@@ -223,7 +223,30 @@ test('some should forEach elements of an Object until the callback returns true'
     var results = {};
     var result = utils.some({ a: 1, b: 2, c: 3 }, (v, key) => { results[key] = v; return v === 2; }, 5);
     expect(result, true);
-    assert.deepEqual(results, { a:1, b:2 });
+    assert.deepEqual(results, { a: 1, b: 2 });
+});
+
+test('map to array should transform a map into an array', () => {
+    var map = new Map();
+    map.set('a', 1);
+    map.set('ab', 2);
+    var result = utils.mapToArray(map, (v, k) => k + ':' + v);
+    assert.isArray(result);
+    assert.deepEqual(result, ['a:1', 'ab:2']);
+});
+
+test('map to array should transform a object into an array', () => {
+    var object = { a: 1, ab: 2 };
+    var result = utils.mapToArray(object, (v, k) => k + ':' + v);
+    assert.isArray(result);
+    assert.deepEqual(result, ['a:1', 'ab:2']);
+});
+
+test('map to array should transform an array into another array', () => {
+    var object = [1, 2];
+    var result = utils.mapToArray(object, (v, k) => k + ':' + v);
+    assert.isArray(result);
+    assert.deepEqual(result, ['0:1', '1:2']);
 });
 
 test('defineProperty should work', () => {
@@ -231,6 +254,33 @@ test('defineProperty should work', () => {
     var res = utils.defineProperty(o, 'a', 1);
     expect(res, o);
     expect(res.a, 1);
+});
+
+test('defineConstant should work', () => {
+    var o = {};
+    var res = utils.defineConstant(o, 'a', 1);
+    expect(res, o);
+    expect(res.a, 1);
+
+    assert.throws(function() {
+        utils.defineConstant(o, 'a', 2);
+    }, 'Cannot redefine property: a');
+});
+
+test('defineGetter should work', () => {
+    var o = {};
+    var res = utils.defineGetter(o, 'a', () => 1);
+    expect(res, o);
+    expect(res.a, 1);
+});
+
+test('defineSetter should work', () => {
+    var o = {};
+    var value;
+    var res = utils.defineSetter(o, 'a', (v) => value = v * 2);
+    expect(res, o);
+    res.a = 2;
+    expect(value, 4);
 });
 
 test('defineProperties should work', () => {
@@ -242,4 +292,10 @@ test('defineProperties should work', () => {
     expect(res, o);
     expect(res.a, 1);
     expect(res.b, 2);
+});
+
+test('defineProperties should work when properties are empty', () => {
+    var o = {};
+    var res = utils.defineProperties(o);
+    expect(res, o);
 });
