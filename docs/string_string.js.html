@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>springbokjs-utils Modules</title>
+	<title>springbokjs-utils Source: string/string.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -78,85 +78,81 @@
 	<div class="row-fluid">
 
 		
-		<div class="span8">
-			
+			<div class="span12">
+				
 				<div id="main">
 					
 
 
-	<h1 class="page-title">Modules</h1>
+		<h1 class="page-title">Source: string/string.js</h1>
+    
 <section>
+	<article>
+		<pre
+			class="sunlight-highlight-javascript linenums">/**
+ * @module string
+ */
 
-<header>
-    <h2>
-    
-    </h2>
-    
-</header>
+/**
+ * Make a string's first character lowercase
+ *
+ * @param {String} string
+ * @return {String}
+ */
+"use strict";
+exports.lcFirst = function(string) {
+    return string.charAt(0).toLowerCase() + string.substr(1);
+};
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * Make a string's first character uppercase
+ *
+ * @param {String} string
+ * @return {String}
+ */
+exports.ucFirst = function(string) {
+    return string.charAt(0).toUpperCase() + string.substr(1);
+};
 
-    
-        
+/**
+ * Test if a string is empty
+ *
+ * @param {String} string
+ * @return {Boolean}
+ */
+exports.isEmpty = function(string) {
+    return string.trim() === '';
+};
 
-        
-<dl class="details">
-	
+/**
+ * Format a string using %s
+ *
+ * @param {String} string
+ * @param {...String} args
+ * @return {String}
+ */
+exports.format = function(string) {
+    return exports.vformat(string, Array.prototype.slice.call(arguments, 1));
+};
 
-	
+/**
+ * Format a string using %s
+ *
+ * @param {String} string
+ * @param {string[]} args
+ * @return {String}
+ */
+exports.vformat = function(string, args) {
+    var i = 0;
+    return string.replace(/%s/g, function(m) {
+      return args[i++] || '';
+    });
+};
 
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+//# sourceMappingURL=../string/string.js.map</pre>
+	</article>
 </section>
+
 
 
 
@@ -180,10 +176,6 @@
 				</footer>
 			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
 			
 			<br clear="both">
 		</div>
