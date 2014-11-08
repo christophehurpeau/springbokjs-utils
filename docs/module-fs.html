@@ -347,7 +347,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-405">line 405</a>
+				 <a href="fs.js.html#sunlight-1-line-408">line 408</a>
 			</li>
 		</ul>
 	</dd>
@@ -545,7 +545,7 @@ which is dereferenced if it is a symbolic link.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-81">line 81</a>
+				 <a href="fs.js.html#sunlight-1-line-78">line 78</a>
 			</li>
 		</ul>
 	</dd>
@@ -732,224 +732,7 @@ which is dereferenced if it is a symbolic link.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-53">line 53</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="close"><span class="type-signature">&lt;static> </span>close<span class="signature">(path, flags, mode)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        No arguments other than a possible exception are given to the completion callback.
-
-'r' - Open file for reading. An exception occurs if the file does not exist.
-'r+' - Open file for reading and writing. An exception occurs if the file does not exist.
-'rs' - Open file for reading in synchronous mode. Instructs the operating system to bypass the local file system cache.
-    This is primarily useful for opening files on NFS mounts as it allows you to skip the potentially stale local cache.
-    It has a very real impact on I/O performance so don't use this flag unless you need it.
-'rs+' - Open file for reading and writing, telling the OS to open it synchronously. See notes for 'rs' about using this with caution.
-'w' - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
-'wx' - Like 'w' but fails if path exists.
-'w+' - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
-'wx+' - Like 'w+' but fails if path exists.
-'a' - Open file for appending. The file is created if it does not exist.
-'ax' - Like 'a' but fails if path exists.
-'a+' - Open file for reading and appending. The file is created if it does not exist.
-'ax+' - Like 'a+' but fails if path exists.
-
-mode sets the file mode (permission and sticky bits), but only if the file was created. It defaults to 0666, readable and writeable.
-
-The exclusive flag 'x' (O_EXCL flag in open(2)) ensures that path is newly created.
-On POSIX systems, path is considered to exist even if it is a symlink to a non-existent file.
-The exclusive flag may or may not work with network file systems.
-
-On Linux, positional writes don't work when the file is opened in append mode.
-The kernel ignores the position argument and always appends the data to the end of the file.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>flags</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-259">line 259</a>
+				 <a href="fs.js.html#sunlight-1-line-50">line 50</a>
 			</li>
 		</ul>
 	</dd>
@@ -1093,7 +876,228 @@ The kernel ignores the position argument and always appends the data to the end 
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-251">line 251</a>
+				 <a href="fs.js.html#sunlight-1-line-248">line 248</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Promise</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="close"><span class="type-signature">&lt;static> </span>close<span class="signature">(path, flags, mode)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        No arguments other than a possible exception are given to the completion callback.
+
+'r' - Open file for reading. An exception occurs if the file does not exist.
+'r+' - Open file for reading and writing. An exception occurs if the file does not exist.
+'rs' - Open file for reading in synchronous mode.
+		Instructs the operating system to bypass the local file system cache.
+    	This is primarily useful for opening files on NFS mounts
+    	as it allows you to skip the potentially stale local cache.
+     It has a very real impact on I/O performance so don't use this flag unless you need it.
+'rs+' - Open file for reading and writing, telling the OS to open it synchronously.
+		See notes for 'rs' about using this with caution.
+'w' - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
+'wx' - Like 'w' but fails if path exists.
+'w+' - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
+'wx+' - Like 'w+' but fails if path exists.
+'a' - Open file for appending. The file is created if it does not exist.
+'ax' - Like 'a' but fails if path exists.
+'a+' - Open file for reading and appending. The file is created if it does not exist.
+'ax+' - Like 'a+' but fails if path exists.
+
+mode sets the file mode (permission and sticky bits), but only if the file was created.
+It defaults to 0666, readable and writeable.
+
+The exclusive flag 'x' (O_EXCL flag in open(2)) ensures that path is newly created.
+On POSIX systems, path is considered to exist even if it is a symlink to a non-existent file.
+The exclusive flag may or may not work with network file systems.
+
+On Linux, positional writes don't work when the file is opened in append mode.
+The kernel ignores the position argument and always appends the data to the end of the file.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>flags</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-256">line 256</a>
 			</li>
 		</ul>
 	</dd>
@@ -1238,7 +1242,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-428">line 428</a>
+				 <a href="fs.js.html#sunlight-1-line-431">line 431</a>
 			</li>
 		</ul>
 	</dd>
@@ -1433,7 +1437,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-93">line 93</a>
+				 <a href="fs.js.html#sunlight-1-line-90">line 90</a>
 			</li>
 		</ul>
 	</dd>
@@ -1620,7 +1624,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-62">line 62</a>
+				 <a href="fs.js.html#sunlight-1-line-59">line 59</a>
 			</li>
 		</ul>
 	</dd>
@@ -1807,7 +1811,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-132">line 132</a>
+				 <a href="fs.js.html#sunlight-1-line-129">line 129</a>
 			</li>
 		</ul>
 	</dd>
@@ -1951,7 +1955,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-329">line 329</a>
+				 <a href="fs.js.html#sunlight-1-line-332">line 332</a>
 			</li>
 		</ul>
 	</dd>
@@ -2138,7 +2142,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-35">line 35</a>
+				 <a href="fs.js.html#sunlight-1-line-32">line 32</a>
 			</li>
 		</ul>
 	</dd>
@@ -2203,7 +2207,8 @@ to the actime and modtime fields of times respectively.
 If times is NULL, then the access and modification times of the file are set to the current time.
 
 Changing timestamps is permitted when: either the process has appropriate privileges,
-or the effective user ID equals the user ID of the file, or times is NULL and the process has write permission for the file.
+or the effective user ID equals the user ID of the file,
+or times is NULL and the process has write permission for the file.
     </div>
     
 
@@ -2336,7 +2341,7 @@ or the effective user ID equals the user ID of the file, or times is NULL and th
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-311">line 311</a>
+				 <a href="fs.js.html#sunlight-1-line-313">line 313</a>
 			</li>
 		</ul>
 	</dd>
@@ -2523,7 +2528,7 @@ or the effective user ID equals the user ID of the file, or times is NULL and th
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-102">line 102</a>
+				 <a href="fs.js.html#sunlight-1-line-99">line 99</a>
 			</li>
 		</ul>
 	</dd>
@@ -2711,7 +2716,7 @@ is like chown(), but does not dereference symbolic links.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-71">line 71</a>
+				 <a href="fs.js.html#sunlight-1-line-68">line 68</a>
 			</li>
 		</ul>
 	</dd>
@@ -2901,7 +2906,7 @@ then the link itself is stat-ed, not the file that it refers to.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-120">line 120</a>
+				 <a href="fs.js.html#sunlight-1-line-117">line 117</a>
 			</li>
 		</ul>
 	</dd>
@@ -3080,7 +3085,7 @@ Other mode bits of the created directory depend on the operating system. For Lin
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-224">line 224</a>
+				 <a href="fs.js.html#sunlight-1-line-221">line 221</a>
 			</li>
 		</ul>
 	</dd>
@@ -3364,7 +3369,7 @@ Other mode bits of the created directory depend on the operating system. For Lin
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-349">line 349</a>
+				 <a href="fs.js.html#sunlight-1-line-352">line 352</a>
 			</li>
 		</ul>
 	</dd>
@@ -3509,7 +3514,7 @@ Promise's result where files is an array of the names of the files in the direct
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-242">line 242</a>
+				 <a href="fs.js.html#sunlight-1-line-239">line 239</a>
 			</li>
 		</ul>
 	</dd>
@@ -3683,7 +3688,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-361">line 361</a>
+				 <a href="fs.js.html#sunlight-1-line-364">line 364</a>
 			</li>
 		</ul>
 	</dd>
@@ -3835,7 +3840,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-475">line 475</a>
+				 <a href="fs.js.html#sunlight-1-line-478">line 478</a>
 			</li>
 		</ul>
 	</dd>
@@ -3979,7 +3984,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-486">line 486</a>
+				 <a href="fs.js.html#sunlight-1-line-489">line 489</a>
 			</li>
 		</ul>
 	</dd>
@@ -4128,7 +4133,7 @@ in case the buffer is too small to hold all of the contents.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-163">line 163</a>
+				 <a href="fs.js.html#sunlight-1-line-160">line 160</a>
 			</li>
 		</ul>
 	</dd>
@@ -4320,7 +4325,7 @@ Return a Promise when all files are read.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-556">line 556</a>
+				 <a href="fs.js.html#sunlight-1-line-559">line 559</a>
 			</li>
 		</ul>
 	</dd>
@@ -4464,7 +4469,7 @@ Return a Promise when all files are read.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-516">line 516</a>
+				 <a href="fs.js.html#sunlight-1-line-519">line 519</a>
 			</li>
 		</ul>
 	</dd>
@@ -4608,7 +4613,7 @@ Return a Promise when all files are read.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-527">line 527</a>
+				 <a href="fs.js.html#sunlight-1-line-530">line 530</a>
 			</li>
 		</ul>
 	</dd>
@@ -4755,7 +4760,7 @@ that can be used to force a specific path resolution or avoid additional fs.stat
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-176">line 176</a>
+				 <a href="fs.js.html#sunlight-1-line-173">line 173</a>
 			</li>
 		</ul>
 	</dd>
@@ -4931,7 +4936,7 @@ fs.realpath(&#x27;/etc/passwd&#x27;, cache).then(function(resolvedPath) {
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-26">line 26</a>
+				 <a href="fs.js.html#sunlight-1-line-23">line 23</a>
 			</li>
 		</ul>
 	</dd>
@@ -4966,173 +4971,6 @@ fs.realpath(&#x27;/etc/passwd&#x27;, cache).then(function(resolvedPath) {
 	<dd>
 		
 <span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="renameSync"><span class="type-signature">&lt;static> </span>renameSync<span class="signature">(oldPath, newPath)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Rename a file synchronously
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>oldPath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>newPath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-22">line 22</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Boolean</span>
 
 
 	</dd>
@@ -5244,7 +5082,7 @@ rmdir() deletes a directory, which must be empty.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-214">line 214</a>
+				 <a href="fs.js.html#sunlight-1-line-211">line 211</a>
 			</li>
 		</ul>
 	</dd>
@@ -5433,7 +5271,7 @@ link() creates a new link (also known as a hard link) to an existing file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-141">line 141</a>
+				 <a href="fs.js.html#sunlight-1-line-138">line 138</a>
 			</li>
 		</ul>
 	</dd>
@@ -5620,7 +5458,7 @@ link() creates a new link (also known as a hard link) to an existing file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-111">line 111</a>
+				 <a href="fs.js.html#sunlight-1-line-108">line 108</a>
 			</li>
 		</ul>
 	</dd>
@@ -5789,7 +5627,7 @@ symlink() creates a symbolic link named newpath which contains the string oldpat
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-152">line 152</a>
+				 <a href="fs.js.html#sunlight-1-line-149">line 149</a>
 			</li>
 		</ul>
 	</dd>
@@ -5976,7 +5814,7 @@ symlink() creates a symbolic link named newpath which contains the string oldpat
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-44">line 44</a>
+				 <a href="fs.js.html#sunlight-1-line-41">line 41</a>
 			</li>
 		</ul>
 	</dd>
@@ -6133,7 +5971,7 @@ but processes which have the object open may continue to use it.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-193">line 193</a>
+				 <a href="fs.js.html#sunlight-1-line-190">line 190</a>
 			</li>
 		</ul>
 	</dd>
@@ -6198,7 +6036,8 @@ to the actime and modtime fields of times respectively.
 If times is NULL, then the access and modification times of the file are set to the current time.
 
 Changing timestamps is permitted when: either the process has appropriate privileges,
-or the effective user ID equals the user ID of the file, or times is NULL and the process has write permission for the file.
+or the effective user ID equals the user ID of the file,
+or times is NULL and the process has write permission for the file.
     </div>
     
 
@@ -6331,7 +6170,7 @@ or the effective user ID equals the user ID of the file, or times is NULL and th
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-293">line 293</a>
+				 <a href="fs.js.html#sunlight-1-line-294">line 294</a>
 			</li>
 		</ul>
 	</dd>
@@ -6615,7 +6454,7 @@ or the effective user ID equals the user ID of the file, or times is NULL and th
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-337">line 337</a>
+				 <a href="fs.js.html#sunlight-1-line-340">line 340</a>
 			</li>
 		</ul>
 	</dd>
@@ -6844,7 +6683,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-382">line 382</a>
+				 <a href="fs.js.html#sunlight-1-line-385">line 385</a>
 			</li>
 		</ul>
 	</dd>
@@ -7042,7 +6881,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-540">line 540</a>
+				 <a href="fs.js.html#sunlight-1-line-543">line 543</a>
 			</li>
 		</ul>
 	</dd>
@@ -7114,7 +6953,7 @@ If no encoding is specified, then the raw buffer is returned.
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a>
-		on 2014-11-07T21:33:01+00:00 using the <a
+		on 2014-11-08T15:08:56+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
