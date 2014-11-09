@@ -206,17 +206,15 @@ exports.regexpEscape = function(string) {
  * @param {Object} target
  * @param {String} property name of the property
  * @param {*} value value
- * @param {Boolean=} writable default true
- * @param {Boolean=} configurable default true
- * @param {Boolean=} enumerable default false
+ * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperty = function(target, property, value, writable, configurable, enumerable) {
+exports.defineProperty = function(target, property, value, options) {
     Object.defineProperty(target, property, {
         value: value,
-        writable: writable !== false,
-        configurable: configurable !== false,
-        enumerable: !!enumerable
+        writable: (options &amp;&amp; options.writable) !== false,
+        configurable: (options &amp;&amp; options.configurable) !== false,
+        enumerable: !!(options &amp;&amp; options.enumerable)
     });
     return target;
 };
@@ -227,15 +225,15 @@ exports.defineProperty = function(target, property, value, writable, configurabl
  * @param {Object} target
  * @param {String} property name of the property
  * @param {*} value value
- * @param {Boolean=} enumerable default false
+ * @param {Object=} options: enumerable default false
  * @return {Object} target
  */
-exports.defineConstant = function(target, property, value, enumerable) {
+exports.defineConstant = function(target, property, value, options) {
     Object.defineProperty(target, property, {
         value: value,
         writable: false,
         configurable: false,
-        enumerable: !!enumerable
+        enumerable: !!(options &amp;&amp; options.enumerable)
     });
     return target;
 };
@@ -246,15 +244,14 @@ exports.defineConstant = function(target, property, value, enumerable) {
  * @param {Object} target
  * @param {String} property name of the property
  * @param {Function} getter getter function
- * @param {Boolean=} configurable default true
- * @param {Boolean=} enumerable default false
+ * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineGetter = function(target, property, getter, configurable, enumerable) {
+exports.defineGetter = function(target, property, getter, options) {
     Object.defineProperty(target, property, {
         get: getter,
-        configurable: configurable !== false,
-        enumerable: !!enumerable
+        configurable: (options &amp;&amp; options.configurable) !== false,
+        enumerable: !!(options &amp;&amp; options.enumerable)
     });
     return target;
 };
@@ -265,15 +262,14 @@ exports.defineGetter = function(target, property, getter, configurable, enumerab
  * @param {Object} target
  * @param {String} property name of the property
  * @param {Function} setter setter function
- * @param {Boolean=} configurable default true
- * @param {Boolean=} enumerable default false
+ * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineSetter = function(target, property, setter, configurable, enumerable) {
+exports.defineSetter = function(target, property, setter, options) {
     Object.defineProperty(target, property, {
         set: setter,
-        configurable: configurable !== false,
-        enumerable: !!enumerable
+        configurable: (options &amp;&amp; options.configurable) !== false,
+        enumerable: !!(options &amp;&amp; options.enumerable)
     });
     return target;
 };
@@ -283,24 +279,24 @@ exports.defineSetter = function(target, property, setter, configurable, enumerab
  *
  * @param {Object} target
  * @param {Object} properties
- * @param {Boolean=} writable
- * @param {Boolean=} configurable
- * @param {Boolean=} enumerable
+ * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperties = function(target, properties, writable, configurable, enumerable) {
+exports.defineProperties = function(target, properties, options) {
     if (!properties) {
         return target;
     }
-    writable = !!writable;
-    configurable = !!configurable;
-    enumerable = !!enumerable;
+    options = {
+        writable: (options &amp;&amp; options.writable) !== false,
+        configurable: (options &amp;&amp; options.configurable) !== false,
+        enumerable: !!(options &amp;&amp; options.enumerable)
+    };
     Object.keys(properties).forEach(function(key) {
         Object.defineProperty(target, key, {
             value: properties[key],
-            writable: writable,
-            configurable: configurable,
-            enumerable: enumerable
+            writable: options.writable,
+            configurable: options.configurable,
+            enumerable: options.enumerable
         });
     });
     return target;
@@ -503,7 +499,7 @@ exports.defineConstant(exports, 'promises', require('./promises'));
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a>
-		on 2014-11-08T15:08:56+00:00 using the <a
+		on 2014-11-09T00:19:34+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
