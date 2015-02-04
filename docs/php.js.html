@@ -90,7 +90,14 @@
 	<article>
 		<pre
 			class="sunlight-highlight-javascript linenums">"use strict";
-var S = require('./index');
+
+var S = require("./index");
+
+if (!String.prototype.contains) {
+  String.prototype.contains = function () {
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
 
 /**
  * Php utils
@@ -98,87 +105,79 @@ var S = require('./index');
  * @exports php
  */
 var phpUtils = {
-    /**
-     * Export javascript object into a php code in string
-     *
-     * @param {any} v
-     * @param {bool} ifEmptyArray
-     * @return {String}
-     */
-    exportCode: function(v, ifEmptyArray) {
-        var content = this._exportCode(v, true);
-        if (ifEmptyArray !== undefined &amp;&amp; (content === 'false' || content === 'array()')) {
-            return ifEmptyArray;
-        }
-        return content;
-    },
-
-    _exportCode: function(v, start) {
-        if (v === null || !S.isObject(v)) {
-            return phpUtils._exportCodeVar(v);
-        }
-
-        var content = 'array(';
-        if (S.isArray(v)) {
-            for (var i = 0, l = v.length ; i &lt; l ; i++) {
-                content += this._exportCode(v[i]) + ',';
-            }
-        } else {
-            for (var k in v) {
-                content += this._exportCodeVar(k) + '=>' + this._exportCode(v[k]) + ',';
-            }
-        }
-        if (content) {
-            content = content.replace(/,+$/, '');
-        }
-        content += start ? ')' : '),';
-        return content;
-    },
-    _exportCodeVar: function(v) {
-        if (S.isString(v)) {
-            return phpUtils.exportString(v);
-        }
-        if (v === undefined || v === null) {
-            return 'null';
-        }
-        if (v === true) {
-            return 'true';
-        }
-        if (v === false) {
-            return 'false';
-        }
-        return v; // numeric
-    },
-
-    /**
-     * Export string into a php string in string
-     *
-     * @param {String} str
-     * @return {String}
-     */
-    exportString: function(str) {
-        if (str.contains('\n') || str.contains('\r') || str.contains('\t')
-                                     || str.contains('\v') || str.contains('\f')) {
-            return '"' + str.replace(/\\/g,'\\\\')
-                            .replace(/\n/g,'\n')
-                            .replace(/\r/g,'\r')
-                            .replace(/\t/g,'\t')
-                            .replace(/\v/g,'\v')
-                            .replace(/\f/g,'\f')
-                            .replace(/\$/,'$') + '"';
-        }
-        if (!str.contains("'")) {
-            return "'" + str + "'";
-        }
-        if (!str.contains('"')) {
-            return '"' + str.replace(/\$/g,'$') + '"';
-        }
-        return "'" + str.replace(/\'/g,'\\\'') + "'";
+  /**
+   * Export javascript object into a php code in string
+   *
+   * @param {any} v
+   * @param {bool} ifEmptyArray
+   * @return {String}
+   */
+  exportCode: function (v, ifEmptyArray) {
+    var content = this._exportCode(v, true);
+    if (ifEmptyArray !== undefined &amp;&amp; (content === "false" || content === "array()")) {
+      return ifEmptyArray;
     }
+    return content;
+  },
+
+  _exportCode: function (v, start) {
+    if (v === null || !S.isObject(v)) {
+      return phpUtils._exportCodeVar(v);
+    }
+
+    var content = "array(";
+    if (S.isArray(v)) {
+      for (var i = 0, l = v.length; i &lt; l; i++) {
+        content += this._exportCode(v[i]) + ",";
+      }
+    } else {
+      for (var k in v) {
+        content += this._exportCodeVar(k) + "=>" + this._exportCode(v[k]) + ",";
+      }
+    }
+    if (content) {
+      content = content.replace(/,+$/, "");
+    }
+    content += start ? ")" : "),";
+    return content;
+  },
+  _exportCodeVar: function (v) {
+    if (S.isString(v)) {
+      return phpUtils.exportString(v);
+    }
+    if (v === undefined || v === null) {
+      return "null";
+    }
+    if (v === true) {
+      return "true";
+    }
+    if (v === false) {
+      return "false";
+    }
+    return v; // numeric
+  },
+
+  /**
+   * Export string into a php string in string
+   *
+   * @param {String} str
+   * @return {String}
+   */
+  exportString: function (str) {
+    if (str.contains("\n") || str.contains("\r") || str.contains("\t") || str.contains("\u000b") || str.contains("\f")) {
+      return "\"" + str.replace(/\\/g, "\\\\").replace(/\n/g, "\n").replace(/\r/g, "\r").replace(/\t/g, "\t").replace(/\v/g, "\u000b").replace(/\f/g, "\f").replace(/\$/, "$") + "\"";
+    }
+    if (!str.contains("'")) {
+      return "'" + str + "'";
+    }
+    if (!str.contains("\"")) {
+      return "\"" + str.replace(/\$/g, "$") + "\"";
+    }
+    return "'" + str.replace(/\'/g, "\\'") + "'";
+  }
 };
 
 module.exports = phpUtils;
-
 //# sourceMappingURL=php.js.map</pre>
 	</article>
 </section>
@@ -199,8 +198,8 @@ module.exports = phpUtils;
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a>
-		on 2014-11-09T00:25:44+00:00 using the <a
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
+		on 2015-02-04T01:53:00+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>

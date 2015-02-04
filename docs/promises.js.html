@@ -90,7 +90,8 @@
 	<article>
 		<pre
 			class="sunlight-highlight-javascript linenums">"use strict";
-var S = require('./index');
+
+var S = require("./index");
 var createdPromise;
 
 /**
@@ -112,15 +113,15 @@ var createdPromise;
  * @param {Function} callback callback((done) => {})
  * @return {Promise}
  */
-exports.promiseCallback = function(callback) {
-    var resolveCallback, rejectCallback;
-    var createdPromise = new Promise(function(resolve, reject) {
-        resolveCallback = resolve;
-        rejectCallback = reject;
-    });
-    var doneCallback = exports.resolveFromCallback(resolveCallback, rejectCallback);
-    callback(doneCallback);
-    return createdPromise;
+exports.promiseCallback = function (callback) {
+  var resolveCallback, rejectCallback;
+  var createdPromise = new Promise(function (resolve, reject) {
+    resolveCallback = resolve;
+    rejectCallback = reject;
+  });
+  var doneCallback = exports.resolveFromCallback(resolveCallback, rejectCallback);
+  callback(doneCallback);
+  return createdPromise;
 };
 
 /**
@@ -137,14 +138,14 @@ exports.promiseCallback = function(callback) {
  *
  * @return {Array}
  */
-exports.creator = function() {
-    var resolveCallback, rejectCallback;
-    var createdPromise = new Promise(function(resolve, reject) {
-        resolveCallback = resolve;
-        rejectCallback = reject;
-    });
-    var doneCallback = exports.resolveFromCallback(resolveCallback, rejectCallback);
-    return [createdPromise, doneCallback];
+exports.creator = function () {
+  var resolveCallback, rejectCallback;
+  var createdPromise = new Promise(function (resolve, reject) {
+    resolveCallback = resolve;
+    rejectCallback = reject;
+  });
+  var doneCallback = exports.resolveFromCallback(resolveCallback, rejectCallback);
+  return [createdPromise, doneCallback];
 };
 
 /**
@@ -154,13 +155,13 @@ exports.creator = function() {
  *
  * @return {Function} callback(err, result)
  */
-exports.done = function() {
-    var resolveCallback, rejectCallback;
-    createdPromise = new Promise(function(resolve, reject) {
-        resolveCallback = resolve;
-        rejectCallback = reject;
-    });
-    return exports.resolveFromCallback(resolveCallback, rejectCallback);
+exports.done = function () {
+  var resolveCallback, rejectCallback;
+  createdPromise = new Promise(function (resolve, reject) {
+    resolveCallback = resolve;
+    rejectCallback = reject;
+  });
+  return exports.resolveFromCallback(resolveCallback, rejectCallback);
 };
 
 /**
@@ -173,13 +174,13 @@ exports.done = function() {
 *
 * @return {Promise}
 */
-exports.promise = function() {
-    if (!createdPromise) {
-        throw new Error('No promise in stack, done() should be called before');
-    }
-    var p = createdPromise;
-    createdPromise = undefined;
-    return p;
+exports.promise = function () {
+  if (!createdPromise) {
+    throw new Error("No promise in stack, done() should be called before");
+  }
+  var p = createdPromise;
+  createdPromise = undefined;
+  return p;
 };
 
 /**
@@ -189,21 +190,21 @@ exports.promise = function() {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-exports.forEach = function(iterable, callback) {
-    if (Array.isArray(iterable)) {
-        return Promise.all(iterable.map(callback));
-    }
-    var keys = [], values = [];
-    S.forEach(S.map(iterable, callback), function(value, index) {
-        keys.push(index);
-        values.push(value);
-    });
+exports.forEach = function (iterable, callback) {
+  if (Array.isArray(iterable)) {
+    return Promise.all(iterable.map(callback));
+  }
+  var keys = [], values = [];
+  S.forEach(S.map(iterable, callback), function (value, index) {
+    keys.push(index);
+    values.push(value);
+  });
 
-    return Promise.all(values).then(function(results) {
-        return S.map(iterable, function(value, index) {
-            return results[keys.indexOf(index)];
-        });
+  return Promise.all(values).then(function (results) {
+    return S.map(iterable, function (value, index) {
+      return results[keys.indexOf(index)];
     });
+  });
 };
 
 /**
@@ -213,31 +214,29 @@ exports.forEach = function(iterable, callback) {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-exports.forEachSeries = function(iterable, callback) {
-    return new Promise(function(resolve, reject) {
-        var entriesIterator = S.entries(iterable);
-        var results = new iterable.constructor();
-        var next = function() {
-            var current = entriesIterator.next();
-            if (current.done) {
-                return resolve(results);
-            }
-            var key = current.value[0], value = current.value[1];
-            var result = callback(value, key);
-            if (result &amp;&amp; S.isFunction(result.then)) {
-                result
-                    .then(function(result) {
-                        results[key] = result;
-                        next();
-                    })
-                    .catch(reject);
-            } else {
-                results[key] = result;
-                setImmediate(next);
-            }
-        };
-        next();
-    });
+exports.forEachSeries = function (iterable, callback) {
+  return new Promise(function (resolve, reject) {
+    var entriesIterator = S.entries(iterable);
+    var results = new iterable.constructor();
+    var next = function () {
+      var current = entriesIterator.next();
+      if (current.done) {
+        return resolve(results);
+      }
+      var key = current.value[0], value = current.value[1];
+      var result = callback(value, key);
+      if (result &amp;&amp; S.isFunction(result.then)) {
+        result.then(function (result) {
+          results[key] = result;
+          next();
+        })["catch"](reject);
+      } else {
+        results[key] = result;
+        setImmediate(next);
+      }
+    };
+    next();
+  });
 };
 
 /**
@@ -247,24 +246,22 @@ exports.forEachSeries = function(iterable, callback) {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-exports.whileTrue = function(conditionCallback, callback) {
-    return new Promise(function(resolve, reject) {
-        (function next() {
-            if (!conditionCallback()) {
-                return resolve();
-            }
-            var result = callback();
-            if (result &amp;&amp; S.isFunction(result.then)) {
-                result
-                    .then(function() {
-                        setImmediate(next);
-                    })
-                    .catch(reject);
-            } else {
-                setImmediate(next);
-            }
-        })();
-    });
+exports.whileTrue = function (conditionCallback, callback) {
+  return new Promise(function (resolve, reject) {
+    (function next() {
+      if (!conditionCallback()) {
+        return resolve();
+      }
+      var result = callback();
+      if (result &amp;&amp; S.isFunction(result.then)) {
+        result.then(function () {
+          setImmediate(next);
+        })["catch"](reject);
+      } else {
+        setImmediate(next);
+      }
+    })();
+  });
 };
 
 /**
@@ -275,13 +272,13 @@ exports.whileTrue = function(conditionCallback, callback) {
  * @param {Function} reject reject function of the promise
  * @return {Function}
  */
-exports.resolveFromCallback = function(resolve, reject) {
-    return function(err, result) {
-        if (err) {
-            return reject(err);
-        }
-        resolve(result);
-    };
+exports.resolveFromCallback = function (resolve, reject) {
+  return function (err, result) {
+    if (err) {
+      return reject(err);
+    }
+    resolve(result);
+  };
 };
 
 
@@ -302,7 +299,6 @@ exports.resolveFromCallback = function(resolve, reject) {
  * @return {Promise}
  */
 S.promiseCallback = exports.promiseCallback;
-
 //# sourceMappingURL=promises.js.map</pre>
 	</article>
 </section>
@@ -323,8 +319,8 @@ S.promiseCallback = exports.promiseCallback;
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a>
-		on 2014-11-09T00:25:44+00:00 using the <a
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
+		on 2015-02-04T01:53:00+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>

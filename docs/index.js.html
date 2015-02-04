@@ -89,7 +89,9 @@
 <section>
 	<article>
 		<pre
-			class="sunlight-highlight-javascript linenums">/**
+			class="sunlight-highlight-javascript linenums">"use strict";
+
+/**
  * Utils
  *
  * @module utils
@@ -101,9 +103,8 @@
  * @param {String} value
  * @return {Number} parsed int
  */
-"use strict";
-exports.toInt = function(value) {
-    return parseInt(value, 10);
+exports.toInt = function (value) {
+  return parseInt(value, 10);
 };
 
 /* IS */
@@ -113,8 +114,8 @@ exports.toInt = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isString = function(value) {
-    return typeof value === 'string';
+exports.isString = function (value) {
+  return typeof value === "string";
 };
 
 /**
@@ -122,8 +123,8 @@ exports.isString = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isObject = function(value) {
-    return typeof value === 'object';
+exports.isObject = function (value) {
+  return typeof value === "object";
 };
 
 /**
@@ -131,8 +132,8 @@ exports.isObject = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isFunction = function(value) {
-    return typeof value === 'function';
+exports.isFunction = function (value) {
+  return typeof value === "function";
 };
 
 /**
@@ -140,8 +141,8 @@ exports.isFunction = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isNumber = function(value) {
-    return typeof value === 'number';
+exports.isNumber = function (value) {
+  return typeof value === "number";
 };
 
 /**
@@ -149,8 +150,8 @@ exports.isNumber = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isInteger = function(value) {
-    return Number.isInteger(value);
+exports.isInteger = function (value) {
+  return Number.isInteger(value);
 };
 
 /**
@@ -171,12 +172,8 @@ exports.isArray = Array.isArray;
  * @param {String} html string to be escaped
  * @return {String} escaped string
  */
-exports.escape = function(html) {
-    return String(html)
-        .replace(/&amp;(?!\w+;)/g, '&amp;amp;')
-        .replace(/&lt;/g, '&amp;lt;')
-        .replace(/>/g, '&amp;gt;')
-        .replace(/"/g, '&amp;quot;');
+exports.escape = function (html) {
+  return String(html).replace(/&amp;(?!\w+;)/g, "&amp;amp;").replace(/&lt;/g, "&amp;lt;").replace(/>/g, "&amp;gt;").replace(/"/g, "&amp;quot;");
 };
 
 /**
@@ -185,8 +182,8 @@ exports.escape = function(html) {
  * @param {String} url
  * @return {String} escaped url
  */
-exports.escapeUrl = function(html) {
-    return html.replace(/&amp;/g,'&amp;amp;');
+exports.escapeUrl = function (html) {
+  return html.replace(/&amp;/g, "&amp;amp;");
 };
 
 /**
@@ -195,8 +192,8 @@ exports.escapeUrl = function(html) {
  * @param {String} string
  * @return {String} escaped string
  */
-exports.regexpEscape = function(string) {
-    return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, '\\$1' );
+exports.regexpEscape = function (string) {
+  return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
 };
 
 
@@ -209,14 +206,14 @@ exports.regexpEscape = function(string) {
  * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperty = function(target, property, value, options) {
-    Object.defineProperty(target, property, {
-        value: value,
-        writable: (options &amp;&amp; options.writable) !== false,
-        configurable: (options &amp;&amp; options.configurable) !== false,
-        enumerable: !!(options &amp;&amp; options.enumerable)
-    });
-    return target;
+exports.defineProperty = function (target, property, value, options) {
+  Object.defineProperty(target, property, {
+    value: value,
+    writable: (options &amp;&amp; options.writable) !== false,
+    configurable: (options &amp;&amp; options.configurable) !== false,
+    enumerable: !!(options &amp;&amp; options.enumerable)
+  });
+  return target;
 };
 
 /**
@@ -228,14 +225,14 @@ exports.defineProperty = function(target, property, value, options) {
  * @param {Object=} options: enumerable default false
  * @return {Object} target
  */
-exports.defineConstant = function(target, property, value, options) {
-    Object.defineProperty(target, property, {
-        value: value,
-        writable: false,
-        configurable: false,
-        enumerable: !!(options &amp;&amp; options.enumerable)
-    });
-    return target;
+exports.defineConstant = function (target, property, value, options) {
+  Object.defineProperty(target, property, {
+    value: value,
+    writable: false,
+    configurable: false,
+    enumerable: !!(options &amp;&amp; options.enumerable)
+  });
+  return target;
 };
 
 /**
@@ -247,13 +244,13 @@ exports.defineConstant = function(target, property, value, options) {
  * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineGetter = function(target, property, getter, options) {
-    Object.defineProperty(target, property, {
-        get: getter,
-        configurable: (options &amp;&amp; options.configurable) !== false,
-        enumerable: !!(options &amp;&amp; options.enumerable)
-    });
-    return target;
+exports.defineGetter = function (target, property, getter, options) {
+  Object.defineProperty(target, property, {
+    get: getter,
+    configurable: (options &amp;&amp; options.configurable) !== false,
+    enumerable: !!(options &amp;&amp; options.enumerable)
+  });
+  return target;
 };
 
 /**
@@ -265,13 +262,13 @@ exports.defineGetter = function(target, property, getter, options) {
  * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineSetter = function(target, property, setter, options) {
-    Object.defineProperty(target, property, {
-        set: setter,
-        configurable: (options &amp;&amp; options.configurable) !== false,
-        enumerable: !!(options &amp;&amp; options.enumerable)
-    });
-    return target;
+exports.defineSetter = function (target, property, setter, options) {
+  Object.defineProperty(target, property, {
+    set: setter,
+    configurable: (options &amp;&amp; options.configurable) !== false,
+    enumerable: !!(options &amp;&amp; options.enumerable)
+  });
+  return target;
 };
 
 /**
@@ -282,24 +279,24 @@ exports.defineSetter = function(target, property, setter, options) {
  * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperties = function(target, properties, options) {
-    if (!properties) {
-        return target;
-    }
-    options = {
-        writable: (options &amp;&amp; options.writable) !== false,
-        configurable: (options &amp;&amp; options.configurable) !== false,
-        enumerable: !!(options &amp;&amp; options.enumerable)
-    };
-    Object.keys(properties).forEach(function(key) {
-        Object.defineProperty(target, key, {
-            value: properties[key],
-            writable: options.writable,
-            configurable: options.configurable,
-            enumerable: options.enumerable
-        });
-    });
+exports.defineProperties = function (target, properties, options) {
+  if (!properties) {
     return target;
+  }
+  options = {
+    writable: (options &amp;&amp; options.writable) !== false,
+    configurable: (options &amp;&amp; options.configurable) !== false,
+    enumerable: !!(options &amp;&amp; options.enumerable)
+  };
+  Object.keys(properties).forEach(function (key) {
+    Object.defineProperty(target, key, {
+      value: properties[key],
+      writable: options.writable,
+      configurable: options.configurable,
+      enumerable: options.enumerable
+    });
+  });
+  return target;
 };
 
 
@@ -411,16 +408,16 @@ exports.defineProperties = function(target, properties, options) {
  * @return {*}
  */
 
-'entries filter find findIndex forEach join map reduce reduceRight some'.split(' ').forEach(function(methodName) {
-    exports[methodName] = function(arrayOrObject) {
-        var args = Array.prototype.slice.call(arguments, 1);
-        var method = arrayOrObject[methodName];
-        if (!method) {
-            method = exports.object[methodName];
-            args.unshift(arrayOrObject);
-        }
-        return method.apply(arrayOrObject, args);
-    };
+"entries filter find findIndex forEach join map reduce reduceRight some".split(" ").forEach(function (methodName) {
+  exports[methodName] = function (arrayOrObject) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    var method = arrayOrObject[methodName];
+    if (!method) {
+      method = exports.object[methodName];
+      args.unshift(arrayOrObject);
+    }
+    return method.apply(arrayOrObject, args);
+  };
 });
 
 /**
@@ -434,15 +431,15 @@ exports.defineProperties = function(target, properties, options) {
  * @return {Array}
  */
 
-exports.mapToArray = function(arrayOrObject, callback) {
-    if (Array.isArray(arrayOrObject)) {
-        return arrayOrObject.map(callback);
-    }
-    var array = [];
-    exports.forEach(arrayOrObject, function(value, index) {
-        array.push(callback(value, index));
-    });
-    return array;
+exports.mapToArray = function (arrayOrObject, callback) {
+  if (Array.isArray(arrayOrObject)) {
+    return arrayOrObject.map(callback);
+  }
+  var array = [];
+  exports.forEach(arrayOrObject, function (value, index) {
+    array.push(callback(value, index));
+  });
+  return array;
 };
 
 
@@ -452,7 +449,7 @@ exports.mapToArray = function(arrayOrObject, callback) {
  * @constant module:utils.array
  * @type module:array
  */
-exports.defineConstant(exports, 'array', require('./array'));
+exports.defineConstant(exports, "array", require("./array"));
 
 /**
  * Access to the object module
@@ -460,7 +457,7 @@ exports.defineConstant(exports, 'array', require('./array'));
  * @constant module:utils.object
  * @type module:object
  */
-exports.defineConstant(exports, 'object', require('./object'));
+exports.defineConstant(exports, "object", require("./object"));
 
 /**
  * Access to the string module
@@ -468,7 +465,7 @@ exports.defineConstant(exports, 'object', require('./object'));
  * @constant module:utils.string
  * @type module:string
  */
-exports.defineConstant(exports, 'string', require('./string/string'));
+exports.defineConstant(exports, "string", require("./string/string"));
 
 /**
  * Access to the promises module
@@ -476,8 +473,7 @@ exports.defineConstant(exports, 'string', require('./string/string'));
  * @constant module:utils.promises
  * @type module:promises
  */
-exports.defineConstant(exports, 'promises', require('./promises'));
-
+exports.defineConstant(exports, "promises", require("./promises"));
 //# sourceMappingURL=index.js.map</pre>
 	</article>
 </section>
@@ -498,8 +494,8 @@ exports.defineConstant(exports, 'promises', require('./promises'));
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-dev</a>
-		on 2014-11-09T00:25:44+00:00 using the <a
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
+		on 2015-02-04T01:53:00+00:00 using the <a
 			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
