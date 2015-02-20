@@ -15,89 +15,48 @@
 </head>
 
 <body>
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">springbokjs-utils</a>
-			<ul class="nav">
-				
-				<li class="dropdown">
-					<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li>
-							<a href="module-array.html">array</a>
-						</li>
-						
-						<li>
-							<a href="module-date.html">date</a>
-						</li>
-						
-						<li>
-							<a href="module-fs.html">fs</a>
-						</li>
-						
-						<li>
-							<a href="module-generators.html">generators</a>
-						</li>
-						
-						<li>
-							<a href="module-object.html">object</a>
-						</li>
-						
-						<li>
-							<a href="module-php.html">php</a>
-						</li>
-						
-						<li>
-							<a href="module-promises.html">promises</a>
-						</li>
-						
-						<li>
-							<a href="module-security.html">security</a>
-						</li>
-						
-						<li>
-							<a href="module-string.html">string</a>
-						</li>
-						
-						<li>
-							<a href="module-utils.html">utils</a>
-						</li>
-						
-
-					</ul>
-				</li>
-				
-			</ul>
-		</div>
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">springbokjs-utils</a>
 	</div>
-
-	<div class="row-fluid">
-
-		
-		<div class="span8">
+	<div class="navbar-collapse">
+		<ul class="nav navbar-nav">
 			
-				<div id="main">
-					
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-array.html">array</a></li><li><a href="module-date.html">date</a></li><li><a href="module-fs.html">fs</a></li><li><a href="module-generators.html">generators</a></li><li><a href="module-object.html">object</a></li><li><a href="module-php.html">php</a></li><li><a href="module-promises.html">promises</a></li><li><a href="module-security.html">security</a></li><li><a href="module-string.html">string</a></li><li><a href="module-utils.html">utils</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+</div>
 
+
+<div class="container">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+    		<h1 class="page-title">Module: fs</h1>
+			
 
 	<h1 class="page-title">Module: fs</h1>
 <section>
 
 <header>
-    <h2>
-    fs
-    </h2>
     
 </header>
 
+
 <article>
     <div class="container-overview">
-    
-
     
         
             <div class="description">fs API with Promises</div>
@@ -112,6 +71,14 @@
 	
 
 	
+
+    
+
+    
+
+    
+
+    
 
 	
 
@@ -131,7 +98,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-4">line 4</a>
+				 <a href="fs.js.html#sunlight-1-line-8">line 8</a>
 			</li>
 		</ul>
 	</dd>
@@ -159,6 +126,426 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt class="name" id="~readJsonFile">
+    <h4><span class="type-signature">&lt;inner> </span>readJsonFile<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Read a file and parse its content as JSON
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-483">line 483</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="~readJsonFileSync">
+    <h4><span class="type-signature">&lt;inner> </span>readJsonFileSync<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Read a file and parse its content as JSON synchronously
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-493">line 493</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="~readRecursiveDirectory">
+    <h4><span class="type-signature">&lt;inner> </span>readRecursiveDirectory<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Recursively read a directory.
+callback is called for each files
+Return a Promise when all files are read.
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-562">line 562</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="~readYamlFile">
+    <h4><span class="type-signature">&lt;inner> </span>readYamlFile<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Read a file and parse its content as Yaml
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-523">line 523</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="~readYamlFileSync">
+    <h4><span class="type-signature">&lt;inner> </span>readYamlFileSync<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Read a file and parse its content as Yaml synchronously
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-533">line 533</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="~writeYamlFile">
+    <h4><span class="type-signature">&lt;inner> </span>writeYamlFile<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Write in file a yaml content
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-546">line 546</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -188,6 +575,7 @@ If no encoding is specified, then the raw buffer is returned.
     
 
     
+
     
     
     
@@ -329,6 +717,14 @@ If no encoding is specified, then the raw buffer is returned.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -347,7 +743,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-408">line 408</a>
+				 <a href="fs.js.html#sunlight-1-line-414">line 414</a>
 			</li>
 		</ul>
 	</dd>
@@ -361,6 +757,8 @@ If no encoding is specified, then the raw buffer is returned.
 </dl>
 
     
+    
+
     
 
     
@@ -420,6 +818,7 @@ which is dereferenced if it is a symbolic link.
     
 
     
+
     
     
     
@@ -527,6 +926,14 @@ which is dereferenced if it is a symbolic link.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -545,7 +952,7 @@ which is dereferenced if it is a symbolic link.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-78">line 78</a>
+				 <a href="fs.js.html#sunlight-1-line-84">line 84</a>
 			</li>
 		</ul>
 	</dd>
@@ -559,6 +966,8 @@ which is dereferenced if it is a symbolic link.
 </dl>
 
     
+    
+
     
 
     
@@ -607,6 +1016,7 @@ which is dereferenced if it is a symbolic link.
     
 
     
+
     
     
     
@@ -714,6 +1124,14 @@ which is dereferenced if it is a symbolic link.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -732,7 +1150,7 @@ which is dereferenced if it is a symbolic link.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-50">line 50</a>
+				 <a href="fs.js.html#sunlight-1-line-56">line 56</a>
 			</li>
 		</ul>
 	</dd>
@@ -746,6 +1164,8 @@ which is dereferenced if it is a symbolic link.
 </dl>
 
     
+    
+
     
 
     
@@ -822,6 +1242,7 @@ The kernel ignores the position argument and always appends the data to the end 
     
 
     
+
     
     
     
@@ -935,6 +1356,14 @@ The kernel ignores the position argument and always appends the data to the end 
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -953,7 +1382,7 @@ The kernel ignores the position argument and always appends the data to the end 
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-256">line 256</a>
+				 <a href="fs.js.html#sunlight-1-line-262">line 262</a>
 			</li>
 		</ul>
 	</dd>
@@ -967,6 +1396,8 @@ The kernel ignores the position argument and always appends the data to the end 
 </dl>
 
     
+    
+
     
 
     
@@ -1015,6 +1446,7 @@ The kernel ignores the position argument and always appends the data to the end 
     
 
     
+
     
     
     
@@ -1079,6 +1511,14 @@ The kernel ignores the position argument and always appends the data to the end 
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -1097,7 +1537,7 @@ The kernel ignores the position argument and always appends the data to the end 
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-248">line 248</a>
+				 <a href="fs.js.html#sunlight-1-line-254">line 254</a>
 			</li>
 		</ul>
 	</dd>
@@ -1111,6 +1551,8 @@ The kernel ignores the position argument and always appends the data to the end 
 </dl>
 
     
+    
+
     
 
     
@@ -1160,6 +1602,7 @@ The promise result is either true or false.
     
 
     
+
     
     
     
@@ -1224,6 +1667,14 @@ The promise result is either true or false.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -1242,7 +1693,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-431">line 431</a>
+				 <a href="fs.js.html#sunlight-1-line-437">line 437</a>
 			</li>
 		</ul>
 	</dd>
@@ -1256,6 +1707,8 @@ The promise result is either true or false.
 </dl>
 
     
+    
+
     
 
     
@@ -1312,6 +1765,7 @@ The promise result is either true or false.
     
 
     
+
     
     
     
@@ -1419,6 +1873,14 @@ The promise result is either true or false.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -1437,7 +1899,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-90">line 90</a>
+				 <a href="fs.js.html#sunlight-1-line-96">line 96</a>
 			</li>
 		</ul>
 	</dd>
@@ -1451,6 +1913,8 @@ The promise result is either true or false.
 </dl>
 
     
+    
+
     
 
     
@@ -1499,6 +1963,7 @@ The promise result is either true or false.
     
 
     
+
     
     
     
@@ -1606,6 +2071,14 @@ The promise result is either true or false.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -1624,7 +2097,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-59">line 59</a>
+				 <a href="fs.js.html#sunlight-1-line-65">line 65</a>
 			</li>
 		</ul>
 	</dd>
@@ -1638,6 +2111,8 @@ The promise result is either true or false.
 </dl>
 
     
+    
+
     
 
     
@@ -1686,6 +2161,7 @@ The promise result is either true or false.
     
 
     
+
     
     
     
@@ -1793,6 +2269,14 @@ The promise result is either true or false.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -1811,7 +2295,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-129">line 129</a>
+				 <a href="fs.js.html#sunlight-1-line-135">line 135</a>
 			</li>
 		</ul>
 	</dd>
@@ -1825,6 +2309,8 @@ The promise result is either true or false.
 </dl>
 
     
+    
+
     
 
     
@@ -1873,6 +2359,7 @@ The promise result is either true or false.
     
 
     
+
     
     
     
@@ -1937,6 +2424,14 @@ The promise result is either true or false.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -1955,7 +2450,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-332">line 332</a>
+				 <a href="fs.js.html#sunlight-1-line-338">line 338</a>
 			</li>
 		</ul>
 	</dd>
@@ -1969,6 +2464,8 @@ The promise result is either true or false.
 </dl>
 
     
+    
+
     
 
     
@@ -2017,6 +2514,7 @@ The promise result is either true or false.
     
 
     
+
     
     
     
@@ -2124,6 +2622,14 @@ The promise result is either true or false.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -2142,7 +2648,7 @@ The promise result is either true or false.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-32">line 32</a>
+				 <a href="fs.js.html#sunlight-1-line-38">line 38</a>
 			</li>
 		</ul>
 	</dd>
@@ -2156,6 +2662,8 @@ The promise result is either true or false.
 </dl>
 
     
+    
+
     
 
     
@@ -2213,6 +2721,7 @@ or times is NULL and the process has write permission for the file.
     
 
     
+
     
     
     
@@ -2323,6 +2832,14 @@ or times is NULL and the process has write permission for the file.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -2341,7 +2858,7 @@ or times is NULL and the process has write permission for the file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-313">line 313</a>
+				 <a href="fs.js.html#sunlight-1-line-319">line 319</a>
 			</li>
 		</ul>
 	</dd>
@@ -2355,6 +2872,8 @@ or times is NULL and the process has write permission for the file.
 </dl>
 
     
+    
+
     
 
     
@@ -2403,6 +2922,7 @@ or times is NULL and the process has write permission for the file.
     
 
     
+
     
     
     
@@ -2510,6 +3030,14 @@ or times is NULL and the process has write permission for the file.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -2528,7 +3056,7 @@ or times is NULL and the process has write permission for the file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-99">line 99</a>
+				 <a href="fs.js.html#sunlight-1-line-105">line 105</a>
 			</li>
 		</ul>
 	</dd>
@@ -2542,6 +3070,8 @@ or times is NULL and the process has write permission for the file.
 </dl>
 
     
+    
+
     
 
     
@@ -2591,6 +3121,7 @@ is like chown(), but does not dereference symbolic links.
     
 
     
+
     
     
     
@@ -2698,6 +3229,14 @@ is like chown(), but does not dereference symbolic links.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -2716,7 +3255,7 @@ is like chown(), but does not dereference symbolic links.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-68">line 68</a>
+				 <a href="fs.js.html#sunlight-1-line-74">line 74</a>
 			</li>
 		</ul>
 	</dd>
@@ -2730,6 +3269,8 @@ is like chown(), but does not dereference symbolic links.
 </dl>
 
     
+    
+
     
 
     
@@ -2781,6 +3322,7 @@ then the link itself is stat-ed, not the file that it refers to.
     
 
     
+
     
     
     
@@ -2888,6 +3430,14 @@ then the link itself is stat-ed, not the file that it refers to.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -2906,7 +3456,7 @@ then the link itself is stat-ed, not the file that it refers to.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-117">line 117</a>
+				 <a href="fs.js.html#sunlight-1-line-123">line 123</a>
 			</li>
 		</ul>
 	</dd>
@@ -2920,6 +3470,8 @@ then the link itself is stat-ed, not the file that it refers to.
 </dl>
 
     
+    
+
     
 
     
@@ -2977,6 +3529,7 @@ Other mode bits of the created directory depend on the operating system. For Lin
     
 
     
+
     
     
     
@@ -3067,6 +3620,14 @@ Other mode bits of the created directory depend on the operating system. For Lin
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -3085,7 +3646,7 @@ Other mode bits of the created directory depend on the operating system. For Lin
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-221">line 221</a>
+				 <a href="fs.js.html#sunlight-1-line-227">line 227</a>
 			</li>
 		</ul>
 	</dd>
@@ -3099,6 +3660,8 @@ Other mode bits of the created directory depend on the operating system. For Lin
 </dl>
 
     
+    
+
     
 
     
@@ -3147,6 +3710,7 @@ Other mode bits of the created directory depend on the operating system. For Lin
     
 
     
+
     
     
     
@@ -3351,6 +3915,14 @@ Other mode bits of the created directory depend on the operating system. For Lin
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -3369,7 +3941,7 @@ Other mode bits of the created directory depend on the operating system. For Lin
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-352">line 352</a>
+				 <a href="fs.js.html#sunlight-1-line-358">line 358</a>
 			</li>
 		</ul>
 	</dd>
@@ -3383,6 +3955,8 @@ Other mode bits of the created directory depend on the operating system. For Lin
 </dl>
 
     
+    
+
     
 
     
@@ -3432,6 +4006,7 @@ Promise's result where files is an array of the names of the files in the direct
     
 
     
+
     
     
     
@@ -3496,6 +4071,14 @@ Promise's result where files is an array of the names of the files in the direct
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -3514,7 +4097,7 @@ Promise's result where files is an array of the names of the files in the direct
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-239">line 239</a>
+				 <a href="fs.js.html#sunlight-1-line-245">line 245</a>
 			</li>
 		</ul>
 	</dd>
@@ -3528,6 +4111,8 @@ Promise's result where files is an array of the names of the files in the direct
 </dl>
 
     
+    
+
     
 
     
@@ -3583,6 +4168,7 @@ If no encoding is specified, then the raw buffer is returned.
     
 
     
+
     
     
     
@@ -3670,6 +4256,14 @@ If no encoding is specified, then the raw buffer is returned.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -3688,7 +4282,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-364">line 364</a>
+				 <a href="fs.js.html#sunlight-1-line-370">line 370</a>
 			</li>
 		</ul>
 	</dd>
@@ -3702,6 +4296,8 @@ If no encoding is specified, then the raw buffer is returned.
 </dl>
 
     
+    
+
     
 
     
@@ -3745,294 +4341,6 @@ If no encoding is specified, then the raw buffer is returned.
         
             
 <dt>
-    <h4 class="name" id=".readJsonFile"><span class="type-signature">&lt;static> </span>readJsonFile<span class="signature">(path)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Read a file and parse its content as JSON
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-477">line 477</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id=".readJsonFileSync"><span class="type-signature">&lt;static> </span>readJsonFileSync<span class="signature">(path)</span><span class="type-signature"> &rarr; {*}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Read a file and parse its content as JSON synchronously
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-487">line 487</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">*</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
     <h4 class="name" id=".readlink"><span class="type-signature">&lt;static> </span>readlink<span class="signature">(path)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
     
@@ -4051,6 +4359,7 @@ in case the buffer is too small to hold all of the contents.
     
 
     
+
     
     
     
@@ -4115,6 +4424,14 @@ in case the buffer is too small to hold all of the contents.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -4133,7 +4450,7 @@ in case the buffer is too small to hold all of the contents.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-160">line 160</a>
+				 <a href="fs.js.html#sunlight-1-line-166">line 166</a>
 			</li>
 		</ul>
 	</dd>
@@ -4147,6 +4464,8 @@ in case the buffer is too small to hold all of the contents.
 </dl>
 
     
+    
+
     
 
     
@@ -4168,486 +4487,6 @@ in case the buffer is too small to hold all of the contents.
 	<dd>
 		
 <span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id=".readRecursiveDirectory"><span class="type-signature">&lt;static> </span>readRecursiveDirectory<span class="signature">(dir, options, callback)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Recursively read a directory.
-callback is called for each files
-Return a Promise when all files are read.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>dir</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-556">line 556</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id=".readYamlFile"><span class="type-signature">&lt;static> </span>readYamlFile<span class="signature">(path)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Read a file and parse its content as Yaml
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-517">line 517</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id=".readYamlFileSync"><span class="type-signature">&lt;static> </span>readYamlFileSync<span class="signature">(path)</span><span class="type-signature"> &rarr; {*}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Read a file and parse its content as Yaml synchronously
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-527">line 527</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">*</span>
 
 
 	</dd>
@@ -4678,6 +4517,7 @@ that can be used to force a specific path resolution or avoid additional fs.stat
     
 
     
+
     
     
     
@@ -4742,6 +4582,14 @@ that can be used to force a specific path resolution or avoid additional fs.stat
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -4760,7 +4608,7 @@ that can be used to force a specific path resolution or avoid additional fs.stat
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-173">line 173</a>
+				 <a href="fs.js.html#sunlight-1-line-179">line 179</a>
 			</li>
 		</ul>
 	</dd>
@@ -4774,6 +4622,8 @@ that can be used to force a specific path resolution or avoid additional fs.stat
 </dl>
 
     
+    
+
     
 
     
@@ -4831,6 +4681,7 @@ fs.realpath(&#x27;/etc/passwd&#x27;, cache).then(function(resolvedPath) {
     
 
     
+
     
     
     
@@ -4918,6 +4769,14 @@ fs.realpath(&#x27;/etc/passwd&#x27;, cache).then(function(resolvedPath) {
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -4936,7 +4795,7 @@ fs.realpath(&#x27;/etc/passwd&#x27;, cache).then(function(resolvedPath) {
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-23">line 23</a>
+				 <a href="fs.js.html#sunlight-1-line-29">line 29</a>
 			</li>
 		</ul>
 	</dd>
@@ -4950,6 +4809,8 @@ fs.realpath(&#x27;/etc/passwd&#x27;, cache).then(function(resolvedPath) {
 </dl>
 
     
+    
+
     
 
     
@@ -5000,6 +4861,7 @@ rmdir() deletes a directory, which must be empty.
     
 
     
+
     
     
     
@@ -5064,192 +4926,13 @@ rmdir() deletes a directory, which must be empty.
 
 	
 
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-211">line 211</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
     
 
     
 
     
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id=".stat"><span class="type-signature">&lt;static> </span>stat<span class="signature">(path, <span class="optional">len</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Get file status
-    </div>
-    
 
     
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-		<th>Argument</th>
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>len</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
 
 	
 
@@ -5269,7 +4952,7 @@ rmdir() deletes a directory, which must be empty.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-108">line 108</a>
+				 <a href="fs.js.html#sunlight-1-line-217">line 217</a>
 			</li>
 		</ul>
 	</dd>
@@ -5283,6 +4966,8 @@ rmdir() deletes a directory, which must be empty.
 </dl>
 
     
+    
+
     
 
     
@@ -5333,6 +5018,7 @@ link() creates a new link (also known as a hard link) to an existing file.
     
 
     
+
     
     
     
@@ -5440,6 +5126,14 @@ link() creates a new link (also known as a hard link) to an existing file.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -5458,7 +5152,7 @@ link() creates a new link (also known as a hard link) to an existing file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-138">line 138</a>
+				 <a href="fs.js.html#sunlight-1-line-144">line 144</a>
 			</li>
 		</ul>
 	</dd>
@@ -5472,6 +5166,8 @@ link() creates a new link (also known as a hard link) to an existing file.
 </dl>
 
     
+    
+
     
 
     
@@ -5507,7 +5203,7 @@ link() creates a new link (also known as a hard link) to an existing file.
         
             
 <dt>
-    <h4 class="name" id=".symlink"><span class="type-signature">&lt;static> </span>symlink<span class="signature">(oldPath, newPath)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".stat"><span class="type-signature">&lt;static> </span>stat<span class="signature">(path, <span class="optional">len</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
     
 </dt>
@@ -5515,180 +5211,12 @@ link() creates a new link (also known as a hard link) to an existing file.
     
     
     <div class="description">
-        Make a new name for a file
-
-symlink() creates a symbolic link named newpath which contains the string oldpath.
+        Get file status
     </div>
     
 
     
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>oldPath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>newPath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-149">line 149</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id=".truncate"><span class="type-signature">&lt;static> </span>truncate<span class="signature">(path, <span class="optional">len</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Truncate a file to a specified length
-    </div>
-    
-
-    
     
     
     
@@ -5796,6 +5324,14 @@ symlink() creates a symbolic link named newpath which contains the string oldpat
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -5814,7 +5350,7 @@ symlink() creates a symbolic link named newpath which contains the string oldpat
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-41">line 41</a>
+				 <a href="fs.js.html#sunlight-1-line-114">line 114</a>
 			</li>
 		</ul>
 	</dd>
@@ -5828,6 +5364,386 @@ symlink() creates a symbolic link named newpath which contains the string oldpat
 </dl>
 
     
+    
+
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Promise</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id=".symlink"><span class="type-signature">&lt;static> </span>symlink<span class="signature">(oldPath, newPath)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Make a new name for a file
+
+symlink() creates a symbolic link named newpath which contains the string oldpath.
+    </div>
+    
+
+    
+
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>oldPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>newPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-155">line 155</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Promise</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id=".truncate"><span class="type-signature">&lt;static> </span>truncate<span class="signature">(path, <span class="optional">len</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Truncate a file to a specified length
+    </div>
+    
+
+    
+
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>len</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+	
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="fs.js.html">fs.js</a>,
+				 <a href="fs.js.html#sunlight-1-line-47">line 47</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+    
+    
+
     
 
     
@@ -5889,6 +5805,7 @@ but processes which have the object open may continue to use it.
     
 
     
+
     
     
     
@@ -5953,6 +5870,14 @@ but processes which have the object open may continue to use it.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -5971,7 +5896,7 @@ but processes which have the object open may continue to use it.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-190">line 190</a>
+				 <a href="fs.js.html#sunlight-1-line-196">line 196</a>
 			</li>
 		</ul>
 	</dd>
@@ -5985,6 +5910,8 @@ but processes which have the object open may continue to use it.
 </dl>
 
     
+    
+
     
 
     
@@ -6042,6 +5969,7 @@ or times is NULL and the process has write permission for the file.
     
 
     
+
     
     
     
@@ -6152,6 +6080,14 @@ or times is NULL and the process has write permission for the file.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -6170,7 +6106,7 @@ or times is NULL and the process has write permission for the file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-294">line 294</a>
+				 <a href="fs.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -6184,6 +6120,8 @@ or times is NULL and the process has write permission for the file.
 </dl>
 
     
+    
+
     
 
     
@@ -6232,6 +6170,7 @@ or times is NULL and the process has write permission for the file.
     
 
     
+
     
     
     
@@ -6436,6 +6375,14 @@ or times is NULL and the process has write permission for the file.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -6454,7 +6401,7 @@ or times is NULL and the process has write permission for the file.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-340">line 340</a>
+				 <a href="fs.js.html#sunlight-1-line-346">line 346</a>
 			</li>
 		</ul>
 	</dd>
@@ -6468,6 +6415,8 @@ or times is NULL and the process has write permission for the file.
 </dl>
 
     
+    
+
     
 
     
@@ -6524,6 +6473,7 @@ If no encoding is specified, then the raw buffer is returned.
     
 
     
+
     
     
     
@@ -6665,6 +6615,14 @@ If no encoding is specified, then the raw buffer is returned.
 
 	
 
+    
+
+    
+
+    
+
+    
+
 	
 
 	
@@ -6683,7 +6641,7 @@ If no encoding is specified, then the raw buffer is returned.
 		<ul class="dummy">
 			<li>
 				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-385">line 385</a>
+				 <a href="fs.js.html#sunlight-1-line-391">line 391</a>
 			</li>
 		</ul>
 	</dd>
@@ -6697,6 +6655,8 @@ If no encoding is specified, then the raw buffer is returned.
 </dl>
 
     
+    
+
     
 
     
@@ -6737,196 +6697,6 @@ If no encoding is specified, then the raw buffer is returned.
     
 </dd>
 
-        
-            
-<dt>
-    <h4 class="name" id=".writeYamlFile"><span class="type-signature">&lt;static> </span>writeYamlFile<span class="signature">(path, content, options)</span><span class="type-signature"> &rarr; {*}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Write in file a yaml content
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>content</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="fs.js.html">fs.js</a>,
-				 <a href="fs.js.html#sunlight-1-line-540">line 540</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">*</span>
-
-
-	</dd>
-</dl>
-
-
-        
-    
-    
-</dd>
-
         </dl>
     
 
@@ -6940,101 +6710,102 @@ If no encoding is specified, then the raw buffer is returned.
 
 
 
-				</div>
-
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		springbokjs-utils Copyright © 2010-2014 Christophe Hurpeau.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-		on 2015-02-04T01:53:00+00:00 using the <a
-			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
-
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
 		</div>
-
 	</div>
-	<!--<script src="scripts/sunlight.js"></script>-->
-	<script src="scripts/docstrap.lib.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>
-		$( function () {
-			$( "[id*='$']" ).each( function () {
-				var $this = $( this );
+	<div class="clearfix"></div>
 
-				$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
-			} );
-
-			$( "#toc" ).toc( {
-				anchorName  : function ( i, heading, prefix ) {
-					return $( heading ).attr( "id" ) || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : "100px"
-			} );
-
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-			$( '.dropdown-toggle' ).dropdown();
-//			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
-
-			$( ".tutorial-section pre, .readme-section pre" ).each( function () {
-				var $this = $( this );
-
-				var example = $this.find( "code" );
-				exampleText = example.html();
-				var lang = /{@lang (.*?)}/.exec( exampleText );
-				if ( lang && lang[1] ) {
-					exampleText = exampleText.replace( lang[0], "" );
-					example.html( exampleText );
-					lang = lang[1];
-				} else {
-					lang = "javascript";
-				}
-
-				if ( lang ) {
-
-					$this
-						.addClass( "sunlight-highlight-" + lang )
-						.addClass( "linenums" )
-						.html( example.html() );
-
-				}
-			} );
-
-			Sunlight.highlightAll( {
-				lineNumbers : true,
-				showMenu : true,
-				enableDoclinks : true
-			} );
-		} );
-	 </script>
-
-
-
-	<!--Navigation and Symbol Display-->
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3"></div>
+		</div>
 	
 
+</div>
+</div>
 
-	<!--Google Analytics-->
-	
+
+<footer>
+
+
+	<span class="copyright">
+	springbokjs-utils Copyright © 2010-2014 Christophe Hurpeau.
+	</span>
+	<br />
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
+	on 2015-02-20T00:44:32+00:00 using the <a
+	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<!--<script src="scripts/sunlight.js"></script>-->
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/bootstrap-dropdown.js"></script>
+<script src="scripts/toc.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "h1,h2,h3,h4",
+		showAndHide : false,
+		scrollTo    : "100px"
+	} );
+
+	$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+	//			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			lang = "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
 
 </body>
 </html>
