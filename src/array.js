@@ -8,7 +8,7 @@
  * @param {Array} array
  * @return {Array}
  */
-exports.slice1 = function(array) {
+export var slice1 = function(array) {
     return Array.prototype.slice.call(array, 1);
 };
 
@@ -21,7 +21,7 @@ exports.slice1 = function(array) {
  * @param {Number} i
  * @return {Boolean}
  */
-exports.has = function(array, searchElement, i) {
+export var has = function(array, searchElement, i) {
     return Array.prototype.indexOf.call(array, searchElement, i) !== -1;
 };
 
@@ -34,7 +34,7 @@ exports.has = function(array, searchElement, i) {
  * @param {Number} i
  * @return {Boolean}
  */
-exports.hasAmong = function(array, searchElements, i) {
+export var hasAmong = function(array, searchElements, i) {
     for (var j = 0, l = searchElements.length; j < l ; j++) {
         if (Array.prototype.indexOf.call(array, searchElements[j], i) !== -1) {
             return true;
@@ -50,7 +50,7 @@ exports.hasAmong = function(array, searchElements, i) {
  * @param {*} element
  * @return {Boolean}
  */
-exports.remove = function(array, element) {
+export var remove = function(array, element) {
     var index = array.indexOf(element);
     if (index === -1) {
         return false;
@@ -66,7 +66,7 @@ exports.remove = function(array, element) {
  * @param {Array} array
  * @return {Array} cloned array
  */
-exports.clone = function(array) {
+export var clone = function(array) {
     return array.slice(0);
 };
 
@@ -76,7 +76,7 @@ exports.clone = function(array) {
  * @param {Array} array
  * @return {*} last element
  */
-exports.last = function(array) {
+export var last = function(array) {
     return array[array.length - 1];
 };
 
@@ -86,7 +86,7 @@ exports.last = function(array) {
  * @param {Array} array
  * @return {*} last element
  */
-exports.random = function(array) {
+export var random = function(array) {
     return array[Math.floor(Math.random() * array.length)];
 };
 
@@ -96,7 +96,7 @@ exports.random = function(array) {
  *
  * @type {Object}
  */
-exports.sortFunctions = {
+export var sortFunctions = {
     '': function(a, b) {
         if (a < b) {
             return -1;
@@ -114,7 +114,7 @@ exports.sortFunctions = {
     }
 };
 
-exports.sortF = exports.sortFunctions;
+export var sortF = sortFunctions;
 
 
 /**
@@ -126,14 +126,14 @@ exports.sortF = exports.sortFunctions;
  * @param {Function|String|undefined} sortFunction
  * @return {Array}
  */
-exports.sortBy = function(array, propertyName, descending, sortFunction) {
+export var sortBy = function(array, propertyName, descending, sortFunction) {
     if (typeof descending === 'string' || typeof descending === 'function') {
         sortFunction = descending;
         descending = undefined;
     }
 
     if (typeof sortFunction !== 'function') {
-        sortFunction = exports.sortFunctions[sortFunction == null ? '' : sortFunction];
+        sortFunction = sortFunctions[sortFunction == null ? '' : sortFunction];
     }
 
     return array.sort(
@@ -158,7 +158,7 @@ exports.sortBy = function(array, propertyName, descending, sortFunction) {
  * @param {Function} callback
  * @return {Number} the new array's length
  */
-exports.removeWhen = function(array, callback) {
+export var removeWhen = function(array, callback) {
     array.forEach(function(elt, index) {
         if (callback(elt, index)) {
             array.splice(index, 1);
@@ -176,7 +176,7 @@ exports.removeWhen = function(array, callback) {
  * @param {Array} array2
  * @return {Boolean}
  */
-exports.equals = function(array1, array2) {
+export var equals = function(array1, array2) {
     var length = array1.length;
     if (!Array.isArray(array1) || !Array.isArray(array2) || length != array2.length) {
         return false;

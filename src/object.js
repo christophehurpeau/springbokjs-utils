@@ -8,7 +8,7 @@
  * @param {Object|Map} object
  * @return {Map}
  */
-exports.toMap = function(object) {
+export var toMap = function(object) {
     if (object instanceof Map) {
         return object;
     }
@@ -26,7 +26,7 @@ exports.toMap = function(object) {
  * @param {Object} object
  * @return {Object} target
  */
-exports.union = function(target) {
+export var union = function(target) {
     Array.from(arguments).slice(1).forEach((object) => {
         if (object) {
             for (var key in object) {
@@ -45,7 +45,7 @@ exports.union = function(target) {
  * @param {Object} object
  * @return {Object} target
  */
-exports.clone = function(object) {
+export var clone = function(object) {
     return Object.assign({}, object);
 };
 
@@ -56,7 +56,7 @@ exports.clone = function(object) {
  * @param  {Array} keys
  * @return {Object}
  */
-exports.filterKeys = function(object, keys) {
+export var filterKeys = function(object, keys) {
     var filteredObject = {};
     keys.forEach(function(k) {
         filteredObject[k] = object[k];
@@ -72,7 +72,7 @@ exports.filterKeys = function(object, keys) {
  * @param  {Array} keys
  * @return {Object}
  */
-exports.mapJoin = function(object, separator, callback) {
+export var mapJoin = function(object, separator, callback) {
     if (typeof separator === 'function') {
         callback = separator;
         separator = '';
@@ -105,7 +105,7 @@ var _commonObjectArray = function(propertyName, object, callback, thisArg) {
 * @param {Object|Map} object
 * @return {Iterator}
 */
-exports.entries = function(object) {
+export var entries = function(object) {
     var keys = Object.keys(object), i = 0;
     return Object.freeze({
         next() {
@@ -126,7 +126,7 @@ exports.entries = function(object) {
 * @param {*=} thisArg
 * @return {Object}
 */
-exports.filter = function(object, callback, thisArg) {
+export var filter = function(object, callback, thisArg) {
     var keys = _commonObjectArray.call(null, 'filter', object, callback, thisArg);
     return exports.filterKeys(object, keys);
 };
@@ -140,7 +140,7 @@ exports.filter = function(object, callback, thisArg) {
 * @param {*=} thisArg
 * @return {*}
 */
-exports.find = function(object, callback, thisArg) {
+export var find = function(object, callback, thisArg) {
     var key = exports.findIndex.apply(null, arguments);
     return key && object[key];
 };
@@ -155,7 +155,7 @@ exports.find = function(object, callback, thisArg) {
 * @param {*=} thisArg
 * @return {String|undefined}
 */
-exports.findIndex = _commonObjectArray.bind(null, 'find');
+export var findIndex = _commonObjectArray.bind(null, 'find');
 
 /**
 * The forEach() method executes a provided function once per object element.
@@ -166,7 +166,7 @@ exports.findIndex = _commonObjectArray.bind(null, 'find');
 * @param {*} thisArg
 * @return {*}
 */
-exports.forEach = _commonObjectArray.bind(null, 'forEach');
+export var forEach = _commonObjectArray.bind(null, 'forEach');
 
 /**
 * The join() method joins all elements of an object into a string.
@@ -175,7 +175,7 @@ exports.forEach = _commonObjectArray.bind(null, 'forEach');
 * @param {String} separator
 * @return {String}
 */
-exports.join = function(object, separator) {
+export var join = function(object, separator) {
     return Object.keys(object).map(function(key) {
         return object[key];
     }).join(separator);
@@ -189,7 +189,7 @@ exports.join = function(object, separator) {
 * @param {*=} thisArg
 * @return {*}
 */
-exports.map = function(object, callback, thisArg) {
+export var map = function(object, callback, thisArg) {
     var mappedObject = {};
     exports.forEach(object, function(value, key) {
         mappedObject[key] = callback.apply(this, arguments);
@@ -206,7 +206,7 @@ exports.map = function(object, callback, thisArg) {
 * @param {*=} initialValue
 * @return {*}
 */
-exports.reduce = function(object, callback, initialValue) {
+export var reduce = function(object, callback, initialValue) {
     return Object.keys(object).reduce(function(previousValue, currentValue, index, array) {
         return callback(previousValue, object[currentValue], currentValue, object);
     }, initialValue);
@@ -221,7 +221,7 @@ exports.reduce = function(object, callback, initialValue) {
 * @param {*=} initialValue
 * @return {*}
 */
-exports.reduceRight = function(object, callback, initialValue) {
+export var reduceRight = function(object, callback, initialValue) {
     return Object.keys(object).reduceRight(function(previousValue, currentValue, index, array) {
         return callback(previousValue, object[currentValue], currentValue, object);
     }, initialValue);
@@ -236,4 +236,4 @@ exports.reduceRight = function(object, callback, initialValue) {
 * @param {*=} thisArg
 * @return {Boolean}
 */
-exports.some = _commonObjectArray.bind(null, 'some');
+export var some = _commonObjectArray.bind(null, 'some');

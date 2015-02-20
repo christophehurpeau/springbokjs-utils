@@ -9,7 +9,7 @@
  * @param {String=} characters
  * @return {Map}
  */
-exports.randomCode = function(size, characters) {
+export var randomCode = function(size, characters) {
     characters = (characters || 'abcdefghijklmnopqrstuvwxyz0123456789').split('')
         .sort(() => { return 0.5 - Math.random(); }); // shuffle
 

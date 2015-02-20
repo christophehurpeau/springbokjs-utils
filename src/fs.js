@@ -5,9 +5,9 @@
  *  @module fs
  */
 
-var fs = require('fs');
-var promiseUtils = require('./promises');
-var YAML = require('js-yaml');
+import fs from 'fs';
+import * as promisesUtils from './promises';
+import YAML from 'js-yaml';
 
 /**
  * Rename a file synchronously
@@ -473,7 +473,7 @@ Object.keys(fs).forEach(function(name) {
  * @param {String} path
  * @return {Promise}
  */
-exports.readJsonFile = function() {
+export var readJsonFile = function() {
     return exports.readFile.apply(exports, arguments)
         .then(JSON.parse);
 };
@@ -484,18 +484,18 @@ exports.readJsonFile = function() {
  * @param {String} path
  * @return {*}
  */
-exports.readJsonFileSync = function() {
+export var readJsonFileSync = function() {
     var result = fs.readFileSync.apply(fs, arguments);
     return result && JSON.parse(result);
 };
 
-exports.writeJsonFile = function() {
+export var writeJsonFile = function() {
     var args = arguments;
     args[1] = JSON.stringify(args[1]);
     return exports.writeFile.apply(exports, args);
 };
 
-exports.writePrettyJsonFile = function() {
+export var writePrettyJsonFile = function() {
     var args = arguments;
     args[1] = JSON.stringify(args[1], null, 4);
     return exports.writeFile.apply(exports, args);
@@ -514,7 +514,7 @@ var stringifyYaml = YAML.safeDump;
  * @param {String} path
  * @return {Promise}
  */
-exports.readYamlFile = function() {
+export var readYamlFile = function() {
     return exports.readFile.apply(exports, arguments)
         .then(parseYaml);
 };
@@ -525,7 +525,7 @@ exports.readYamlFile = function() {
  * @param {String} path
  * @return {*}
  */
-exports.readYamlFileSync = function() {
+export var readYamlFileSync = function() {
     var result = fs.readFileSync.apply(fs, arguments);
     return result && parseYaml(result);
 };
@@ -538,7 +538,7 @@ exports.readYamlFileSync = function() {
  * @param {Object} options
  * @return {*}
  */
-exports.writeYamlFile = function() {
+export var writeYamlFile = function() {
     var args = arguments;
     args[1] = stringifyYaml(args[1]);
     return exports.writeFile.apply(exports, args);
@@ -554,13 +554,13 @@ exports.writeYamlFile = function() {
  * @param {Function} callback
  * @return {Promise}
  */
-exports.readRecursiveDirectory = function(dir, options, callback) {
+export var readRecursiveDirectory = function readRecursiveDirectory(dir, options, callback) {
     options = Object.assign({
         recursive: true,
         directories: false,
     }, options);
     return exports.readdir(dir).then((files) => {
-        return promiseUtils.forEach(files, (file) => {
+        return promisesUtils.forEach(files, (file) => {
             var path = dir + '/' + file;
             return exports.stat(path)
                 .then((stat) => {
@@ -569,7 +569,7 @@ exports.readRecursiveDirectory = function(dir, options, callback) {
                             return callback({ dirname: file, path: path, basedir: dir, stat: stat });
                         }
                         if (options.recursive) {
-                            return exports.readRecursiveDirectory(path, options, callback);
+                            return readRecursiveDirectory(path, options, callback);
                         }
                     } else {
                         return callback({ filename: file, path: path, basedir: dir, stat: stat });

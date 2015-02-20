@@ -1,7 +1,7 @@
 /**
  * @module string
  */
-var utils = require('../index.js');
+import * as utils from '../index.js';
 var exports = require('./string.js');
 module.exports = exports;
 
@@ -11,7 +11,7 @@ module.exports = exports;
  * @param {String} string
  * @return {String}
  */
-exports.translit = function(string) {
+export var translit = function(string) {
     return [
         [/æ|ǽ/g, 'ae'],
         [/œ/g, 'oe'], [/Œ/g, 'OE'],
@@ -50,8 +50,8 @@ exports.translit = function(string) {
  * @param {String} string
  * @return {String}
  */
-exports.normalize = function(string) {
-    return exports.translit(string)
+export var normalize = function(string) {
+    return translit(string)
         .replace(/[ \-\'\"\_\(\)\[\]\{\}\#\~\&\*\,\.\;\:\!\?\/\\\\|\`<\>\+]+/g, ' ')
         .trim()
         .toLowerCase();
@@ -63,8 +63,8 @@ exports.normalize = function(string) {
  * @param {String} string
  * @return {String}
  */
-exports.slugify = function(string, replacement = '-') {
-    return exports.translit(string.trim())
+export var slugify = function(string, replacement = '-') {
+    return translit(string.trim())
         .replace(/([^\d\.])\.+([^\d\.]|$)/g, '$1 $2')
         .replace(/[^a-zA-Z\d\.]/g, ' ') // \w is a-z and _
         .trim()

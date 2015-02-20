@@ -10,7 +10,7 @@
  * @param {String} value
  * @return {Number} parsed int
  */
-exports.toInt = function(value) {
+export var toInt = function(value) {
     return parseInt(value, 10);
 };
 
@@ -21,7 +21,7 @@ exports.toInt = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isString = function(value) {
+export var isString = function(value) {
     return typeof value === 'string';
 };
 
@@ -30,7 +30,7 @@ exports.isString = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isObject = function(value) {
+export var isObject = function(value) {
     return typeof value === 'object';
 };
 
@@ -39,7 +39,7 @@ exports.isObject = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isFunction = function(value) {
+export var isFunction = function(value) {
     return typeof value === 'function';
 };
 
@@ -48,7 +48,7 @@ exports.isFunction = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isNumber = function(value) {
+export var isNumber = function(value) {
     return typeof value === 'number';
 };
 
@@ -57,7 +57,7 @@ exports.isNumber = function(value) {
  * @param {*} value
  * @return {Boolean}
  */
-exports.isInteger = function(value) {
+export var isInteger = function(value) {
     return Number.isInteger(value);
 };
 
@@ -68,7 +68,7 @@ exports.isInteger = function(value) {
  * @param {*} arg
  * @return {Boolean}
  */
-exports.isArray = Array.isArray;
+export var isArray = Array.isArray;
 
 
 /* HTML */
@@ -79,7 +79,7 @@ exports.isArray = Array.isArray;
  * @param {String} html string to be escaped
  * @return {String} escaped string
  */
-exports.escape = function(html) {
+export var escape = function(html) {
     return String(html)
         .replace(/&(?!\w+;)/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -93,8 +93,8 @@ exports.escape = function(html) {
  * @param {String} url
  * @return {String} escaped url
  */
-exports.escapeUrl = function(html) {
-    return html.replace(/&/g,'&amp;');
+export var escapeUrl = function(html) {
+    return html.replace(/&/g, '&amp;');
 };
 
 /**
@@ -103,7 +103,7 @@ exports.escapeUrl = function(html) {
  * @param {String} string
  * @return {String} escaped string
  */
-exports.regexpEscape = function(string) {
+export var regexpEscape = function(string) {
     return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, '\\$1' );
 };
 
@@ -117,7 +117,7 @@ exports.regexpEscape = function(string) {
  * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperty = function(target, property, value, options) {
+export var defineProperty = function(target, property, value, options) {
     Object.defineProperty(target, property, {
         value: value,
         writable: (options && options.writable) !== false,
@@ -136,7 +136,7 @@ exports.defineProperty = function(target, property, value, options) {
  * @param {Object=} options: enumerable default false
  * @return {Object} target
  */
-exports.defineConstant = function(target, property, value, options) {
+export var defineConstant = function(target, property, value, options) {
     Object.defineProperty(target, property, {
         value: value,
         writable: false,
@@ -155,7 +155,7 @@ exports.defineConstant = function(target, property, value, options) {
  * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineGetter = function(target, property, getter, options) {
+export var defineGetter = function(target, property, getter, options) {
     Object.defineProperty(target, property, {
         get: getter,
         configurable: (options && options.configurable) !== false,
@@ -173,7 +173,7 @@ exports.defineGetter = function(target, property, getter, options) {
  * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineSetter = function(target, property, setter, options) {
+export var defineSetter = function(target, property, setter, options) {
     Object.defineProperty(target, property, {
         set: setter,
         configurable: (options && options.configurable) !== false,
@@ -190,7 +190,7 @@ exports.defineSetter = function(target, property, setter, options) {
  * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-exports.defineProperties = function(target, properties, options) {
+export var defineProperties = function(target, properties, options) {
     if (!properties) {
         return target;
     }
@@ -342,7 +342,7 @@ exports.defineProperties = function(target, properties, options) {
  * @return {Array}
  */
 
-exports.mapToArray = function(arrayOrObject, callback) {
+export var mapToArray = function(arrayOrObject, callback) {
     if (Array.isArray(arrayOrObject)) {
         return arrayOrObject.map(callback);
     }
@@ -360,7 +360,7 @@ exports.mapToArray = function(arrayOrObject, callback) {
  * @constant module:utils.array
  * @type module:array
  */
-exports.defineConstant(exports, 'array', require('./array'));
+export var array = require('./array');
 
 /**
  * Access to the object module
@@ -368,7 +368,7 @@ exports.defineConstant(exports, 'array', require('./array'));
  * @constant module:utils.object
  * @type module:object
  */
-exports.defineConstant(exports, 'object', require('./object'));
+export var object = require('./object');
 
 /**
  * Access to the string module
@@ -376,7 +376,7 @@ exports.defineConstant(exports, 'object', require('./object'));
  * @constant module:utils.string
  * @type module:string
  */
-exports.defineConstant(exports, 'string', require('./string/string'));
+export var string = require('./string/string');
 
 /**
  * Access to the promises module
@@ -384,4 +384,4 @@ exports.defineConstant(exports, 'string', require('./string/string'));
  * @constant module:utils.promises
  * @type module:promises
  */
-exports.defineConstant(exports, 'promises', require('./promises'));
+export var promises = require('./promises');

@@ -1,9 +1,27 @@
-var S = require('./index');
+import * as S from './index';
+
 var createdPromise;
 
 /**
  * @module promises
  */
+
+/**
+ * Creates a callback that resolve or reject a promise
+ * according to the default callback convention in node: (err, result)
+ *
+ * @param {Function} resolve resolve function of the promise
+ * @param {Function} reject reject function of the promise
+ * @return {Function}
+ */
+export var resolveFromCallback = function(resolve, reject) {
+    return function(err, result) {
+        if (err) {
+            return reject(err);
+        }
+        resolve(result);
+    };
+};
 
 /**
  * Returns a promise
@@ -20,13 +38,13 @@ var createdPromise;
  * @param {Function} callback callback((done) => {})
  * @return {Promise}
  */
-exports.promiseCallback = function(callback) {
+export var promiseCallback = function(callback) {
     var resolveCallback, rejectCallback;
     var createdPromise = new Promise(function(resolve, reject) {
         resolveCallback = resolve;
         rejectCallback = reject;
     });
-    var doneCallback = exports.resolveFromCallback(resolveCallback, rejectCallback);
+    var doneCallback = resolveFromCallback(resolveCallback, rejectCallback);
     callback(doneCallback);
     return createdPromise;
 };
@@ -45,13 +63,13 @@ exports.promiseCallback = function(callback) {
  *
  * @return {Array}
  */
-exports.creator = function() {
+export var creator = function() {
     var resolveCallback, rejectCallback;
     var createdPromise = new Promise(function(resolve, reject) {
         resolveCallback = resolve;
         rejectCallback = reject;
     });
-    var doneCallback = exports.resolveFromCallback(resolveCallback, rejectCallback);
+    var doneCallback = resolveFromCallback(resolveCallback, rejectCallback);
     return [createdPromise, doneCallback];
 };
 
@@ -62,13 +80,13 @@ exports.creator = function() {
  *
  * @return {Function} callback(err, result)
  */
-exports.done = function() {
+export var done = function() {
     var resolveCallback, rejectCallback;
     createdPromise = new Promise(function(resolve, reject) {
         resolveCallback = resolve;
         rejectCallback = reject;
     });
-    return exports.resolveFromCallback(resolveCallback, rejectCallback);
+    return resolveFromCallback(resolveCallback, rejectCallback);
 };
 
 /**
@@ -81,7 +99,7 @@ exports.done = function() {
 *
 * @return {Promise}
 */
-exports.promise = function() {
+export var promise = function() {
     if (!createdPromise) {
         throw new Error('No promise in stack, done() should be called before');
     }
@@ -93,11 +111,11 @@ exports.promise = function() {
 /**
  * Execute promises in parallel
  *
- * @param {Array|Object} iterable an iterable with .map method (like Array), or an key/value object
+ * @param {Array|Object|Map|Set} iterable an iterable with .map method (like Array), or an key/value object
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-exports.forEach = function(iterable, callback) {
+export var forEach = function(iterable, callback) {
     if (Array.isArray(iterable)) {
         return Promise.all(iterable.map(callback));
     }
@@ -121,18 +139,18 @@ exports.forEach = function(iterable, callback) {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-exports.forEachSeries = function(iterable, callback) {
+export var forEachSeries = function(iterable, callback) {
     return new Promise(function(resolve, reject) {
         var entriesIterator = S.entries(iterable);
         var results = new iterable.constructor();
-        var next = function() {
+        (function next() {
             var current = entriesIterator.next();
             if (current.done) {
                 return resolve(results);
             }
             var key = current.value[0], value = current.value[1];
             var result = callback(value, key);
-            if (result && S.isFunction(result.then)) {
+            if (result && typeof result.then === 'function') {
                 result
                     .then(function(result) {
                         results[key] = result;
@@ -143,8 +161,7 @@ exports.forEachSeries = function(iterable, callback) {
                 results[key] = result;
                 setImmediate(next);
             }
-        };
-        next();
+        })();
     });
 };
 
@@ -155,14 +172,14 @@ exports.forEachSeries = function(iterable, callback) {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-exports.whileTrue = function(conditionCallback, callback) {
+export var whileTrue = function(conditionCallback, callback) {
     return new Promise(function(resolve, reject) {
         (function next() {
             if (!conditionCallback()) {
                 return resolve();
             }
             var result = callback();
-            if (result && S.isFunction(result.then)) {
+            if (result && typeof result.then === 'function') {
                 result
                     .then(function() {
                         setImmediate(next);
@@ -174,24 +191,6 @@ exports.whileTrue = function(conditionCallback, callback) {
         })();
     });
 };
-
-/**
- * Creates a callback that resolve or reject a promise
- * according to the default callback convention in node: (err, result)
- *
- * @param {Function} resolve resolve function of the promise
- * @param {Function} reject reject function of the promise
- * @return {Function}
- */
-exports.resolveFromCallback = function(resolve, reject) {
-    return function(err, result) {
-        if (err) {
-            return reject(err);
-        }
-        resolve(result);
-    };
-};
-
 
 /**
  * Returns a promise
@@ -209,4 +208,4 @@ exports.resolveFromCallback = function(resolve, reject) {
  * @param {Function} callback callback((done) => {})
  * @return {Promise}
  */
-S.promiseCallback = exports.promiseCallback;
+S.promiseCallback = promiseCallback;

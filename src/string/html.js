@@ -11,7 +11,7 @@ module.exports = exports;
  * @param {String} allowed list of allowed tags, separated by space
  * @return {String}
  */
-exports.stripTags = function(s, allowed) {
+export var stripTags = function(s, allowed) {
     allowed = (allowed || '').toLowerCase().split(' ');
     var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
     var commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
@@ -31,7 +31,7 @@ exports.stripTags = function(s, allowed) {
  * @param {String} string
  * @return {String}
  */
-exports.nl2br = function(string) {
+export var nl2br = function(string) {
     return string.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
 };
 
@@ -41,6 +41,6 @@ exports.nl2br = function(string) {
  * @param {String} string
  * @return {String}
  */
-exports.br2nl = function(string) {
+export var br2nl = function(string) {
     return string.replace(/<br\s*\/?>/g, '\n');
 };

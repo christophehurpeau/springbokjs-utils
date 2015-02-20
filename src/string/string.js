@@ -8,7 +8,7 @@
  * @param {String} string
  * @return {String}
  */
-exports.lcFirst = function(string) {
+export var lcFirst = function(string) {
     return string.charAt(0).toLowerCase() + string.substr(1);
 };
 
@@ -18,7 +18,7 @@ exports.lcFirst = function(string) {
  * @param {String} string
  * @return {String}
  */
-exports.ucFirst = function(string) {
+export var ucFirst = function(string) {
     return string.charAt(0).toUpperCase() + string.substr(1);
 };
 
@@ -28,7 +28,7 @@ exports.ucFirst = function(string) {
  * @param {String} string
  * @return {Boolean}
  */
-exports.isEmpty = function(string) {
+export var isEmpty = function(string) {
     return string.trim() === '';
 };
 
@@ -39,7 +39,7 @@ exports.isEmpty = function(string) {
  * @param {...String} args
  * @return {String}
  */
-exports.format = function(string) {
+export var format = function(string) {
     return exports.vformat(string, Array.prototype.slice.call(arguments, 1));
 };
 
@@ -50,7 +50,7 @@ exports.format = function(string) {
  * @param {string[]} args
  * @return {String}
  */
-exports.vformat = function(string, args) {
+export var vformat = function(string, args) {
     var i = 0;
     return string.replace(/%s/g, (m) => args[i++] || '');
 };
