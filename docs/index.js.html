@@ -66,10 +66,11 @@
  * @param {String} value
  * @return {Number} parsed int
  */
-var toInt = exports.toInt = function (value) {
+var toInt = function toInt(value) {
   return parseInt(value, 10);
 };
 
+exports.toInt = toInt;
 /* IS */
 
 /**
@@ -77,46 +78,51 @@ var toInt = exports.toInt = function (value) {
  * @param {*} value
  * @return {Boolean}
  */
-var isString = exports.isString = function (value) {
+var isString = function isString(value) {
   return typeof value === "string";
 };
 
+exports.isString = isString;
 /**
  * Test is a variable is an object
  * @param {*} value
  * @return {Boolean}
  */
-var isObject = exports.isObject = function (value) {
+var isObject = function isObject(value) {
   return typeof value === "object";
 };
 
+exports.isObject = isObject;
 /**
  * Test is a variable is a function
  * @param {*} value
  * @return {Boolean}
  */
-var isFunction = exports.isFunction = function (value) {
+var isFunction = function isFunction(value) {
   return typeof value === "function";
 };
 
+exports.isFunction = isFunction;
 /**
  * Test is a variable is a number
  * @param {*} value
  * @return {Boolean}
  */
-var isNumber = exports.isNumber = function (value) {
+var isNumber = function isNumber(value) {
   return typeof value === "number";
 };
 
+exports.isNumber = isNumber;
 /**
  * Test is a variable is a integer number
  * @param {*} value
  * @return {Boolean}
  */
-var isInteger = exports.isInteger = function (value) {
+var isInteger = function isInteger(value) {
   return Number.isInteger(value);
 };
 
+exports.isInteger = isInteger;
 /**
  * Test is a variable is an array
  *
@@ -124,9 +130,9 @@ var isInteger = exports.isInteger = function (value) {
  * @param {*} arg
  * @return {Boolean}
  */
-var isArray = exports.isArray = Array.isArray;
+var isArray = Array.isArray;
 
-
+exports.isArray = isArray;
 /* HTML */
 
 /**
@@ -135,31 +141,33 @@ var isArray = exports.isArray = Array.isArray;
  * @param {String} html string to be escaped
  * @return {String} escaped string
  */
-var escape = exports.escape = function (html) {
+var escape = function escape(html) {
   return String(html).replace(/&amp;(?!\w+;)/g, "&amp;amp;").replace(/&lt;/g, "&amp;lt;").replace(/>/g, "&amp;gt;").replace(/"/g, "&amp;quot;");
 };
 
+exports.escape = escape;
 /**
  * Escape an url for html
  *
  * @param {String} url
  * @return {String} escaped url
  */
-var escapeUrl = exports.escapeUrl = function (html) {
+var escapeUrl = function escapeUrl(html) {
   return html.replace(/&amp;/g, "&amp;amp;");
 };
 
+exports.escapeUrl = escapeUrl;
 /**
  * Escape a string for regexp
  *
  * @param {String} string
  * @return {String} escaped string
  */
-var regexpEscape = exports.regexpEscape = function (string) {
+var regexpEscape = function regexpEscape(string) {
   return string.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
 };
 
-
+exports.regexpEscape = regexpEscape;
 /**
  * Shortcut for Object.defineProperty
  *
@@ -169,7 +177,7 @@ var regexpEscape = exports.regexpEscape = function (string) {
  * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-var defineProperty = exports.defineProperty = function (target, property, value, options) {
+var defineProperty = function defineProperty(target, property, value, options) {
   Object.defineProperty(target, property, {
     value: value,
     writable: (options &amp;&amp; options.writable) !== false,
@@ -179,6 +187,7 @@ var defineProperty = exports.defineProperty = function (target, property, value,
   return target;
 };
 
+exports.defineProperty = defineProperty;
 /**
  * Shortcut for Object.defineProperty
  *
@@ -188,7 +197,7 @@ var defineProperty = exports.defineProperty = function (target, property, value,
  * @param {Object=} options: enumerable default false
  * @return {Object} target
  */
-var defineConstant = exports.defineConstant = function (target, property, value, options) {
+var defineConstant = function defineConstant(target, property, value, options) {
   Object.defineProperty(target, property, {
     value: value,
     writable: false,
@@ -198,6 +207,7 @@ var defineConstant = exports.defineConstant = function (target, property, value,
   return target;
 };
 
+exports.defineConstant = defineConstant;
 /**
  * Shortcut for Object.defineProperty
  *
@@ -207,7 +217,7 @@ var defineConstant = exports.defineConstant = function (target, property, value,
  * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-var defineGetter = exports.defineGetter = function (target, property, getter, options) {
+var defineGetter = function defineGetter(target, property, getter, options) {
   Object.defineProperty(target, property, {
     get: getter,
     configurable: (options &amp;&amp; options.configurable) !== false,
@@ -216,6 +226,7 @@ var defineGetter = exports.defineGetter = function (target, property, getter, op
   return target;
 };
 
+exports.defineGetter = defineGetter;
 /**
  * Shortcut for Object.defineProperty
  *
@@ -225,7 +236,7 @@ var defineGetter = exports.defineGetter = function (target, property, getter, op
  * @param {Object=} options: configurable default true, enumerable default false
  * @return {Object} target
  */
-var defineSetter = exports.defineSetter = function (target, property, setter, options) {
+var defineSetter = function defineSetter(target, property, setter, options) {
   Object.defineProperty(target, property, {
     set: setter,
     configurable: (options &amp;&amp; options.configurable) !== false,
@@ -234,6 +245,7 @@ var defineSetter = exports.defineSetter = function (target, property, setter, op
   return target;
 };
 
+exports.defineSetter = defineSetter;
 /**
  * Shortcut for Object.defineProperties
  *
@@ -242,7 +254,7 @@ var defineSetter = exports.defineSetter = function (target, property, setter, op
  * @param {Object=} options: writable default true, configurable default true, enumerable default false
  * @return {Object} target
  */
-var defineProperties = exports.defineProperties = function (target, properties, options) {
+var defineProperties = function defineProperties(target, properties, options) {
   if (!properties) {
     return target;
   }
@@ -262,7 +274,7 @@ var defineProperties = exports.defineProperties = function (target, properties, 
   return target;
 };
 
-
+exports.defineProperties = defineProperties;
 /**
  * The entries() method returns a new Iterator that contains the key/value pairs for each index in the Object|Array.
  *
@@ -294,7 +306,6 @@ var defineProperties = exports.defineProperties = function (target, properties, 
  * @param {*=} thisArg
  * @return {*}
  */
-
 
 /**
  * The findIndex() method returns a value in the Object|Array
@@ -394,7 +405,7 @@ var defineProperties = exports.defineProperties = function (target, properties, 
  * @return {Array}
  */
 
-var mapToArray = exports.mapToArray = function (arrayOrObject, callback) {
+var mapToArray = function mapToArray(arrayOrObject, callback) {
   if (Array.isArray(arrayOrObject)) {
     return arrayOrObject.map(callback);
   }
@@ -405,41 +416,42 @@ var mapToArray = exports.mapToArray = function (arrayOrObject, callback) {
   return array;
 };
 
-
+exports.mapToArray = mapToArray;
 /**
  * Access to the array module
  *
  * @constant module:utils.array
  * @type module:array
  */
-var array = exports.array = require("./array");
+var array = require("./array");
 
+exports.array = array;
 /**
  * Access to the object module
  *
  * @constant module:utils.object
  * @type module:object
  */
-var object = exports.object = require("./object");
+var object = require("./object");
 
+exports.object = object;
 /**
  * Access to the string module
  *
  * @constant module:utils.string
  * @type module:string
  */
-var string = exports.string = require("./string/string");
+var string = require("./string/string");
 
+exports.string = string;
 /**
  * Access to the promises module
  *
  * @constant module:utils.promises
  * @type module:promises
  */
-var promises = exports.promises = require("./promises");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var promises = require("./promises");
+exports.promises = promises;
 //# sourceMappingURL=index.js.map</pre>
 	</article>
 </section>
@@ -469,7 +481,7 @@ Object.defineProperty(exports, "__esModule", {
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-	on 2015-02-20T00:44:32+00:00 using the <a
+	on 2015-03-12T21:52:16+00:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>

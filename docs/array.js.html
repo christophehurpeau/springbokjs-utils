@@ -64,10 +64,11 @@
  * @param {Array} array
  * @return {Array}
  */
-var slice1 = exports.slice1 = function (array) {
+var slice1 = function slice1(array) {
     return Array.prototype.slice.call(array, 1);
 };
 
+exports.slice1 = slice1;
 /**
  * Search if the array has an element.
  * Shortcut for indexOf !== -1
@@ -77,10 +78,11 @@ var slice1 = exports.slice1 = function (array) {
  * @param {Number} i
  * @return {Boolean}
  */
-var has = exports.has = function (array, searchElement, i) {
+var has = function has(array, searchElement, i) {
     return Array.prototype.indexOf.call(array, searchElement, i) !== -1;
 };
 
+exports.has = has;
 /**
  * Search if the array has an element among provided elements.
  * Shortcut for indexOf !== -1
@@ -90,7 +92,7 @@ var has = exports.has = function (array, searchElement, i) {
  * @param {Number} i
  * @return {Boolean}
  */
-var hasAmong = exports.hasAmong = function (array, searchElements, i) {
+var hasAmong = function hasAmong(array, searchElements, i) {
     for (var j = 0, l = searchElements.length; j &lt; l; j++) {
         if (Array.prototype.indexOf.call(array, searchElements[j], i) !== -1) {
             return true;
@@ -99,6 +101,7 @@ var hasAmong = exports.hasAmong = function (array, searchElements, i) {
     return false;
 };
 
+exports.hasAmong = hasAmong;
 /**
  * Remove an element in an array
  *
@@ -106,7 +109,7 @@ var hasAmong = exports.hasAmong = function (array, searchElements, i) {
  * @param {*} element
  * @return {Boolean}
  */
-var remove = exports.remove = function (array, element) {
+var remove = function remove(array, element) {
     var index = array.indexOf(element);
     if (index === -1) {
         return false;
@@ -116,43 +119,46 @@ var remove = exports.remove = function (array, element) {
     return index;
 };
 
+exports.remove = remove;
 /**
  * Clone an array
  *
  * @param {Array} array
  * @return {Array} cloned array
  */
-var clone = exports.clone = function (array) {
+var clone = function clone(array) {
     return array.slice(0);
 };
 
+exports.clone = clone;
 /**
  * Last element in an array
  *
  * @param {Array} array
  * @return {*} last element
  */
-var last = exports.last = function (array) {
+var last = function last(array) {
     return array[array.length - 1];
 };
 
+exports.last = last;
 /**
  * Random element in an array
  *
  * @param {Array} array
  * @return {*} last element
  */
-var random = exports.random = function (array) {
+var random = function random(array) {
     return array[Math.floor(Math.random() * array.length)];
 };
 
-
+exports.random = random;
 /**
  * Sort functions
  *
  * @type {Object}
  */
-var sortFunctions = exports.sortFunctions = {
+var sortFunctions = {
     "": function (a, b) {
         if (a &lt; b) {
             return -1;
@@ -170,9 +176,10 @@ var sortFunctions = exports.sortFunctions = {
     }
 };
 
-var sortF = exports.sortF = sortFunctions;
+exports.sortFunctions = sortFunctions;
+var sortF = sortFunctions;
 
-
+exports.sortF = sortF;
 /**
  * Sorts an array by a property
  *
@@ -182,7 +189,7 @@ var sortF = exports.sortF = sortFunctions;
  * @param {Function|String|undefined} sortFunction
  * @return {Array}
  */
-var sortBy = exports.sortBy = function (array, propertyName, descending, sortFunction) {
+var sortBy = function sortBy(array, propertyName, descending, sortFunction) {
     if (typeof descending === "string" || typeof descending === "function") {
         sortFunction = descending;
         descending = undefined;
@@ -199,11 +206,9 @@ var sortBy = exports.sortBy = function (array, propertyName, descending, sortFun
     });
 };
 
-
+exports.sortBy = sortBy;
 /* findBy: use Array.prototype.find((v) => v.propertyName === value); */
 /* findIndexBy: use Array.prototype.findIndex((v) => v.propertyName === value); */
-
-
 
 /**
  * The removeWhen() method removes elements
@@ -213,7 +218,7 @@ var sortBy = exports.sortBy = function (array, propertyName, descending, sortFun
  * @param {Function} callback
  * @return {Number} the new array's length
  */
-var removeWhen = exports.removeWhen = function (array, callback) {
+var removeWhen = function removeWhen(array, callback) {
     array.forEach(function (elt, index) {
         if (callback(elt, index)) {
             array.splice(index, 1);
@@ -222,8 +227,7 @@ var removeWhen = exports.removeWhen = function (array, callback) {
     return array.length;
 };
 
-
-
+exports.removeWhen = removeWhen;
 /**
  * Tests if an array equals another
  *
@@ -231,7 +235,7 @@ var removeWhen = exports.removeWhen = function (array, callback) {
  * @param {Array} array2
  * @return {Boolean}
  */
-var equals = exports.equals = function (array1, array2) {
+var equals = function equals(array1, array2) {
     var length = array1.length;
     if (!Array.isArray(array1) || !Array.isArray(array2) || length != array2.length) {
         return false;
@@ -243,9 +247,7 @@ var equals = exports.equals = function (array1, array2) {
     }
     return true;
 };
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+exports.equals = equals;
 //# sourceMappingURL=array.js.map</pre>
 	</article>
 </section>
@@ -275,7 +277,7 @@ Object.defineProperty(exports, "__esModule", {
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-	on 2015-02-20T00:44:32+00:00 using the <a
+	on 2015-03-12T21:52:16+00:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>

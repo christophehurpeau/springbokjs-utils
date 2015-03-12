@@ -64,7 +64,7 @@
  * @param {Object|Map} object
  * @return {Map}
  */
-var toMap = exports.toMap = function (object) {
+var toMap = function toMap(object) {
     if (object instanceof Map) {
         return object;
     }
@@ -75,6 +75,7 @@ var toMap = exports.toMap = function (object) {
     return map;
 };
 
+exports.toMap = toMap;
 /**
  * Same as Object.assign, but doesn't override the value if !== undefined
  *
@@ -82,7 +83,7 @@ var toMap = exports.toMap = function (object) {
  * @param {Object} object
  * @return {Object} target
  */
-var union = exports.union = function (target) {
+var union = function union(target) {
     Array.from(arguments).slice(1).forEach(function (object) {
         if (object) {
             for (var key in object) {
@@ -95,16 +96,18 @@ var union = exports.union = function (target) {
     return target;
 };
 
+exports.union = union;
 /**
  * Clones an object
  *
  * @param {Object} object
  * @return {Object} target
  */
-var clone = exports.clone = function (object) {
+var clone = function clone(object) {
     return Object.assign({}, object);
 };
 
+exports.clone = clone;
 /**
  * Filter an object by the keys
  *
@@ -112,7 +115,7 @@ var clone = exports.clone = function (object) {
  * @param  {Array} keys
  * @return {Object}
  */
-var filterKeys = exports.filterKeys = function (object, keys) {
+var filterKeys = function filterKeys(object, keys) {
     var filteredObject = {};
     keys.forEach(function (k) {
         filteredObject[k] = object[k];
@@ -120,7 +123,7 @@ var filterKeys = exports.filterKeys = function (object, keys) {
     return filteredObject;
 };
 
-
+exports.filterKeys = filterKeys;
 /**
  * Same a map + join
  *
@@ -128,7 +131,7 @@ var filterKeys = exports.filterKeys = function (object, keys) {
  * @param  {Array} keys
  * @return {Object}
  */
-var mapJoin = exports.mapJoin = function (object, separator, callback) {
+var mapJoin = function mapJoin(object, separator, callback) {
     if (typeof separator === "function") {
         callback = separator;
         separator = "";
@@ -137,9 +140,9 @@ var mapJoin = exports.mapJoin = function (object, separator, callback) {
     return exports.join(object, separator);
 };
 
-
+exports.mapJoin = mapJoin;
 // Array-like functions
-var _commonObjectArray = function (propertyName, object, callback, thisArg) {
+var _commonObjectArray = function _commonObjectArray(propertyName, object, callback, thisArg) {
     if (!thisArg) {
         thisArg = object;
     }
@@ -153,15 +156,13 @@ var _commonObjectArray = function (propertyName, object, callback, thisArg) {
     });
 };
 
-
-
 /**
  * The entries() method returns a new Iterator that contains the key/value pairs for each index in the Object.
 *
 * @param {Object|Map} object
 * @return {Iterator}
 */
-var entries = exports.entries = function (object) {
+var entries = function entries(object) {
     var keys = Object.keys(object),
         i = 0;
     return Object.freeze({
@@ -174,7 +175,7 @@ var entries = exports.entries = function (object) {
     });
 };
 
-
+exports.entries = entries;
 /**
 * The filter() method creates a new object with all elements that pass the test implemented by the provided function.
 *
@@ -183,11 +184,12 @@ var entries = exports.entries = function (object) {
 * @param {*=} thisArg
 * @return {Object}
 */
-var filter = exports.filter = function (object, callback, thisArg) {
+var filter = function filter(object, callback, thisArg) {
     var keys = _commonObjectArray.call(null, "filter", object, callback, thisArg);
     return exports.filterKeys(object, keys);
 };
 
+exports.filter = filter;
 /**
 * The find() method returns a value in the object,
 * if an element in the object satisfies the provided testing function. Otherwise undefined is returned.
@@ -197,11 +199,12 @@ var filter = exports.filter = function (object, callback, thisArg) {
 * @param {*=} thisArg
 * @return {*}
 */
-var find = exports.find = function (object, callback, thisArg) {
+var find = function find(object, callback, thisArg) {
     var key = exports.findIndex.apply(null, arguments);
     return key &amp;&amp; object[key];
 };
 
+exports.find = find;
 /**
 * The findIndex() method returns an key in the object,
 * if an element in the object satisfies the provided testing function. Otherwise undefined is returned.
@@ -212,8 +215,9 @@ var find = exports.find = function (object, callback, thisArg) {
 * @param {*=} thisArg
 * @return {String|undefined}
 */
-var findIndex = exports.findIndex = _commonObjectArray.bind(null, "find");
+var findIndex = _commonObjectArray.bind(null, "find");
 
+exports.findIndex = findIndex;
 /**
 * The forEach() method executes a provided function once per object element.
 *
@@ -223,8 +227,9 @@ var findIndex = exports.findIndex = _commonObjectArray.bind(null, "find");
 * @param {*} thisArg
 * @return {*}
 */
-var forEach = exports.forEach = _commonObjectArray.bind(null, "forEach");
+var forEach = _commonObjectArray.bind(null, "forEach");
 
+exports.forEach = forEach;
 /**
 * The join() method joins all elements of an object into a string.
 *
@@ -232,12 +237,13 @@ var forEach = exports.forEach = _commonObjectArray.bind(null, "forEach");
 * @param {String} separator
 * @return {String}
 */
-var join = exports.join = function (object, separator) {
+var join = function join(object, separator) {
     return Object.keys(object).map(function (key) {
         return object[key];
     }).join(separator);
 };
 
+exports.join = join;
 /**
 * The map() method creates a new object with the results of calling a provided function on every element in this object.
 *
@@ -246,7 +252,7 @@ var join = exports.join = function (object, separator) {
 * @param {*=} thisArg
 * @return {*}
 */
-var map = exports.map = function (object, callback, thisArg) {
+var map = function map(object, callback, thisArg) {
     var mappedObject = {};
     exports.forEach(object, function (value, key) {
         mappedObject[key] = callback.apply(this, arguments);
@@ -254,6 +260,7 @@ var map = exports.map = function (object, callback, thisArg) {
     return mappedObject;
 };
 
+exports.map = map;
 /**
 * The reduce() method applies a function against an accumulator
 * and each value of the object (from left-to-right) has to reduce it to a single value.
@@ -263,12 +270,13 @@ var map = exports.map = function (object, callback, thisArg) {
 * @param {*=} initialValue
 * @return {*}
 */
-var reduce = exports.reduce = function (object, callback, initialValue) {
+var reduce = function reduce(object, callback, initialValue) {
     return Object.keys(object).reduce(function (previousValue, currentValue, index, array) {
         return callback(previousValue, object[currentValue], currentValue, object);
     }, initialValue);
 };
 
+exports.reduce = reduce;
 /**
 * The reduceRight() method applies a function against an accumulator
 * and each value of the object (from right-to-left) as to reduce it to a single value.
@@ -278,12 +286,13 @@ var reduce = exports.reduce = function (object, callback, initialValue) {
 * @param {*=} initialValue
 * @return {*}
 */
-var reduceRight = exports.reduceRight = function (object, callback, initialValue) {
+var reduceRight = function reduceRight(object, callback, initialValue) {
     return Object.keys(object).reduceRight(function (previousValue, currentValue, index, array) {
         return callback(previousValue, object[currentValue], currentValue, object);
     }, initialValue);
 };
 
+exports.reduceRight = reduceRight;
 /**
 * The some() method tests whether some element in the object passes the test implemented by the provided function.
 *
@@ -293,10 +302,8 @@ var reduceRight = exports.reduceRight = function (object, callback, initialValue
 * @param {*=} thisArg
 * @return {Boolean}
 */
-var some = exports.some = _commonObjectArray.bind(null, "some");
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+var some = _commonObjectArray.bind(null, "some");
+exports.some = some;
 //# sourceMappingURL=object.js.map</pre>
 	</article>
 </section>
@@ -326,7 +333,7 @@ Object.defineProperty(exports, "__esModule", {
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-	on 2015-02-20T00:44:32+00:00 using the <a
+	on 2015-03-12T21:52:16+00:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>

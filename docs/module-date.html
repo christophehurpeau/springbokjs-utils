@@ -125,16 +125,19 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         <dl>
             
-<dt class="name" id="~daysInMonth">
-    <h4><span class="type-signature">&lt;inner> </span>daysInMonth<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="~daysInMonth"><span class="type-signature">&lt;inner> </span>daysInMonth<span class="signature">(month, year)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
     
 </dt>
 <dd>
+    
     
     <div class="description">
         Returns the number of days in the month and year in parameters
@@ -143,6 +146,83 @@
 
     
 
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>month</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">from 0 to 11</td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>year</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
     
 <dl class="details">
 	
@@ -179,7 +259,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="date.js.html">date.js</a>,
-				 <a href="date.js.html#sunlight-1-line-25">line 25</a>
+				 <a href="date.js.html#sunlight-1-line-26">line 26</a>
 			</li>
 		</ul>
 	</dd>
@@ -192,18 +272,54 @@
 	
 </dl>
 
+    
+    
 
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    28, 29, 30 or 31
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Number</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
     
 </dd>
 
         
             
-<dt class="name" id="~isLeapYear">
-    <h4><span class="type-signature">&lt;inner> </span>isLeapYear<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="~isLeapYear"><span class="type-signature">&lt;inner> </span>isLeapYear<span class="signature">(year)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
     
 </dt>
 <dd>
+    
     
     <div class="description">
         Returns if the year in parameter is a leap year
@@ -212,6 +328,60 @@
 
     
 
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>year</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
     
 <dl class="details">
 	
@@ -261,18 +431,50 @@
 	
 </dl>
 
+    
+    
 
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Boolean</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
     
 </dd>
 
         
             
-<dt class="name" id="~parseSqlDate">
-    <h4><span class="type-signature">&lt;inner> </span>parseSqlDate<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="~parseSqlDate"><span class="type-signature">&lt;inner> </span>parseSqlDate<span class="signature">(sqlDate)</span><span class="type-signature"> &rarr; {Date}</span></h4>
+    
     
 </dt>
 <dd>
+    
     
     <div class="description">
         Transform a SQL string date into a Date
@@ -282,6 +484,60 @@
     
 
     
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>sqlDate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
 <dl class="details">
 	
 
@@ -317,7 +573,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="date.js.html">date.js</a>,
-				 <a href="date.js.html#sunlight-1-line-59">line 59</a>
+				 <a href="date.js.html#sunlight-1-line-61">line 61</a>
 			</li>
 		</ul>
 	</dd>
@@ -330,18 +586,54 @@
 	
 </dl>
 
+    
+    
 
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    date
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Date</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
     
 </dd>
 
         
             
-<dt class="name" id="~toSqlDate">
-    <h4><span class="type-signature">&lt;inner> </span>toSqlDate<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="~toSqlDate"><span class="type-signature">&lt;inner> </span>toSqlDate<span class="signature">(date, withHours)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
     
 </dt>
 <dd>
+    
     
     <div class="description">
         Transform a date into a SQL date : YYYY-MM-DD HH:MM:SS
@@ -351,6 +643,83 @@
     
 
     
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>withHours</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
 <dl class="details">
 	
 
@@ -386,7 +755,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="date.js.html">date.js</a>,
-				 <a href="date.js.html#sunlight-1-line-39">line 39</a>
+				 <a href="date.js.html#sunlight-1-line-41">line 41</a>
 			</li>
 		</ul>
 	</dd>
@@ -399,13 +768,46 @@
 	
 </dl>
 
+    
+    
 
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    string date with format YYYY-MM-DD HH:MM:SS
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">String</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
     
 </dd>
 
         </dl>
-    
-
     
 
     
@@ -443,7 +845,7 @@
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-	on 2015-02-20T00:44:32+00:00 using the <a
+	on 2015-03-12T21:52:16+00:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>

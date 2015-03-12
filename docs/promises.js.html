@@ -54,9 +54,7 @@
 		<pre
 			class="sunlight-highlight-javascript linenums">"use strict";
 
-var _interopRequireWildcard = function (obj) { return obj &amp;&amp; obj.__esModule ? obj : { "default": obj }; };
-
-var S = _interopRequireWildcard(require("./index"));
+var S = require("./index");
 
 var createdPromise;
 
@@ -72,7 +70,7 @@ var createdPromise;
  * @param {Function} reject reject function of the promise
  * @return {Function}
  */
-var resolveFromCallback = exports.resolveFromCallback = function (resolve, reject) {
+var resolveFromCallback = function resolveFromCallback(resolve, reject) {
     return function (err, result) {
         if (err) {
             return reject(err);
@@ -81,6 +79,7 @@ var resolveFromCallback = exports.resolveFromCallback = function (resolve, rejec
     };
 };
 
+exports.resolveFromCallback = resolveFromCallback;
 /**
  * Returns a promise
  *
@@ -96,7 +95,7 @@ var resolveFromCallback = exports.resolveFromCallback = function (resolve, rejec
  * @param {Function} callback callback((done) => {})
  * @return {Promise}
  */
-var promiseCallback = exports.promiseCallback = function (callback) {
+var promiseCallback = function promiseCallback(callback) {
     var resolveCallback, rejectCallback;
     var createdPromise = new Promise(function (resolve, reject) {
         resolveCallback = resolve;
@@ -107,6 +106,7 @@ var promiseCallback = exports.promiseCallback = function (callback) {
     return createdPromise;
 };
 
+exports.promiseCallback = promiseCallback;
 /**
  * Returns an array with two values : the promise and the callback to call
  *
@@ -121,7 +121,7 @@ var promiseCallback = exports.promiseCallback = function (callback) {
  *
  * @return {Array}
  */
-var creator = exports.creator = function () {
+var creator = function creator() {
     var resolveCallback, rejectCallback;
     var createdPromise = new Promise(function (resolve, reject) {
         resolveCallback = resolve;
@@ -131,6 +131,7 @@ var creator = exports.creator = function () {
     return [createdPromise, doneCallback];
 };
 
+exports.creator = creator;
 /**
  * Returns a callback that resolve or reject the created promise that you can get with {promises}
  *
@@ -138,7 +139,7 @@ var creator = exports.creator = function () {
  *
  * @return {Function} callback(err, result)
  */
-var done = exports.done = function () {
+var done = function done() {
     var resolveCallback, rejectCallback;
     createdPromise = new Promise(function (resolve, reject) {
         resolveCallback = resolve;
@@ -147,6 +148,7 @@ var done = exports.done = function () {
     return resolveFromCallback(resolveCallback, rejectCallback);
 };
 
+exports.done = done;
 /**
 * Returns the Promise created by the previously called method done()
 *
@@ -157,7 +159,7 @@ var done = exports.done = function () {
 *
 * @return {Promise}
 */
-var promise = exports.promise = function () {
+var promise = function promise() {
     if (!createdPromise) {
         throw new Error("No promise in stack, done() should be called before");
     }
@@ -166,14 +168,15 @@ var promise = exports.promise = function () {
     return p;
 };
 
+exports.promise = promise;
 /**
  * Execute promises in parallel
  *
- * @param {Array|Object} iterable an iterable with .map method (like Array), or an key/value object
+ * @param {Array|Object|Map|Set} iterable an iterable with .map method (like Array), or an key/value object
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-var forEach = exports.forEach = function (iterable, callback) {
+var forEach = function forEach(iterable, callback) {
     if (Array.isArray(iterable)) {
         return Promise.all(iterable.map(callback));
     }
@@ -191,6 +194,7 @@ var forEach = exports.forEach = function (iterable, callback) {
     });
 };
 
+exports.forEach = forEach;
 /**
  * Execute promises in series
  *
@@ -198,11 +202,11 @@ var forEach = exports.forEach = function (iterable, callback) {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-var forEachSeries = exports.forEachSeries = function (iterable, callback) {
+var forEachSeries = function forEachSeries(iterable, callback) {
     return new Promise(function (resolve, reject) {
         var entriesIterator = S.entries(iterable);
         var results = new iterable.constructor();
-        var next = function () {
+        (function next() {
             var current = entriesIterator.next();
             if (current.done) {
                 return resolve(results);
@@ -210,7 +214,7 @@ var forEachSeries = exports.forEachSeries = function (iterable, callback) {
             var key = current.value[0],
                 value = current.value[1];
             var result = callback(value, key);
-            if (result &amp;&amp; S.isFunction(result.then)) {
+            if (result &amp;&amp; typeof result.then === "function") {
                 result.then(function (result) {
                     results[key] = result;
                     next();
@@ -219,11 +223,11 @@ var forEachSeries = exports.forEachSeries = function (iterable, callback) {
                 results[key] = result;
                 setImmediate(next);
             }
-        };
-        next();
+        })();
     });
 };
 
+exports.forEachSeries = forEachSeries;
 /**
  * Execute the second callback wile the first callback is true
  *
@@ -231,14 +235,14 @@ var forEachSeries = exports.forEachSeries = function (iterable, callback) {
  * @param {Function} callback callback(value, index) called for each values
  * @return {Promise}
  */
-var whileTrue = exports.whileTrue = function (conditionCallback, callback) {
+var whileTrue = function whileTrue(conditionCallback, callback) {
     return new Promise(function (resolve, reject) {
         (function next() {
             if (!conditionCallback()) {
                 return resolve();
             }
             var result = callback();
-            if (result &amp;&amp; S.isFunction(result.then)) {
+            if (result &amp;&amp; typeof result.then === "function") {
                 result.then(function () {
                     setImmediate(next);
                 })["catch"](reject);
@@ -249,7 +253,7 @@ var whileTrue = exports.whileTrue = function (conditionCallback, callback) {
     });
 };
 
-
+exports.whileTrue = whileTrue;
 /**
  * Returns a promise
  *
@@ -267,9 +271,6 @@ var whileTrue = exports.whileTrue = function (conditionCallback, callback) {
  * @return {Promise}
  */
 S.promiseCallback = promiseCallback;
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 //# sourceMappingURL=promises.js.map</pre>
 	</article>
 </section>
@@ -299,7 +300,7 @@ Object.defineProperty(exports, "__esModule", {
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-	on 2015-02-20T00:44:32+00:00 using the <a
+	on 2015-03-12T21:52:16+00:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>

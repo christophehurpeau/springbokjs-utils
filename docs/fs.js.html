@@ -54,10 +54,6 @@
 		<pre
 			class="sunlight-highlight-javascript linenums">"use strict";
 
-var _interopRequireWildcard = function (obj) { return obj &amp;&amp; obj.__esModule ? obj : { "default": obj }; };
-
-var _interopRequire = function (obj) { return obj &amp;&amp; obj.__esModule ? obj["default"] : obj; };
-
 /* jshint maxlen: 200 */
 /**
  * fs API with Promises
@@ -65,11 +61,9 @@ var _interopRequire = function (obj) { return obj &amp;&amp; obj.__esModule ? ob
  *  @module fs
  */
 
-var fs = _interopRequire(require("fs"));
-
-var promiseUtils = _interopRequireWildcard(require("./promises"));
-
-var YAML = _interopRequire(require("js-yaml"));
+var fs = require("fs");
+var promisesUtils = require("./promises");
+var YAML = require("js-yaml");
 
 /**
  * Rename a file synchronously
@@ -534,35 +528,38 @@ Object.keys(fs).forEach(function (name) {
  * @param {String} path
  * @return {Promise}
  */
-var readJsonFile = exports.readJsonFile = function () {
+var readJsonFile = function readJsonFile() {
   return exports.readFile.apply(exports, arguments).then(JSON.parse);
 };
 
+exports.readJsonFile = readJsonFile;
 /**
  * Read a file and parse its content as JSON synchronously
  *
  * @param {String} path
  * @return {*}
  */
-var readJsonFileSync = exports.readJsonFileSync = function () {
+var readJsonFileSync = function readJsonFileSync() {
   var result = fs.readFileSync.apply(fs, arguments);
   return result &amp;&amp; JSON.parse(result);
 };
 
-var writeJsonFile = exports.writeJsonFile = function () {
+exports.readJsonFileSync = readJsonFileSync;
+var writeJsonFile = function writeJsonFile() {
   var args = arguments;
   args[1] = JSON.stringify(args[1]);
   return exports.writeFile.apply(exports, args);
 };
 
-var writePrettyJsonFile = exports.writePrettyJsonFile = function () {
+exports.writeJsonFile = writeJsonFile;
+var writePrettyJsonFile = function writePrettyJsonFile() {
   var args = arguments;
   args[1] = JSON.stringify(args[1], null, 4);
   return exports.writeFile.apply(exports, args);
 };
 
-
-var parseYaml = function (content) {
+exports.writePrettyJsonFile = writePrettyJsonFile;
+var parseYaml = function parseYaml(content) {
   return YAML.safeLoad(content.toString());
 };
 
@@ -574,21 +571,23 @@ var stringifyYaml = YAML.safeDump;
  * @param {String} path
  * @return {Promise}
  */
-var readYamlFile = exports.readYamlFile = function () {
+var readYamlFile = function readYamlFile() {
   return exports.readFile.apply(exports, arguments).then(parseYaml);
 };
 
+exports.readYamlFile = readYamlFile;
 /**
  * Read a file and parse its content as Yaml synchronously
  *
  * @param {String} path
  * @return {*}
  */
-var readYamlFileSync = exports.readYamlFileSync = function () {
+var readYamlFileSync = function readYamlFileSync() {
   var result = fs.readFileSync.apply(fs, arguments);
   return result &amp;&amp; parseYaml(result);
 };
 
+exports.readYamlFileSync = readYamlFileSync;
 /**
  * Write in file a yaml content
  *
@@ -597,12 +596,13 @@ var readYamlFileSync = exports.readYamlFileSync = function () {
  * @param {Object} options
  * @return {*}
  */
-var writeYamlFile = exports.writeYamlFile = function () {
+var writeYamlFile = function writeYamlFile() {
   var args = arguments;
   args[1] = stringifyYaml(args[1]);
   return exports.writeFile.apply(exports, args);
 };
 
+exports.writeYamlFile = writeYamlFile;
 /**
  * Recursively read a directory.
  * callback is called for each files
@@ -613,12 +613,12 @@ var writeYamlFile = exports.writeYamlFile = function () {
  * @param {Function} callback
  * @return {Promise}
  */
-var readRecursiveDirectory = exports.readRecursiveDirectory = function (dir, options, callback) {
+var readRecursiveDirectory = function readRecursiveDirectory(dir, options, callback) {
   options = Object.assign({
     recursive: true,
     directories: false }, options);
   return exports.readdir(dir).then(function (files) {
-    return promiseUtils.forEach(files, function (file) {
+    return promisesUtils.forEach(files, function (file) {
       var path = dir + "/" + file;
       return exports.stat(path).then(function (stat) {
         if (stat &amp;&amp; stat.isDirectory()) {
@@ -626,7 +626,7 @@ var readRecursiveDirectory = exports.readRecursiveDirectory = function (dir, opt
             return callback({ dirname: file, path: path, basedir: dir, stat: stat });
           }
           if (options.recursive) {
-            return exports.readRecursiveDirectory(path, options, callback);
+            return readRecursiveDirectory(path, options, callback);
           }
         } else {
           return callback({ filename: file, path: path, basedir: dir, stat: stat });
@@ -635,9 +635,7 @@ var readRecursiveDirectory = exports.readRecursiveDirectory = function (dir, opt
     });
   });
 };
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.readRecursiveDirectory = readRecursiveDirectory;
 //# sourceMappingURL=fs.js.map</pre>
 	</article>
 </section>
@@ -667,7 +665,7 @@ Object.defineProperty(exports, "__esModule", {
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
-	on 2015-02-20T00:44:32+00:00 using the <a
+	on 2015-03-12T21:52:16+00:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>
