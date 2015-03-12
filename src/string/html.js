@@ -1,7 +1,7 @@
 /**
  * @module string
  */
-var exports = require('./string.js');
+var exports = require('./string');
 module.exports = exports;
 
 /* http://phpjs.org/functions/strip_tags:535 */

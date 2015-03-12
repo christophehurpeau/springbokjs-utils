@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+var crypto = require('crypto');
 
 /**
  * Security

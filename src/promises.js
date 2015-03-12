@@ -1,4 +1,4 @@
-import * as S from './index';
+var S = require('./index');
 
 var createdPromise;
 

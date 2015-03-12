@@ -5,9 +5,9 @@
  *  @module fs
  */
 
-import fs from 'fs';
-import * as promisesUtils from './promises';
-import YAML from 'js-yaml';
+var fs = require('fs');
+var promisesUtils = require('./promises');
+var YAML = require('js-yaml');
 
 /**
  * Rename a file synchronously

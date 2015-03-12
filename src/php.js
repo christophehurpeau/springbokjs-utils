@@ -1,6 +1,6 @@
 /* jshint freeze: false */
 
-import * as S from './index';
+var S = require('./index');
 
 if ( !String.prototype.contains ) {
     String.prototype.contains = function() {

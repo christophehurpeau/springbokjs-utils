@@ -1,5 +1,5 @@
-import request from 'request';
-import promiseUtils from './promises';
+var request = require('request');
+var promiseUtils = require('./promises');
 
 exports = module.exports = function(uri, options) {
     return promiseUtils.promiseCallback((done) => {

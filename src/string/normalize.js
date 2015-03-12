@@ -1,8 +1,8 @@
 /**
  * @module string
  */
-import * as utils from '../index.js';
-var exports = require('./string.js');
+var utils = require('../index');
+var exports = require('./string');
 module.exports = exports;
 
 /**
