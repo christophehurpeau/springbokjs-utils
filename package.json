@@ -26,6 +26,6 @@
   },
   "dependencies": {
     "js-yaml": "^3.2.7",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.3.2"
   }
 }
