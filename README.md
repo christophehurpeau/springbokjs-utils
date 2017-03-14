@@ -1,5 +1,7 @@
 # springbokjs-utils [![NPM version][npm-image]][npm-url] [![Build Status][build-status-image]][build-status-url] [![Coverage][coverage-image]][coverage-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/christophehurpeau/springbokjs-utils.svg)](https://greenkeeper.io/)
+
 See the full API [here](http://christophehurpeau.github.io/springbokjs-utils/docs/module-utils.html).
 
 ### fs with Promises
