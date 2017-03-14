@@ -18,11 +18,11 @@
   "devDependencies": {
     "es6-shim": "*",
     "gulp": "^3.8",
-    "karma": "^0.12.31",
-    "mocha": "2.*",
-    "proclaim": "^2.0.0",
+    "karma": "^1.5.0",
+    "mocha": "^3.2.0",
+    "proclaim": "^3.4.4",
     "request": "2.*",
-    "springbokjs-library": "^3.5"
+    "springbokjs-library": "^17.0.0"
   },
   "dependencies": {
     "js-yaml": "^3.2.7",
